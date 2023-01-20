@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+    <ItemGroup>
+
+        <PackageReference Include="IdentityModel.OidcClient" Version="5.2.0" />
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1462.37" />
+        <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.17" />
+
+    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Forms\frmOffersGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmOfferDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmOfferAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\dsUserOrders.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsUserOrders.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Reports\dsUserOrders.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsUserOrders.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

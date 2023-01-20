@@ -1,0 +1,82 @@
+version: '3.4'
+
+services:
+#mssql docker
+  poseidon.sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    expose:
+        - 1433
+    networks:
+      poseidon_net:
+
+#Poseidon Auth
+  poseidon.auth:
+    image: ${DOCKER_REGISTRY-}poseidonauth
+    build:
+      context: .
+      dockerfile: Poseidon.Auth/Dockerfile
+    environment:
+      - ConnectionStrings__MainDB=Server=poseidon.sql,1433;Database=IB210382-AUTH;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=localhost
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - Auth__BaseUrl=http://localhost:5533
+      - Poseidon__BaseUrl=http://localhost:5433
+      - DataDog__ApiKey=
+    ports:
+      - 5533:80 
+    networks:
+      poseidon_net:
+    links:
+      - poseidon.sql
+    depends_on:
+      - poseidon.sql
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${USERPROFILE}/.aspnet/https:/https:ro
+
+#Poseidon Api
+  poseidon.api:
+    image: ${DOCKER_REGISTRY-}poseidonapi
+    build:
+      context: .
+      dockerfile: Poseidon.Api/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=poseidon.sql,1433;Database=IB210382-API;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
+      - Poseidon__BaseUrl=http://localhost:5433
+      - Auth__BaseUrl=http://localhost:5533
+      - DataDog__ApiKey=
+      - Stripe__ApiKey=
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=localhost
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+    ports:
+      - 5433:80 
+    networks:
+      poseidon_net:
+    links:
+      - poseidon.sql
+    depends_on:
+      - poseidon.sql 
+      - poseidon.auth
+    volumes:
+      - ~/.aspnet/https:/https:ro
+
+
+networks:
+  poseidon_net: 
+    name: poseidon_net
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: 172.33.0.0/16
+          gateway: 172.33.0.1
