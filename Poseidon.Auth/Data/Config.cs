@@ -119,18 +119,18 @@ namespace Poseidon.Auth
                         RequireClientSecret         = false,
                         RedirectUris                =
                         {
-                              "http://localhost:5433/swagger/oauth2-redirect.html"
+                              "http://localhost:5430/swagger/oauth2-redirect.html"
                             , "http://localhost:5533/swagger/oauth2-redirect.html"
 
                         },
                         PostLogoutRedirectUris      =
                         {
-                              "http://localhost:5433/swagger"
+                              "http://localhost:5430/swagger"
                             , "http://localhost:5533/swagger"
                         },
                         AllowedCorsOrigins          =
                         {
-                               "http://localhost:5433"
+                               "http://localhost:5430"
                             ,  "http://localhost:5533"
 
                         },
@@ -159,18 +159,18 @@ namespace Poseidon.Auth
                         RequireClientSecret         = false,
                         RedirectUris                =
                         {
-                              "http://localhost:5433/swagger/oauth2-redirect.html"
+                              "http://localhost:5430/swagger/oauth2-redirect.html"
                             , "http://localhost:5533/swagger/oauth2-redirect.html"
 
                         },
                         PostLogoutRedirectUris      =
                         {
-                              "http://localhost:5433/swagger"
+                              "http://localhost:5430/swagger"
                             , "http://localhost:5533/swagger"
                         },
                         AllowedCorsOrigins          =
                         {
-                               "http://localhost:5433"
+                               "http://localhost:5430"
                             ,  "http://localhost:5533"
 
                         },

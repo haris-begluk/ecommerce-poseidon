@@ -6,7 +6,7 @@ class DockerConfig {
   String get schema => 'http';
   int get port => 5533;
   String get authHost => _hostAddress;
-  String get apiUrl => 'http://${_hostAddress}:5433';
+  String get apiUrl => 'http://${_hostAddress}:5430';
 }
 
 class Environment {
