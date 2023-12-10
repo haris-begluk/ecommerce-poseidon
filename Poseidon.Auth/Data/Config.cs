@@ -57,9 +57,9 @@ namespace Poseidon.Auth
                         ClientName                  = "Postman",
                         AllowedGrantTypes           = GrantTypes.Code,
                         AllowAccessTokensViaBrowser = true,
-                        RedirectUris                = { "https://www.getpostman.com/oauth2/callback" },
-                        PostLogoutRedirectUris      = { "https://www.getpostman.com" },
-                        AllowedCorsOrigins          = { "https://www.getpostman.com" },
+                        RedirectUris                = { "http://www.getpostman.com/oauth2/callback" },
+                        PostLogoutRedirectUris      = { "http://www.getpostman.com" },
+                        AllowedCorsOrigins          = { "http://www.getpostman.com" },
                         EnableLocalLogin            = true,
                         AllowedScopes               =
                         {
@@ -119,19 +119,19 @@ namespace Poseidon.Auth
                         RequireClientSecret         = false,
                         RedirectUris                =
                         {
-                              "http://localhost:5430/swagger/oauth2-redirect.html"
-                            , "http://localhost:5533/swagger/oauth2-redirect.html"
+                              "https://localhost:5430/swagger/oauth2-redirect.html"
+                            , "https://localhost:5533/swagger/oauth2-redirect.html"
 
                         },
                         PostLogoutRedirectUris      =
                         {
-                              "http://localhost:5430/swagger"
-                            , "http://localhost:5533/swagger"
+                              "https://localhost:5430/swagger"
+                            , "https://localhost:5533/swagger"
                         },
                         AllowedCorsOrigins          =
                         {
-                               "http://localhost:5430"
-                            ,  "http://localhost:5533"
+                               "https://localhost:5430"
+                            ,  "https://localhost:5533"
 
                         },
                         EnableLocalLogin            = true,
@@ -159,19 +159,19 @@ namespace Poseidon.Auth
                         RequireClientSecret         = false,
                         RedirectUris                =
                         {
-                              "http://localhost:5430/swagger/oauth2-redirect.html"
-                            , "http://localhost:5533/swagger/oauth2-redirect.html"
+                              "https://localhost:5430/swagger/oauth2-redirect.html"
+                            , "https://localhost:5533/swagger/oauth2-redirect.html"
 
                         },
                         PostLogoutRedirectUris      =
                         {
-                              "http://localhost:5430/swagger"
-                            , "http://localhost:5533/swagger"
+                              "https://localhost:5430/swagger"
+                            , "https://localhost:5533/swagger"
                         },
                         AllowedCorsOrigins          =
                         {
-                               "http://localhost:5430"
-                            ,  "http://localhost:5533"
+                               "https://localhost:5430"
+                            ,  "https://localhost:5533"
 
                         },
                         EnableLocalLogin            = true,
@@ -191,6 +191,46 @@ namespace Poseidon.Auth
                 },
                 new Client
                 {
+                        ClientId                    = "user-client",
+                        ClientName                  = "ResourceOwnerPasswordAndClientCredentials",
+                        AllowedGrantTypes           = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                        AllowAccessTokensViaBrowser = true,
+                        RequirePkce                 = true,
+                        RequireClientSecret         = false,
+                        RedirectUris                =
+                        {
+                              "https://localhost:5430/swagger/oauth2-redirect.html"
+                            , "https://localhost:5533/swagger/oauth2-redirect.html"
+
+                        },
+                        PostLogoutRedirectUris      =
+                        {
+                              "https://localhost:5430/swagger"
+                            , "https://localhost:5533/swagger"
+                        },
+                        AllowedCorsOrigins          =
+                        {
+                               "https://localhost:5430"
+                            ,  "https://localhost:5533"
+
+                        },
+                        EnableLocalLogin            = true,
+                        AllowedScopes               =
+                        {
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile,
+                            IdentityServerConstants.StandardScopes.Email,
+                            IdentityServerConstants.StandardScopes.OfflineAccess,
+                            "poseidon-api",
+                            "poseidon-admin"
+                        },
+                        ClientSecrets =
+                        {
+                            new Secret("docker".Sha256())
+                        },
+                },
+                new Client
+                {
                     ClientId            = "flutter-dev",
                     AllowedGrantTypes   = GrantTypes.Code,
                     RequirePkce         = true,
@@ -198,15 +238,15 @@ namespace Poseidon.Auth
 
                     RedirectUris                =
                     {
-                          "http://localhost:4000/" 
+                          "https://localhost:4000/" 
                     },
                     PostLogoutRedirectUris      =
                     {
-                          "http://localhost:4000"
+                          "https://localhost:4000"
                     },
                     AllowedCorsOrigins          =
                     {
-                           "http://localhost:4000"
+                           "https://localhost:4000"
                     },
                     AllowedScopes =
                     {
@@ -233,20 +273,20 @@ namespace Poseidon.Auth
                     RedirectUris       =
                     {
                           "https://10.0.2.2/"
-                        , "http://localhost:4000/"
-                        , "http://10.0.2.2:4000/"
+                        , "https://localhost:4000/"
+                        , "https://10.0.2.2:4000/"
                     },
                     PostLogoutRedirectUris      =
                     {
                           "https://10.0.2.2/"
-                        , "http://localhost:4000/"
-                        , "http://10.0.2.2:4000/"
+                        , "https://localhost:4000/"
+                        , "https://10.0.2.2:4000/"
                     },
                     AllowedCorsOrigins =
                     {
                           "https://10.0.2.2"
-                        , "http://localhost:4000"
-                        , "http://10.0.2.2:4000"
+                        , "https://localhost:4000"
+                        , "https://10.0.2.2:4000"
                     },
                     AllowedScopes =
                     {
@@ -273,7 +313,7 @@ namespace Poseidon.Auth
                     AllowOfflineAccess  = true,
                     RedirectUris       = 
                     { 
-                        "http://localhost/winforms.client" 
+                        "https://localhost/winforms.client" 
                     },
                     AllowedScopes = 
                     {
@@ -451,6 +491,9 @@ namespace Poseidon.Auth
 
             Log.Information($"Migrating {nameof(PersistedGrantDbContext)}");
             app.ExecuteMigrations<PersistedGrantDbContext>();
+
+            Log.Information($"Migrating {nameof(ProtectionContext)}");
+            app.ExecuteMigrations<ProtectionContext>();
 
             Log.Information("Migrations finished...");
 

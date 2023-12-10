@@ -28,8 +28,8 @@ public static partial class Endpoints
 
             if (_env.IsStaging())
             {
-                _authUrl = "http://poseidon.auth";
-                _poseidonApiUrl = "http://poseidon.api";
+                _authUrl = "https://poseidon.auth";
+                _poseidonApiUrl = "https://poseidon.api";
             }
             else
             {

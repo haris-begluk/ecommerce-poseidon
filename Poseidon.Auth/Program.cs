@@ -1,5 +1,6 @@
 using Poseidon.Auth.Extensions;
 using Serilog;
+using static Poseidon.Auth.Extensions.CertificateExtension;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -7,18 +8,18 @@ Log.Logger = new LoggerConfiguration()
 
 Log.Information("Starting up");
 
-
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args); 
 
+    var certificates  = await builder.GetCertificatesAsync(Log.Logger);
+    
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
     var app = builder
-        .ConfigureServices()
+        .ConfigureServices(certificates)
         .ConfigurePipeline();
-
        app.Run();
 
 }

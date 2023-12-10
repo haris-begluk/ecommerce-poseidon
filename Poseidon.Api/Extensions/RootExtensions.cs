@@ -17,6 +17,7 @@ using Serilog.Sinks.Datadog.Logs;
 using Serilog.Sinks.SystemConsole.Themes;
 using Stripe;
 using System.Net;
+using System.Security.Authentication;
 
 public static class RootExtensions
 {
@@ -68,11 +69,7 @@ public static class RootExtensions
             };
         });
 
-        //To avoid an issues  when testing flutter apps http 
-        if (!app.Environment.IsDevelopment() && !app.Environment.IsStaging())
-        {
-            app.UseHttpsRedirection();
-        }
+        app.UseHttpsRedirection();
 
         app.UseAuthentication();
         app.UseAuthorization();
@@ -160,7 +157,7 @@ public static class RootExtensions
                 // Check this link: https://stackoverflow.com/questions/68913012/system-net-http-httprequestexception-cannot-assign-requested-address-error-wh
                 options.Authority = 
                     builder.Environment.IsStaging()
-                ?   "http://poseidon.auth" 
+                ?   "https://poseidon.auth:443" 
                 :   authBaseUrl; 
                
                 options.TokenValidationParameters = new TokenValidationParameters()
@@ -170,6 +167,7 @@ public static class RootExtensions
                 //TODO: Remove this line if app is deployed
                 //Allows usage of http auth url 
                 options.RequireHttpsMetadata = false;
+                options.BackchannelHttpHandler = GetHandler();
             });
 
         builder.Services.AddAuthorization(options =>
@@ -207,6 +205,13 @@ public static class RootExtensions
 
         }
     }
+    private static HttpClientHandler GetHandler()
+    => new()
+    {
+        ClientCertificateOptions = ClientCertificateOption.Manual,
+        SslProtocols = SslProtocols.Tls12,
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+    };
 }
 public static partial class LoggerExtension
 {
@@ -227,7 +232,6 @@ public static partial class LoggerExtension
             );
 
 
-#if DEBUG  
         if (logConsoleAndSQl)
         {
             builder.Host.UseSerilog((ctx, lc) => lc
@@ -243,7 +247,6 @@ public static partial class LoggerExtension
                 ;
         }
         
-#endif
         if (!string.IsNullOrWhiteSpace(dataDogApiKey))
         {
             builder.Host.UseSerilog((ctx, lc) => lc
