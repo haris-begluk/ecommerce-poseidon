@@ -3,11 +3,11 @@ version: '3.4'
 services:
 #mssql docker
   poseidon.sql:
-    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    image: mcr.microsoft.com/mssql/server:2022-latest
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=QWElkj132!
+      - SA_PASSWORD=Pass123$
       - MSSQL_PID=Developer
     ports:
       - 1433:1433
@@ -23,16 +23,13 @@ services:
       context: .
       dockerfile: Poseidon.Auth/Dockerfile
     environment:
-      - ConnectionStrings__MainDB=Server=poseidon.sql,1433;Database=IB210382-AUTH;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
       - ASPNETCORE_ENVIRONMENT=Staging
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=localhost
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
-      - Auth__BaseUrl=http://localhost:5533
-      - Poseidon__BaseUrl=http://localhost:5430
-      - DataDog__ApiKey=
+      - ASPNETCORE_URLS=https://+:443;http://+:80 
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Poseidon.pfx
     ports:
-      - 5533:80 
+      - 5533:443
+      - 5534:80 
     networks:
       poseidon_net:
     links:
@@ -41,7 +38,8 @@ services:
       - poseidon.sql
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${USERPROFILE}/.aspnet/https:/https:ro
+      - ${USERPROFILE}/.aspnet/https:/https:ro 
+
 
 #Poseidon Api
   poseidon.api:
@@ -50,9 +48,9 @@ services:
       context: .
       dockerfile: Poseidon.Api/Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=Server=poseidon.sql,1433;Database=IB210382-API;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
-      - Poseidon__BaseUrl=http://localhost:5430
-      - Auth__BaseUrl=http://localhost:5533
+      - ConnectionStrings__DefaultConnection=Server=poseidon.sql,1433;Database=Poseidon-ApiDb;User=sa;Password=Pass123$;ConnectRetryCount=0;TrustServerCertificate=True;
+      - Poseidon__BaseUrl=https://localhost:5430
+      - Auth__BaseUrl=https://localhost:5533
       - DataDog__ApiKey=
       - Stripe__ApiKey=
       - ASPNETCORE_ENVIRONMENT=Staging
@@ -60,7 +58,8 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=localhost
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
     ports:
-      - 5430:80 
+      - 5430:443 
+      - 5431:80
     networks:
       poseidon_net:
     links:

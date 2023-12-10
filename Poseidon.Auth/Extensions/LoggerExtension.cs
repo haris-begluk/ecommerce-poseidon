@@ -27,7 +27,7 @@ public static partial class LoggerExtension
             ,   port:   443
             ,   useSSL: true
             );
-#if DEBUG 
+
         if (logConsoleAndSQl)
         {
             builder.Host.UseSerilog((ctx, lc) => lc
@@ -42,7 +42,6 @@ public static partial class LoggerExtension
                 ;
         }
         
-#endif
         if (!string.IsNullOrWhiteSpace(dataDogApiKey))
         {
             builder.Host.UseSerilog((ctx, lc) => lc

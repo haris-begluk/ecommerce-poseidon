@@ -1,23 +1,30 @@
-﻿using Duende.IdentityServer.Configuration;
+﻿using Azure.Identity;
+using Duende.IdentityServer.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Poseidon.Auth.Endpoints;
 using Poseidon.Auth.Services;
 using Serilog;
 using System.Reflection;
-
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 namespace Poseidon.Auth.Extensions;
 
 internal static class RootExtensions
 {
-    public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder
+        , (X509Certificate2 PrimaryCert, X509Certificate2[] ExpiredCerts) certificates)
     {
         string connectionString = builder.Configuration.GetConnectionString("MainDB")!;
 
-        string issuerUrl        = builder.Configuration.GetSection("Auth:BaseUrl").Value;
+        string issuerUrl        = builder.Configuration.GetSection("Auth:BaseUrl").Value!;
 
         if (string.IsNullOrWhiteSpace(issuerUrl))
         {
@@ -42,6 +49,12 @@ internal static class RootExtensions
         builder.Services.AddDbContext<PoseidonAuthDbContext>(options =>
             options.UseSqlServer(connectionString));
 
+        builder.Services.AddDbContext<ProtectionContext>(options =>
+            options.UseSqlServer(connectionString));
+
+        builder.Services.AddDataProtection()
+            .PersistKeysToDbContext<ProtectionContext>();
+
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<PoseidonAuthDbContext>()
             .AddDefaultTokenProviders();
@@ -57,8 +70,8 @@ internal static class RootExtensions
             options.UserInteraction.LogoutUrl     = "/Account/Logout";
             // "http://host.docker.internal:5000"
             // Check this link: https://stackoverflow.com/questions/68913012/system-net-http-httprequestexception-cannot-assign-requested-address-error-wh
-            options.IssuerUri  = builder.Environment.IsStaging()
-                ? "http://host.docker.internal:5000" // "http://poseidon.auth" 
+            options.IssuerUri  = builder.Environment.IsStaging() //Staging env is docker env
+                ? "https://host.docker.internal:5000" // "http://poseidon.auth" 
                 : issuerUrl;
 
             options.EmitStaticAudienceClaim       = true;
@@ -67,9 +80,10 @@ internal static class RootExtensions
             options.KeyManagement.Enabled = false;
             options.Authentication                = new AuthenticationOptions()
             {
-                CookieLifetime                    = TimeSpan.FromHours(10), // ID server cookie timeout set to 10 hours
+                CookieLifetime                    = TimeSpan.FromHours(1), 
                 CookieSlidingExpiration           = true
-            };
+            };  
+            
         })
         .AddAspNetIdentity<ApplicationUser>()
         .AddProfileService<CustomProfileService>();
@@ -86,15 +100,13 @@ internal static class RootExtensions
             options.ConfigureDbContext = builder =>
                 builder.UseSqlServer(connectionString,
                 options => options.MigrationsAssembly(migrationsAssembly));
-        }); 
+        });
 
-        //TODO: Remove this line if app is deployed to production.
-        identityBuilder.AddDeveloperSigningCredential();
+        identityBuilder.AddSigningCredential(certificates.PrimaryCert);
 
-        builder.AddAuth();
+        builder.AddAuth(certificates.PrimaryCert);
         builder.AddSwagger();
-
-
+        builder.AddDataProtection(certificates);
         
         return builder.Build();
     }
@@ -103,36 +115,30 @@ internal static class RootExtensions
     {
         if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
         {
-            
+            IdentityModelEventSource.ShowPII = true;
+
             Log.Information("Seeding database...");
             app.MigrateWithData();
             Log.Information("Done seeding database. Exiting."); 
 
-            //This is needed when testing flutter apps using http 
-            app.UseCookiePolicy(new CookiePolicyOptions()
-            {
-                MinimumSameSitePolicy = SameSiteMode.Lax
-            });
-
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.OAuthUsePkce();
-                options
-                .ConfigObject
-                .AdditionalItems["syntaxHighlight"] = new Dictionary<string, object>
-                {
-                    ["activated"] = false
-                };
-            });
             app.UseDeveloperExceptionPage();
+        } 
 
-        }
-        //To avoid an issues  when testing flutter apps http 
-        if (!app.Environment.IsDevelopment() && !app.Environment.IsStaging())
+        app.UseHsts();
+
+        app.UseSwagger();
+        app.UseSwaggerUI(options =>
         {
-            app.UseHttpsRedirection();
-        }
+            options.OAuthUsePkce();
+            options
+            .ConfigObject
+            .AdditionalItems["syntaxHighlight"] = new Dictionary<string, object>
+            {
+                ["activated"] = false
+            };
+        });
+
+        app.UseHttpsRedirection();
 
         app.UseStaticFiles();
         app.UseRouting();
@@ -183,7 +189,7 @@ internal static class RootExtensions
         });
         return builder;
     } 
-    public static WebApplicationBuilder AddAuth(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddAuth(this WebApplicationBuilder builder, X509Certificate2 certificate)
     {
         var authBaseUrl = builder.Configuration.GetSection("Auth:BaseUrl").Value;
 
@@ -192,7 +198,7 @@ internal static class RootExtensions
             throw new ArgumentNullException("Auth:BaseUrl can not be null or empty");
         }
 
-        builder.Services.AddAuthentication()
+        builder.Services.AddAuthentication() 
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.Authority = authBaseUrl;
@@ -200,11 +206,14 @@ internal static class RootExtensions
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateAudience = false,
-                    ValidateIssuer   = false,
+                    ValidateIssuer   = false, 
+                    IssuerSigningKey = new X509SecurityKey(certificate)
                 };
 
                 //TODO: Remove this line when app is deployed 
-                options.RequireHttpsMetadata = false;
+                options.RequireHttpsMetadata = true;
+                options.BackchannelHttpHandler = GetHandler();
+
             });
 
         builder.Services.AddAuthorization(options =>
@@ -217,5 +226,71 @@ internal static class RootExtensions
             });
         });
         return builder;
+    } 
+    public static WebApplicationBuilder AddDataProtection(
+           this WebApplicationBuilder builder
+        , (X509Certificate2 PrimaryCert, X509Certificate2[] ExpiredCerts) certificates)
+    {
+        bool protectWihtWithCertificate    = builder.Configuration.GetValue<bool>("DataProtection:ProtectWithCertificate");
+        bool disableAutomaticKeyGeneration = builder.Configuration.GetValue<bool>("DataProtection:DisableAutomaticKeyGeneration");
+        string? secretKeyVaultUrl          = null;
+        int dataProtectionKeyLifetimeDays  = 90;
+
+        if (!protectWihtWithCertificate)
+        {
+            secretKeyVaultUrl = builder.Configuration.GetValue<string>("DataProtection:SecretKeyVaultUrl");
+
+            if (string.IsNullOrWhiteSpace(secretKeyVaultUrl))
+            {
+                throw new Exception("Key vault url is null");
+            }
+            dataProtectionKeyLifetimeDays = builder.Configuration.GetValue<int?>("DataProtection:DataProtectionKeyLifetimeDays")
+                ?? 90;
+        }
+        
+
+        IDataProtectionBuilder dataProtectionBuilder = builder.Services.AddDataProtection()
+          .SetApplicationName(AppDomain.CurrentDomain.FriendlyName)
+          .SetDefaultKeyLifetime(TimeSpan.FromDays(dataProtectionKeyLifetimeDays))
+          .UseCryptographicAlgorithms(
+                new AuthenticatedEncryptorConfiguration
+                {
+                    EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+                    ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+                });
+
+        if (disableAutomaticKeyGeneration)
+        {
+            dataProtectionBuilder.DisableAutomaticKeyGeneration();
+        }
+
+        if (protectWihtWithCertificate)
+        {
+            dataProtectionBuilder.ProtectKeysWithCertificate(certificates.PrimaryCert);
+        }
+        else
+        {
+            //If we use this option we are not able to unprotect the dp keys 
+            //when we rotate key vault secret, more on this issue on this link 
+            //https://github.com/dotnet/aspnetcore/issues/46310
+            dataProtectionBuilder.ProtectKeysWithAzureKeyVault(
+                new Uri(secretKeyVaultUrl!),
+                new DefaultAzureCredential());
+        }
+        dataProtectionBuilder.PersistKeysToDbContext<ProtectionContext>();
+
+        if(certificates.ExpiredCerts.Length > 0)
+        {
+            dataProtectionBuilder.UnprotectKeysWithAnyCertificate(certificates.ExpiredCerts);
+        }
+
+        return builder;
     }
+    private static HttpClientHandler GetHandler()
+    => new()
+    {
+        ClientCertificateOptions = ClientCertificateOption.Manual,
+        SslProtocols = SslProtocols.Tls12,
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+    };
 }
