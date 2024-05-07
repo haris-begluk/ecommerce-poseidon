@@ -136,6 +136,7 @@ internal static class RootExtensions
             {
                 ["activated"] = false
             };
+            options.InjectStylesheet("/Swagger/Theme/SwaggerDark.css");
         });
 
         app.UseHttpsRedirection();

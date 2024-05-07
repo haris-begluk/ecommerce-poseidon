@@ -1,0 +1,28 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Runtime" #> 
+<#@ assembly name="System.Net.Http" #> 
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System" #> 
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="Swagger.Poseidon" #> 
+
+namespace Poseidon.Tests
+{
+    public class SmallTest
+    { 
+    //No Issues 
+<# 
+   
+   //  Type type = Type.GetType("Swagger.Poseidon.PoseidonClient");   
+   //var methods  = type.GetMethods();
+   //PoseidonClient client  = (PoseidonClient)type;
+   //PoseidonClient client = (PoseidonClient)Activator.CreateInstance(type); 
+   var client  = new PoseidonClient(new HttpClient());
+   var type = client.GetType();
+#>        
+        //Type: <#= type.Name#>
+    } 
+}

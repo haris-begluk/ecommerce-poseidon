@@ -97,6 +97,13 @@ namespace Poseidon.Auth.Extensions
 
                         X509Store certStore = new(StoreName.My, StoreLocation.CurrentUser);
                         certStore.Open(OpenFlags.ReadOnly);
+                        if(!certStore.Certificates.Find(X509FindType.FindByThumbprint, certThumbprint, false).Any())
+                        {
+                            logger.Information("Can't find certificate");
+                        }
+                        var primaryCert = certStore.Certificates
+                            .Find(X509FindType.FindByThumbprint, certThumbprint, false) 
+                            .First();
 
                         var certificates = certStore.Certificates
                             .OrderByDescending(c => c.NotBefore)
@@ -118,7 +125,6 @@ namespace Poseidon.Auth.Extensions
                             }
                         }  
 
-                        var primaryCert = certificates.First(c => c.Thumbprint == certThumbprint);
 
                         var expiredCertificates = certificates
                             .Where(c => c.NotAfter <= DateTime.UtcNow)

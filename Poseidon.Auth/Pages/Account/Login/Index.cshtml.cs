@@ -92,11 +92,23 @@ namespace Poseidon.Auth.Pages.Login
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberLogin, lockoutOnFailure: true);
+                var user = await _userManager.FindByEmailAsync(Input.Email); 
+
+                if (user == null)
+                {  
+                    //Redirect to signup
+                    return RedirectToPage("/Account/AccessDenied");
+                }
+
+                var result = await _signInManager.PasswordSignInAsync(
+                  user
+                , Input.Password
+                , Input.RememberLogin
+                , lockoutOnFailure: true);
+
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(Input.Username);
-                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id.ToString(), user.UserName, clientId: context?.Client.ClientId));
+                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.Email, user.Id.ToString(), user.UserName, clientId: context?.Client.ClientId));
 
                     if (context != null)
                     {
@@ -127,7 +139,7 @@ namespace Poseidon.Auth.Pages.Login
                     }
                 }
 
-                await _events.RaiseAsync(new UserLoginFailureEvent(Input.Username, "invalid credentials", clientId: context?.Client.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(Input.Email, "invalid credentials", clientId: context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, LoginOptions.InvalidCredentialsErrorMessage);
             }
 
@@ -154,7 +166,7 @@ namespace Poseidon.Auth.Pages.Login
                     EnableLocalLogin = local,
                 };
 
-                Input.Username = context?.LoginHint;
+                Input.Email = context?.LoginHint;
 
                 if (!local)
                 {

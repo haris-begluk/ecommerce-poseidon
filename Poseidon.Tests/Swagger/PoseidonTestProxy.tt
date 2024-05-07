@@ -1,0 +1,26 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="$(SolutionDir)\Poseidon.Tests\bin\Debug\net8.0\Poseidon.Tests.dll" #> 
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System" #> 
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="Swagger.Poseidon" #>
+namespace Poseidon.Tests
+{
+    public class PoseidonTestProxy
+    { 
+    //No Issues 
+<# 
+   
+   Type type = Type.GetType("Swagger.Poseidon.PoseidonClient");   
+   //var methods  = type.GetMethods();
+   //PoseidonClient client  = (PoseidonClient)type;
+   //PoseidonClient client = (PoseidonClient)Activator.CreateInstance(type);
+#>       
+    } 
+}
+
+
+
+

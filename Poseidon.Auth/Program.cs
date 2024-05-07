@@ -1,5 +1,6 @@
 using Poseidon.Auth.Extensions;
 using Serilog;
+using System.Net;
 using static Poseidon.Auth.Extensions.CertificateExtension;
 
 Log.Logger = new LoggerConfiguration()
@@ -16,7 +17,8 @@ try
     
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
+    //ServicePointManager.ServerCertificateValidationCallback
+    //+= (sender, cert, chain, sslPolicyErrors) => true;
     var app = builder
         .ConfigureServices(certificates)
         .ConfigurePipeline();
