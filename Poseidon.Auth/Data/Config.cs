@@ -356,7 +356,8 @@ namespace Poseidon.Auth
                         {
                             Id = "3e481369-3e1d-458a-93bf-1b6855f13aed",
                             Email = email,
-                            EmailConfirmed = true,
+                            EmailConfirmed = true, 
+                            UserName = "alice"
                         };
                         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -389,7 +390,8 @@ namespace Poseidon.Auth
                         {
                             Id = "fff9a883-0dab-44e8-b323-deebafd5bfaf",
                             Email = email,
-                            EmailConfirmed = true
+                            EmailConfirmed = true,
+                            UserName = "bob"
                         };
                         var result = userMgr.CreateAsync(bob, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -421,7 +423,8 @@ namespace Poseidon.Auth
                         {
                             Id = "3e484169-3e1d-458a-93bf-1b6855f13aed",
                             Email = email,
-                            EmailConfirmed = true,
+                            EmailConfirmed = true, 
+                            UserName = "mobile"
                         };
                         var result = userMgr.CreateAsync(mobile, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -454,7 +457,8 @@ namespace Poseidon.Auth
                         {
                             Id = "56c55d0b-a0ea-42c6-8eeb-a834e9e2dd5e",
                             Email = email,
-                            EmailConfirmed = true,
+                            EmailConfirmed = true, 
+                            UserName = "desktop"
                         };
                         var result = userMgr.CreateAsync(desktop, "Pass123$").Result;
                         if (!result.Succeeded)
