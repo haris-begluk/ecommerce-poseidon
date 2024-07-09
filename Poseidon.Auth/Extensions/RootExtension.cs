@@ -58,7 +58,19 @@ internal static class RootExtensions
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<PoseidonAuthDbContext>()
             .AddDefaultTokenProviders();
-       
+
+        builder.Services.AddDistributedSqlServerCache(options =>
+        {
+            options.ConnectionString = connectionString;
+            options.SchemaName = "dbo";
+            options.TableName = "DistributedCache";
+            options.ExpiredItemsDeletionInterval = TimeSpan.FromMinutes(5);
+            options.DefaultSlidingExpiration = TimeSpan.FromMinutes(3);
+        });
+
+        // configures the OpenIdConnect handlers to persist the state parameter into the server-side IDistributedCache.
+        builder.Services.AddOidcStateDataFormatterCache();
+
         var identityBuilder = builder.Services
         .AddIdentityServer(options =>
         {
@@ -99,11 +111,20 @@ internal static class RootExtensions
         {
             options.ConfigureDbContext = builder =>
                 builder.UseSqlServer(connectionString,
-                options => options.MigrationsAssembly(migrationsAssembly));
+                options => options.MigrationsAssembly(migrationsAssembly)); 
+            options.EnableTokenCleanup = true;
+            options.RemoveConsumedTokens = true;
+            options.TokenCleanupInterval = 10;
+            options.TokenCleanupBatchSize = 100; 
+            options.FuzzTokenCleanupStart = true;
+
         });
 
+#if DEBUG  
+        identityBuilder.AddDeveloperSigningCredential();
+#else
         identityBuilder.AddSigningCredential(certificates.PrimaryCert);
-
+#endif  
         builder.AddAuth(certificates.PrimaryCert);
         builder.AddSwagger();
         builder.AddDataProtection(certificates);

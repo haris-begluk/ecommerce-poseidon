@@ -6,12 +6,15 @@ using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using System;
 using System.Security.Claims;
 
 namespace Poseidon.Auth
 {
     public static class Config
     {
+        private static string spaClientUrl = "https://localhost:44311";
+
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             {
@@ -49,8 +52,8 @@ namespace Poseidon.Auth
                 }
             };
         public static IEnumerable<Client> Clients =>
-            new Client[]
-            {
+                new Client[]
+                {
                 new Client
                 {
                         ClientId                    = "postman",
@@ -181,7 +184,7 @@ namespace Poseidon.Auth
                             IdentityServerConstants.StandardScopes.Profile,
                             IdentityServerConstants.StandardScopes.Email,
                             IdentityServerConstants.StandardScopes.OfflineAccess,
-                            "poseidon-api", 
+                            "poseidon-api",
                             "poseidon-admin"
                         },
                         ClientSecrets =
@@ -238,7 +241,7 @@ namespace Poseidon.Auth
 
                     RedirectUris                =
                     {
-                          "https://localhost:4000/" 
+                          "https://localhost:4000/"
                     },
                     PostLogoutRedirectUris      =
                     {
@@ -303,19 +306,19 @@ namespace Poseidon.Auth
                         new Secret("secret".Sha256())
                     },
                 },
-                new Client 
-                {  
+                new Client
+                {
                     ClientId            = "win-forms",
                     ClientName          = "windows forms",
                     AllowedGrantTypes   = GrantTypes.Code,
                     RequirePkce         = true,
                     RequireClientSecret = false,
                     AllowOfflineAccess  = true,
-                    RedirectUris       = 
-                    { 
-                        "https://localhost/winforms.client" 
+                    RedirectUris       =
+                    {
+                        "https://localhost/winforms.client"
                     },
-                    AllowedScopes = 
+                    AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
@@ -325,14 +328,112 @@ namespace Poseidon.Auth
                         "poseidon-admin",
                     },
                     AllowAccessTokensViaBrowser = true,
-                    RequireConsent              = false, 
+                    RequireConsent              = false,
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
                 },
+                new Client ()
+                {
+                    ClientId                     = "spa-code-client",
+                    ClientName                   = "SPA Code Client",
+                    AccessTokenType              = AccessTokenType.Jwt,
+                    RequireConsent               = false,
+                    AccessTokenLifetime          = 60,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime        = 180, 
+                    RefreshTokenExpiration       = TokenExpiration.Sliding,
+                    RefreshTokenUsage            = TokenUsage.ReUse,
 
+                    AbsoluteRefreshTokenLifetime = 180,
+                    SlidingRefreshTokenLifetime  = 20, 
+                    
+                    AllowOfflineAccess           = true,
+                    RequireClientSecret          = false,
+                    AllowedGrantTypes            = GrantTypes.Code,
+                    RequirePkce                  = true,
+                    AllowAccessTokensViaBrowser  = true,
+                    RedirectUris                 = new List<string>
+                    {
+                        "https://localhost:4200",
+                        "https://localhost:4200/silent-renew.html",
+                        "http://localhost:4200",
+                        "http://localhost:4200/silent-renew.html"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://localhost:4200/unauthorized",
+                        "https://localhost:4200",
+                        "http://localhost:4200/unauthorized",
+                        "http://localhost:4200"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "https://localhost:4200",
+                        "http://localhost:4200"
+
+                    },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "poseidon-api",
+                        "poseidon-admin",
+                    },
+                },               
+                new Client ()
+                {
+                    ClientId                     = "spa-code-client-absolute",
+                    ClientName                   = "SPA Code Client absolute",
+                    AccessTokenType              = AccessTokenType.Jwt,
+                    RequireConsent               = false,
+                    AccessTokenLifetime          = 60,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime        = 180, 
+                    RefreshTokenExpiration       = TokenExpiration.Absolute,
+                    RefreshTokenUsage            = TokenUsage.OneTimeOnly,
+
+                    AbsoluteRefreshTokenLifetime = 180,
+                    SlidingRefreshTokenLifetime  = 20, 
+                    
+                    AllowOfflineAccess           = true,
+                    RequireClientSecret          = false,
+                    AllowedGrantTypes            = GrantTypes.Code,
+                    RequirePkce                  = true,
+                    AllowAccessTokensViaBrowser  = true,
+                    RedirectUris                 = new List<string>
+                    {
+                        "https://localhost:4200",
+                        "https://localhost:4200/silent-renew.html",
+                        "http://localhost:4200",
+                        "http://localhost:4200/silent-renew.html"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://localhost:4200/unauthorized",
+                        "https://localhost:4200",
+                        "http://localhost:4200/unauthorized",
+                        "http://localhost:4200"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "https://localhost:4200",
+                        "http://localhost:4200"
+
+                    },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "poseidon-api",
+                        "poseidon-admin",
+                    },
+                }
             };
+
 
         public static void SeedUsers(this WebApplication app)
         {
@@ -494,8 +595,8 @@ namespace Poseidon.Auth
             Log.Information($"Migrating {nameof(PersistedGrantDbContext)}");
             app.ExecuteMigrations<PersistedGrantDbContext>();
 
-            Log.Information($"Migrating {nameof(ProtectionContext)}");
-            app.ExecuteMigrations<ProtectionContext>();
+            //Log.Information($"Migrating {nameof(ProtectionContext)}");
+            //app.ExecuteMigrations<ProtectionContext>();
 
             Log.Information("Migrations finished...");
 

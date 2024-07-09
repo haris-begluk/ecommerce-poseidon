@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Poseidon.Auth.Migrations.Configuration
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -76,6 +78,9 @@ namespace Poseidon.Auth.Migrations.Configuration
                     AllowPlainTextPkce = table.Column<bool>(type: "bit", nullable: false),
                     RequireRequestObject = table.Column<bool>(type: "bit", nullable: false),
                     AllowAccessTokensViaBrowser = table.Column<bool>(type: "bit", nullable: false),
+                    RequireDPoP = table.Column<bool>(type: "bit", nullable: false),
+                    DPoPValidationMode = table.Column<int>(type: "int", nullable: false),
+                    DPoPClockSkew = table.Column<TimeSpan>(type: "time", nullable: false),
                     FrontChannelLogoutUri = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
                     FrontChannelLogoutSessionRequired = table.Column<bool>(type: "bit", nullable: false),
                     BackChannelLogoutUri = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
@@ -97,6 +102,7 @@ namespace Poseidon.Auth.Migrations.Configuration
                     AlwaysSendClientClaims = table.Column<bool>(type: "bit", nullable: false),
                     ClientClaimsPrefix = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     PairWiseSubjectSalt = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    InitiateLoginUri = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
                     UserSsoLifetime = table.Column<int>(type: "int", nullable: true),
                     UserCodeType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     DeviceCodeLifetime = table.Column<int>(type: "int", nullable: false),
@@ -106,7 +112,9 @@ namespace Poseidon.Auth.Migrations.Configuration
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastAccessed = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    NonEditable = table.Column<bool>(type: "bit", nullable: false)
+                    NonEditable = table.Column<bool>(type: "bit", nullable: false),
+                    PushedAuthorizationLifetime = table.Column<int>(type: "int", nullable: true),
+                    RequirePushedAuthorization = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -640,6 +648,7 @@ namespace Poseidon.Auth.Migrations.Configuration
                 unique: true);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
