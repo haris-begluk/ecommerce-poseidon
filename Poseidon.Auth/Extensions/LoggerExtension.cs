@@ -32,6 +32,10 @@ public static partial class LoggerExtension
         {
             builder.Host.UseSerilog((ctx, lc) => lc
                 .Enrich.WithProperty("ApplicationName", appName)
+                .Enrich.WithRequestHeader("Referer")
+                .Enrich.WithRequestHeader("Origin")
+                .Enrich.WithRequestHeader("UserAgent")
+                .Enrich.WithRequestHeader("Host")
                 .Enrich.WithMachineName()
                 .Enrich.WithThreadId()
                 .Enrich.WithCorrelationIdHeader()
@@ -46,6 +50,10 @@ public static partial class LoggerExtension
         {
             builder.Host.UseSerilog((ctx, lc) => lc
             .Enrich.WithProperty("ApplicationName", appName)
+            .Enrich.WithRequestHeader("Referer")
+            .Enrich.WithRequestHeader("Origin")
+            .Enrich.WithRequestHeader("UserAgent")
+            .Enrich.WithRequestHeader("Host")
             .Enrich.WithMachineName()
             .Enrich.WithThreadId()
             .Enrich.WithCorrelationIdHeader()

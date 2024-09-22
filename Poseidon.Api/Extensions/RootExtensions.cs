@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NSwag;
 using Poseidon.Api.Services;
 using Poseidon.Application;
 using Poseidon.Application.DataSeed;
@@ -57,18 +58,27 @@ public static class RootExtensions
         StripeConfiguration.ApiKey = app.Configuration.GetSection("Stripe:ApiKey").Value;
         app.UseMiddleware<GlobalExceptionMid>();
 
-        app.UseSwagger();
-        app.UseSwaggerUI(options =>
-        {
-            options.OAuthUsePkce();
-            options
-            .ConfigObject
-            .AdditionalItems["syntaxHighlight"] = new Dictionary<string, object>
-            {
-                ["activated"] = false
-            };
-        });
+        //app.UseSwagger();
+        //app.UseSwaggerUI(options =>
+        //{
+        //    options.OAuthUsePkce();
+        //    options
+        //    .ConfigObject
+        //    .AdditionalItems["syntaxHighlight"] = new Dictionary<string, object>
+        //    {
+        //        ["activated"] = false
+        //    };
+        //}); 
 
+        if (!app.Environment.IsProduction())
+        {
+            app.UseOpenApi(c =>
+            {
+                c.Path = "/poseidon/{documentName}/poseidon.json"; 
+            });
+
+            app.MapScalarUi();
+        }
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
@@ -76,7 +86,7 @@ public static class RootExtensions
         app.MappEndpoints();
 
         return app;
-    }
+    } 
     public static WebApplicationBuilder AddSwagger(this WebApplicationBuilder builder)
     {
         var authBaseUrl = builder.Configuration.GetSection("Auth:BaseUrl").Value;
@@ -91,54 +101,81 @@ public static class RootExtensions
         {
             throw new ArgumentNullException("Poseidon:BaseUrl can not be null or empty");
         }
-
-        builder.Services.AddSwaggerGen(options =>
-        {  
-            options.EnableAnnotations();
-            options.AddServer(new OpenApiServer
+         
+        builder.Services.AddOpenApiDocument(config =>
+        {
+            config.DocumentName = "v1";
+            config.Title        = builder.Environment.ApplicationName;
+            config.Version      = "v1";
+            config.AddSecurity("oauth2", new NSwag.OpenApiSecurityScheme
             {
-                Url = appBaseUrl
-                ,
-                Description = "Poseidon main api server"
-            });
-            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-            {
-                Type = SecuritySchemeType.OAuth2,
-                Flows = new OpenApiOAuthFlows
+                Type = OpenApiSecuritySchemeType.OAuth2, 
+                
+                Flows = new NSwag.OpenApiOAuthFlows
                 {
-                    AuthorizationCode = new OpenApiOAuthFlow
+                    AuthorizationCode = new NSwag.OpenApiOAuthFlow
                     {
-                        AuthorizationUrl = new Uri($"{authBaseUrl}/connect/authorize"),
-                        TokenUrl         = new Uri($"{authBaseUrl}/connect/token"),
-                        Scopes = new Dictionary<string, string>
+                        AuthorizationUrl = $"{authBaseUrl}/connect/authorize",
+                        TokenUrl         = $"{authBaseUrl}/connect/token", 
+                        RefreshUrl       = $"{authBaseUrl}/connect/token",
+                        Scopes           = new Dictionary<string, string>
                         {
                             {"poseidon-api", "Poseidon Api"}
                         }
-                    },
-                }
-            });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme
-                            , Id = "oauth2"
-                        }
-                    },
-                    new[] { "poseidon-api" }
-                }
-            });
-            options.MapType<decimal>(
-            () => new OpenApiSchema
-            {
-                Type = "number"
-                ,
-                Format = "decimal"
-            });
+                    } 
+                    
+                }  
+            }); 
         });
+
+
+        //builder.Services.AddSwaggerGen(options =>
+        //{  
+        //    options.EnableAnnotations();
+        //    options.AddServer(new OpenApiServer
+        //    {
+        //        Url = appBaseUrl
+        //        ,
+        //        Description = "Poseidon main api server"
+        //    });
+        //    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+        //    {
+        //        Type = SecuritySchemeType.OAuth2,
+        //        Flows = new OpenApiOAuthFlows
+        //        {
+        //            AuthorizationCode = new OpenApiOAuthFlow
+        //            {
+        //                AuthorizationUrl = new Uri($"{authBaseUrl}/connect/authorize"),
+        //                TokenUrl         = new Uri($"{authBaseUrl}/connect/token"),
+        //                Scopes = new Dictionary<string, string>
+        //                {
+        //                    {"poseidon-api", "Poseidon Api"}
+        //                }
+        //            },
+        //        }
+        //    });
+        //    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        //    {
+        //        {
+        //            new OpenApiSecurityScheme
+        //            {
+        //                Reference = new OpenApiReference
+        //                {
+        //                    Type = ReferenceType.SecurityScheme
+        //                    , Id = "oauth2"
+        //                }
+        //            },
+        //            new[] { "poseidon-api" }
+        //        }
+        //    });
+        //    options.MapType<decimal>(
+        //    () => new OpenApiSchema
+        //    {
+        //        Type = "number"
+        //        ,
+        //        Format = "decimal"
+        //    });
+        //});
         return builder;
     }
 

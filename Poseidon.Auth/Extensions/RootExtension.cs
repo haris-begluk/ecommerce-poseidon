@@ -112,9 +112,9 @@ internal static class RootExtensions
             options.ConfigureDbContext = builder =>
                 builder.UseSqlServer(connectionString,
                 options => options.MigrationsAssembly(migrationsAssembly)); 
-            options.EnableTokenCleanup = true;
-            options.RemoveConsumedTokens = true;
-            options.TokenCleanupInterval = 10;
+            options.EnableTokenCleanup    = true;
+            options.RemoveConsumedTokens  = false;
+            options.TokenCleanupInterval  = 180;
             options.TokenCleanupBatchSize = 100; 
             options.FuzzTokenCleanupStart = true;
 

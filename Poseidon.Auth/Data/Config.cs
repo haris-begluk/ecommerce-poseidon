@@ -194,6 +194,46 @@ namespace Poseidon.Auth
                 },
                 new Client
                 {
+                        ClientId                    = "scaler",
+                        ClientName                  = "Scaler",
+                        AllowedGrantTypes           = GrantTypes.Code,
+                        AllowAccessTokensViaBrowser = true,
+                        RequirePkce                 = false,
+                        RequireClientSecret         = false,
+                        RedirectUris                =
+                        {
+                              "https://localhost:5430/poseidon/v1"
+                            , "https://localhost:5533/swagger/oauth2-redirect.html"
+
+                        },
+                        PostLogoutRedirectUris      =
+                        {
+                              "https://localhost:5430/poseidon/v1"
+                            , "https://localhost:5533/swagger"
+                        },
+                        AllowedCorsOrigins          =
+                        {
+                               "https://localhost:5430"
+                            ,  "https://localhost:5533"
+
+                        },
+                        EnableLocalLogin            = true,
+                        AllowedScopes               =
+                        {
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile,
+                            IdentityServerConstants.StandardScopes.Email,
+                            IdentityServerConstants.StandardScopes.OfflineAccess,
+                            "poseidon-api",
+                            "poseidon-admin"
+                        },
+                        ClientSecrets =
+                        {
+                            new Secret("scaler".Sha256())
+                        },
+                },
+                new Client
+                {
                         ClientId                    = "user-client",
                         ClientName                  = "ResourceOwnerPasswordAndClientCredentials",
                         AllowedGrantTypes           = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
@@ -341,12 +381,12 @@ namespace Poseidon.Auth
                     AccessTokenType              = AccessTokenType.Jwt,
                     RequireConsent               = false,
                     AccessTokenLifetime          = 60,// 330 seconds, default 60 minutes
-                    IdentityTokenLifetime        = 180, 
+                    IdentityTokenLifetime        = 3600, 
                     RefreshTokenExpiration       = TokenExpiration.Sliding,
                     RefreshTokenUsage            = TokenUsage.ReUse,
 
-                    AbsoluteRefreshTokenLifetime = 180,
-                    SlidingRefreshTokenLifetime  = 20, 
+                    AbsoluteRefreshTokenLifetime = 360,
+                    SlidingRefreshTokenLifetime  = 180, 
                     
                     AllowOfflineAccess           = true,
                     RequireClientSecret          = false,
@@ -390,13 +430,13 @@ namespace Poseidon.Auth
                     AccessTokenType              = AccessTokenType.Jwt,
                     RequireConsent               = false,
                     AccessTokenLifetime          = 60,// 330 seconds, default 60 minutes
-                    IdentityTokenLifetime        = 180, 
-                    RefreshTokenExpiration       = TokenExpiration.Absolute,
-                    RefreshTokenUsage            = TokenUsage.OneTimeOnly,
+                    IdentityTokenLifetime        = 3600,
+                    RefreshTokenExpiration       = TokenExpiration.Sliding,
+                    RefreshTokenUsage            = TokenUsage.ReUse,
 
-                    AbsoluteRefreshTokenLifetime = 180,
-                    SlidingRefreshTokenLifetime  = 20, 
-                    
+                    AbsoluteRefreshTokenLifetime = 720,
+                    SlidingRefreshTokenLifetime  = 360,
+
                     AllowOfflineAccess           = true,
                     RequireClientSecret          = false,
                     AllowedGrantTypes            = GrantTypes.Code,
