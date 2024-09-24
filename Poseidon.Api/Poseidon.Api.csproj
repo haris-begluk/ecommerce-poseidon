@@ -46,6 +46,7 @@
 		<ProjectReference Include="..\Common\Common.csproj" />
 		<ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 		<ProjectReference Include="..\Persistance\Persistance.csproj" />
+		<ProjectReference Include="..\poseidon.ServiceDefaults\poseidon.ServiceDefaults.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>

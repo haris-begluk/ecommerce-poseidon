@@ -28,6 +28,8 @@ public static class RootExtensions
         builder.Logging.ClearProviders();
 
         builder.AddLogging();
+        //aspire
+        builder.AddServiceDefaults();
 
         builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
         builder.Services.AddScoped<IDateTimeOffset, DateTimeOffset>();
@@ -73,6 +75,7 @@ public static class RootExtensions
 
         app.UseAuthentication();
         app.UseAuthorization();
+        app.MapDefaultEndpoints();
         app.MappEndpoints();
 
         return app;

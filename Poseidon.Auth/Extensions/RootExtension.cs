@@ -46,6 +46,9 @@ internal static class RootExtensions
 
         builder.AddLogging();
 
+        //Aspire
+        builder.AddServiceDefaults();
+
         builder.Services.AddDbContext<PoseidonAuthDbContext>(options =>
             options.UseSqlServer(connectionString));
 
@@ -175,6 +178,8 @@ internal static class RootExtensions
 
         app.UseIdentityServer();
         app.UseAuthorization();
+        //Aspire
+        app.MapDefaultEndpoints();
 
         app.MappEndpoints();
 
