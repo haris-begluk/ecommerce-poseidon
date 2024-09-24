@@ -48,7 +48,6 @@ services:
       context: .
       dockerfile: Poseidon.Api/Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=Server=poseidon.sql,1433;Database=Poseidon-ApiDb;User=sa;Password=Pass123$;ConnectRetryCount=0;TrustServerCertificate=True;
       - Poseidon__BaseUrl=https://localhost:5430
       - Auth__BaseUrl=https://localhost:5533
       - DataDog__ApiKey=
