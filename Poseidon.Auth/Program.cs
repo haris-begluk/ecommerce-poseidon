@@ -17,8 +17,10 @@ try
     
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-    //ServicePointManager.ServerCertificateValidationCallback
-    //+= (sender, cert, chain, sslPolicyErrors) => true;
+#if DEBUG
+    ServicePointManager.ServerCertificateValidationCallback
+    += (sender, cert, chain, sslPolicyErrors) => true;
+#endif
     var app = builder
         .ConfigureServices(certificates)
         .ConfigurePipeline();

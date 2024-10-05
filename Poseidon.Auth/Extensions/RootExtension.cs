@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Poseidon.Auth.Endpoints;
 using Poseidon.Auth.Services;
+using Poseidon.Logs;
 using Serilog;
 using System.Reflection;
 using System.Security.Authentication;
@@ -22,6 +23,8 @@ internal static class RootExtensions
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder
         , (X509Certificate2 PrimaryCert, X509Certificate2[] ExpiredCerts) certificates)
     {
+        Log.Information("Application is running in {0} environment", builder.Environment.EnvironmentName);
+
         string connectionString = builder.Configuration.GetConnectionString("MainDB")!;
 
         string issuerUrl        = builder.Configuration.GetSection("Auth:BaseUrl").Value!;
@@ -44,7 +47,9 @@ internal static class RootExtensions
         builder.Services.AddRazorPages();
         builder.Services.AddEndpointsApiExplorer();
 
-        builder.AddLogging();
+        builder.AddCustomLoggerWithTelemetryMetrics();
+
+        builder.AddServiceDefaults();
 
         builder.Services.AddDbContext<PoseidonAuthDbContext>(options =>
             options.UseSqlServer(connectionString));
@@ -61,11 +66,11 @@ internal static class RootExtensions
 
         builder.Services.AddDistributedSqlServerCache(options =>
         {
-            options.ConnectionString = connectionString;
-            options.SchemaName = "dbo";
-            options.TableName = "DistributedCache";
+            options.ConnectionString             = connectionString;
+            options.SchemaName                   = "dbo";
+            options.TableName                    = "DistributedCache";
             options.ExpiredItemsDeletionInterval = TimeSpan.FromMinutes(5);
-            options.DefaultSlidingExpiration = TimeSpan.FromMinutes(3);
+            options.DefaultSlidingExpiration     = TimeSpan.FromMinutes(3);
         });
 
         // configures the OpenIdConnect handlers to persist the state parameter into the server-side IDistributedCache.
@@ -175,6 +180,8 @@ internal static class RootExtensions
 
         app.UseIdentityServer();
         app.UseAuthorization();
+        //Aspire
+        app.MapDefaultEndpoints();
 
         app.MappEndpoints();
 

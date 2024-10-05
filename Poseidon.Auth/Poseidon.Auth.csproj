@@ -17,12 +17,12 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Azure.Extensions.AspNetCore.DataProtection.Keys" Version="1.2.4" />
-    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Azure.Identity" Version="1.12.1" />
     <PackageReference Include="Azure.Security.KeyVault.Certificates" Version="4.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="8.0.8" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
     <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.0.7" />
     <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="7.0.7" />
 
@@ -37,7 +37,7 @@
     <PrivateAssets>all</PrivateAssets>
     <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.1" />
+    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.2" />
     <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
@@ -49,6 +49,10 @@
   <ItemGroup>
     <None Include="Swagger\Poseidon\nswag.json" />
     <None Include="Swagger\Poseidon\Poseidon.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\poseidon.ServiceDefaults\poseidon.ServiceDefaults.csproj" />
   </ItemGroup>
 
   <ItemGroup>

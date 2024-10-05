@@ -54,8 +54,8 @@ services:
       - Stripe__ApiKey=
       - ASPNETCORE_ENVIRONMENT=Staging
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=localhost
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx 
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Poseidon.pfx 
     ports:
       - 5430:443 
       - 5431:80
@@ -67,7 +67,8 @@ services:
       - poseidon.sql 
       - poseidon.auth
     volumes:
-      - ~/.aspnet/https:/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${USERPROFILE}/.aspnet/https:/https:ro 
 
 
 networks:

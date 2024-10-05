@@ -10,6 +10,7 @@ using Poseidon.Application.DataSeed;
 using Poseidon.Common;
 using Poseidon.Endpoints;
 using Poseidon.Infrastructure;
+using Poseidon.Logs;
 using Poseidon.Persistence;
 using Poseidon.Services;
 using Serilog;
@@ -23,11 +24,14 @@ public static class RootExtensions
 {
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
+        Log.Information("Application is running in {0} environment", builder.Environment.EnvironmentName);
 
         builder.Services.AddEndpointsApiExplorer();
-        builder.Logging.ClearProviders();
 
-        builder.AddLogging();
+        builder.AddCustomLoggerWithTelemetryMetrics();
+
+        //aspire
+        builder.AddServiceDefaults();
 
         builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
         builder.Services.AddScoped<IDateTimeOffset, DateTimeOffset>();
@@ -73,6 +77,7 @@ public static class RootExtensions
 
         app.UseAuthentication();
         app.UseAuthorization();
+        app.MapDefaultEndpoints();
         app.MappEndpoints();
 
         return app;

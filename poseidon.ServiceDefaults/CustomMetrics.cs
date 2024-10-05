@@ -1,0 +1,40 @@
+﻿
+
+
+namespace Poseidon.Metrics;
+using Microsoft.Extensions.Hosting;
+using System.Diagnostics.Metrics;
+
+public class PoseidonMetrics
+{
+    private readonly Meter                   _meter;
+    private readonly Counter<int>            _counter;
+    private readonly ObservableGauge<double> _gauge;
+
+    public PoseidonMetrics(IHostEnvironment environment)
+    {
+        IEnumerable<KeyValuePair<string, object?>> tags = new[]
+        {
+              new KeyValuePair<string, object?>( "Service", environment.ApplicationName )
+            , new KeyValuePair<string, object?>( "Env"    , environment.EnvironmentName )
+        };
+
+        _meter = new Meter(
+              "Poseidon"
+            , "V1"
+            , tags
+            );
+        _counter = _meter.CreateCounter<int>("poseidon.counter");
+        //_gauge   = _meter.CreateObservableGauge<double>("my_app.custom.gauge");
+    }
+    public void IncrementCounter(int value)
+    {
+        _counter.Add(value);
+    }
+
+    //public IObservable<double> GetObservableGauge()
+    //{
+    //    return _gauge.Read();
+    //}
+
+}
