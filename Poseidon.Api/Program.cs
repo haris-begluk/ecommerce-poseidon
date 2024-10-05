@@ -12,12 +12,9 @@ Log.Information("Starting application");
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
+#if DEBUG 
     IdentityModelEventSource.ShowPII = true;
-
-    //ServicePointManager.ServerCertificateValidationCallback
-    //+= (sender, cert, chain, sslPolicyErrors) => true;
-
+#endif
     var app = builder
             .ConfigureServices()
             .AddSwagger()

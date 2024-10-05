@@ -22,7 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.ML" Version="3.0.1" />
     <PackageReference Include="Microsoft.ML.Recommender" Version="0.21.1" />
-    <PackageReference Include="Stripe.net" Version="45.14.0" />
+    <PackageReference Include="Stripe.net" Version="46.1.0" />
     <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
   </ItemGroup>
 

@@ -28,6 +28,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{945020C4-9A5C-44BC-97B7-8C0A4C7C57CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poseidon.Auth", "Poseidon.Auth\Poseidon.Auth.csproj", "{BEBC8E7B-7790-4E54-89AF-05B9EC433087}"

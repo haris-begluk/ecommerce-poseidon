@@ -10,6 +10,7 @@ using Poseidon.Application.Commands;
 using Poseidon.Application.Dto;
 using Poseidon.Domain;
 using Poseidon.Enums;
+using Poseidon.Metrics;
 
 public static partial class Endpoints
 {
@@ -19,9 +20,11 @@ public static void MappCountry(this WebApplication app)
     [ProducesResponseType(200, Type = (typeof(ResponseData<CountryDto>)))]
     [ProducesResponseType(500, Type = (typeof(ErrorResponse)))]
     async (    [FromServices] IMediator _mediator
+             , [FromServices] PoseidonMetrics _metrics
              , [AsParameters] QueryCommand<CountryDto> command
     ) =>
     {
+        _metrics.IncrementCounter(1);
         return Results.Ok(await _mediator.Send(command));
     }).RequireAuthorization();
     
