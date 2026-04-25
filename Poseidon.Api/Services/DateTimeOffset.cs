@@ -2,8 +2,10 @@
 
 namespace Poseidon.Api.Services
 {
-    public class DateTimeOffset : IDateTimeOffset
+    // NOTE: This class is superseded by Infrastructure.MachineDateTimeOffset which is
+    // registered via AddInfrastructure(). Retained only for reference; not registered in DI.
+    internal sealed class LegacyDateTimeOffset : IDateTimeOffset
     {
-        public System.DateTimeOffset Now => System.DateTimeOffset.Now;
+        public System.DateTimeOffset Now => System.DateTimeOffset.UtcNow;
     }
 }
