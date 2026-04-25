@@ -54,10 +54,10 @@ namespace Poseidon.Persistence
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.Sys_UpdatedBy                   = _currentUserService.UserId;
-                        entry.Entity.Sys_UpdatedAt                   = _dateTime.Now;
-                        entry.Property("Sys_CreatedAt").IsModified   = false;
-                        entry.Property("Sys_CreatedBy").IsModified   = false;
+                        entry.Entity.Sys_UpdatedBy = _currentUserService.UserId;
+                        entry.Entity.Sys_UpdatedAt = _dateTime.Now;
+                        // Sys_CreatedAt / Sys_CreatedBy immutability is enforced in the model
+                        // via AfterSaveBehavior.Ignore — no runtime flag manipulation needed.
                         break;
                 }
             }
@@ -113,8 +113,20 @@ namespace Poseidon.Persistence
             modelBuilder.Entity<Settings>        ().Property(p => p.OrderTaxAmount)        .HasPrecision(19, 4);
             modelBuilder.Entity<Settings>        ().Property(p => p.PaymentFeeAmount)      .HasPrecision(19, 4);
             modelBuilder.Entity<Settings>        ().Property(p => p.ShippingFeeAmount)     .HasPrecision(19, 4);
-        
 
+            // Bug #10: Enforce Sys_CreatedAt / Sys_CreatedBy immutability at the model level
+            // so we never accidentally overwrite creation audit fields on updates.
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+                .Where(e => typeof(AuditableEntity).IsAssignableFrom(e.ClrType)))
+            {
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property(nameof(AuditableEntity.Sys_CreatedAt))
+                    .Metadata.SetAfterSaveBehavior(Microsoft.EntityFrameworkCore.Metadata.PropertySaveBehavior.Ignore);
+
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property(nameof(AuditableEntity.Sys_CreatedBy))
+                    .Metadata.SetAfterSaveBehavior(Microsoft.EntityFrameworkCore.Metadata.PropertySaveBehavior.Ignore);
+            }
         }
     }
 }  
