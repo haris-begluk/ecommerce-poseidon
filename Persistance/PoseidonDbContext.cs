@@ -32,18 +32,14 @@ namespace Poseidon.Persistence
         public DbSet<DiscountOffer>          DiscountOffer         { get; set; }
         public DbSet<ProductDiscountOffer>   ProductDiscountOffer  { get; set; }
 
-        public PoseidonDbContext(DbContextOptions<PoseidonDbContext> options)
-            : base(options)
-        {
-        }
         public PoseidonDbContext(
             DbContextOptions<PoseidonDbContext> options,
             ICurrentUserService currentUserService,
             IDateTimeOffset dateTime)
             : base(options)
         {
-            _currentUserService = currentUserService;
-            _dateTime           = dateTime          ;
+            _currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+            _dateTime           = dateTime           ?? throw new ArgumentNullException(nameof(dateTime));
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -71,7 +67,8 @@ namespace Poseidon.Persistence
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(IPoseidonDbContext).Assembly);
+            // Apply entity type configurations defined in the Persistence assembly
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PoseidonDbContext).Assembly);
             
                                                                                           
             modelBuilder.Entity<Cart>            ().Property(p => p.Total)                 .HasPrecision(19, 4);
