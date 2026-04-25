@@ -1,0 +1,39 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="docker-compose.yml" />
+    <Project Path="docker-compose.dcproj">
+      <Platform Project="AnyCPU" />
+      <Build />
+    </Project>
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="Application/Application.csproj" />
+    <Project Path="Common/Common.csproj" />
+    <Project Path="Domain/Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="Infrastructure/Infrastructure.csproj" />
+    <Project Path="Persistance/Persistance.csproj" />
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="Presentation/Poseidon.WinUI/Poseidon.WinUI.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Services/">
+    <Project Path="Poseidon.Api/Poseidon.Api.csproj" />
+    <Project Path="Poseidon.Auth/Poseidon.Auth.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="Generator.Test/Generator.Test.csproj" />
+    <Project Path="Poseidon.Tests/Poseidon.Tests.csproj" />
+  </Folder>
+  <Project Path="poseidon.AppHost/poseidon.AppHost.csproj" />
+  <Project Path="poseidon.ServiceDefaults/poseidon.ServiceDefaults.csproj" />
+</Solution>

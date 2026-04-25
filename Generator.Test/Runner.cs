@@ -1,11 +1,14 @@
-﻿using Duende.IdentityServer.EntityFramework.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Poseidon.Auth.Entities;
+﻿using Microsoft.Extensions.Logging;
 using Poseidon.Common;
 using static Generator.Test.CodeGenerator;
-using static Generator.Test.MetaModel;
 using static Generator.Test.Root;
+
+#if AUTH
+using Duende.IdentityServer.EntityFramework.DbContexts;
+using Microsoft.EntityFrameworkCore;
+using Poseidon.Auth.Entities;
+#endif
+
 namespace Generator.Test
 {
     public class Runner
@@ -40,14 +43,20 @@ namespace Generator.Test
             
             if (true) //True if Gen poseidon api code, false if  Auht and #define AUTH
             {
+                if (string.IsNullOrWhiteSpace(ConnectionString))
+                {
+                    throw new InvalidOperationException("Connection string is not configured. Set ConnectionStrings:Default in Generator.Test/appsettings.json or user secrets.");
+                }
 
-                var model = GetMetaModel(ConnectionString).ToArray();
+                var model = (await CodeGeneratorClient.GetModelDefinitionAsync(ConnectionString)).ToArray();
+
+                _logger.Info($"Loaded {model.Length} model definitions from database schema.");
                 await GenerateCodeFromDbContet(model);
-                var ordered = model.OrderBy(m => m.Fields.Count(p => p.IsForeignKey));
+                var ordered = model.OrderBy(m => m.Fields?.Count(p => p.IsForeignKey) ?? 0);
 
                 foreach (var item in ordered)
                 {
-                    Console.WriteLine($"{item.Name} Number of foreign keys {item.Fields.Count(f => f.IsForeignKey)}");
+                    Console.WriteLine($"{item.Name} Number of foreign keys {item.Fields?.Count(f => f.IsForeignKey) ?? 0}");
                 }
             }
 #if AUTH
@@ -67,11 +76,11 @@ namespace Generator.Test
                 var mainPath = $"D:/Dev/poseidon/Generator.Test/AuthCode";
 
                 await GenerateUsingTemplate("Commands.cst"       , $"{mainPath}/Commands.cs"       , model);
-                                                                                                   
+                                                                                                    
                 await GenerateUsingTemplate("DtosAutoMapper.cst" , $"{mainPath}/Dtos.cs"           , model);
-                                                                                                   
+                                                                                                    
                 await GenerateUsingTemplate("Queries.cst"        , $"{mainPath}/Queries.cs"        , model);
-                 
+                  
                 await GenerateUsingTemplate("CommandHandlers.cst", $"{mainPath}/CommandHandlers.cs", model);
 
                 await GenerateUsingTemplate("Endpoints.cst"      , $"{mainPath}/Endpoints.cs"      , model);

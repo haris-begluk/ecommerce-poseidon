@@ -9,6 +9,7 @@
     <DockerServiceName>poseidon.auth</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Directory.Packages.props" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>

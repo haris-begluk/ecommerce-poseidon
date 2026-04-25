@@ -3,7 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Poseidon.Api.Services;
 using Poseidon.Application;
 using Poseidon.Application.DataSeed;
@@ -127,24 +127,12 @@ public static class RootExtensions
                     },
                 }
             });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme
-                            , Id = "oauth2"
-                        }
-                    },
-                    new[] { "poseidon-api" }
-                }
-            });
+            // OpenAPI 3.x changed security reference APIs; keep definition and
+            // skip explicit requirement mapping until reference wiring is updated.
             options.MapType<decimal>(
             () => new OpenApiSchema
             {
-                Type = "number"
+                Type = JsonSchemaType.Number
                 ,
                 Format = "decimal"
             });

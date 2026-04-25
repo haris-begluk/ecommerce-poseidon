@@ -1,0 +1,86 @@
+services:
+  poseidon.sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: poseidon-sql
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      SA_PASSWORD: ${POSEIDON_SQL_SA_PASSWORD:?Set POSEIDON_SQL_SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/1433' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks:
+      - poseidon_net
+
+  poseidon.auth:
+    image: ${DOCKER_REGISTRY-}poseidonauth
+    build:
+      context: .
+      dockerfile: Poseidon.Auth/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${POSEIDON_CERT_PASSWORD:-}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/Poseidon.pfx
+    ports:
+      - "5533:443"
+      - "5534:80"
+    depends_on:
+      poseidon.sql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider --no-check-certificate https://localhost:443/alive || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${USERPROFILE}/.aspnet/https:/https:ro
+    networks:
+      - poseidon_net
+
+  poseidon.api:
+    image: ${DOCKER_REGISTRY-}poseidonapi
+    build:
+      context: .
+      dockerfile: Poseidon.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${POSEIDON_CERT_PASSWORD:-}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/Poseidon.pfx
+      Poseidon__BaseUrl: https://localhost:5430
+      Auth__BaseUrl: https://localhost:5533
+      DataDog__ApiKey: ${DATADOG_API_KEY:-}
+      Stripe__ApiKey: ${STRIPE_API_KEY:-}
+    ports:
+      - "5430:443"
+      - "5431:80"
+    depends_on:
+      poseidon.sql:
+        condition: service_healthy
+      poseidon.auth:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider --no-check-certificate https://localhost:443/alive || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${USERPROFILE}/.aspnet/https:/https:ro
+    networks:
+      - poseidon_net
+
+networks:
+  poseidon_net:
+    name: poseidon_net
+    driver: bridge

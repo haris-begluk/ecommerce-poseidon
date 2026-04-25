@@ -1,7 +1,9 @@
 version: '3.4'
 
 services:
-#mssql docker
+# mssql docker (optional)
+# If you already run SQL Server externally, keep this service disabled and point
+# application connection strings to that instance.
   poseidon.sql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: unless-stopped
@@ -13,6 +15,8 @@ services:
       - 1433:1433
     expose:
         - 1433
+    profiles:
+      - local-sql
     networks:
       poseidon_net:
 
@@ -32,10 +36,6 @@ services:
       - 5534:80 
     networks:
       poseidon_net:
-    links:
-      - poseidon.sql
-    depends_on:
-      - poseidon.sql
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${USERPROFILE}/.aspnet/https:/https:ro 
@@ -61,10 +61,7 @@ services:
       - 5431:80
     networks:
       poseidon_net:
-    links:
-      - poseidon.sql
     depends_on:
-      - poseidon.sql 
       - poseidon.auth
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

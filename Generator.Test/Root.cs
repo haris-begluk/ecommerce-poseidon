@@ -3,7 +3,11 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Configuration; // added
+using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Generator.Test
 {
@@ -96,18 +100,18 @@ namespace Generator.Test
 
             try
             {
-                var engine = new RazorLightEngineBuilder()
-                .UseEmbeddedResourcesProject(typeof(Root)) 
-                .SetOperatingAssembly(typeof(Root).Assembly)
-                .UseMemoryCachingProvider()
-                .Build(); 
+                    var engine = new RazorLightEngineBuilder()
+                    .UseEmbeddedResourcesProject(typeof(Root)) 
+                    .SetOperatingAssembly(typeof(Root).Assembly)
+                    .UseMemoryCachingProvider()
+                    .Build(); 
 
-                using StreamReader reader = new(templatePath);
-                string templateString     = reader.ReadToEnd();
-                string content            = await engine.CompileRenderStringAsync("Model", templateString, model);
-                Console.WriteLine(content);
+                    using StreamReader reader = new(templatePath);
+                    string templateString     = reader.ReadToEnd();
+                    string content            = await engine.CompileRenderStringAsync("Model", templateString, model);
+                    Console.WriteLine(content);
 
-                Save(destinationFileInfo!, content);
+                    Save(destinationFileInfo!, content);
                 
             }
             catch (Exception ex)
