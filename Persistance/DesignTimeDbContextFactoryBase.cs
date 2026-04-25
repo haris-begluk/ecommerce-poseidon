@@ -9,7 +9,10 @@ namespace Poseidon.Persistence
     {
         private const string ConnectionStringName = "DefaultConnection";
         private const string AspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
-        private const string ApiBasePath = "C:\\REPOS\\ACTIVE-FINAL-TEST\\RSII-Seminarski-poseidon\\Poseidon.Api";
+
+        // Resolve the API project root relative to this assembly's location to avoid hardcoded paths
+        private static readonly string ApiBasePath = Path.GetFullPath(
+            Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Poseidon.Api"));
 
         public TContext CreateDbContext(string[] args)
         {
