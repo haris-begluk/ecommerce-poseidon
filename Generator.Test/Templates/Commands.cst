@@ -22,7 +22,10 @@ using System;
 
 foreach (var model in Model)
 { 
-var type = GeneratorTemplate.GetDataType(((IEnumerable<Field>)model.Fields).First(x => x.PropertyName.Equals(model.Name+"Id"))); 
+ var pkField = ((IEnumerable<Field>)model.Fields).FirstOrDefault(x => x.PropertyName.Equals(model.Name+"Id"))
+           ?? ((IEnumerable<Field>)model.Fields).FirstOrDefault(x => x.IsUnique)
+           ?? ((IEnumerable<Field>)model.Fields).First();
+ var type = GeneratorTemplate.GetDataType(pkField); 
 var IdType = type.Replace("?", String.Empty);
 
 @:    public partial class @(model.Name)Command : IRequest<(@(IdType) id, Status status)>

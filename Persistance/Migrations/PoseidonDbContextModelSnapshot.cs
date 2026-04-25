@@ -17,7 +17,7 @@ namespace Persistance.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "10.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -509,20 +509,19 @@ namespace Persistance.Migrations
             modelBuilder.Entity("Poseidon.Domain.OrderItem", b =>
                 {
                     b.Property<int>("OrderItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int")
+                        .HasColumnName("OrderID");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int")
+                        .HasColumnName("ProductID");
 
                     b.Property<decimal>("DiscountAmount")
                         .HasPrecision(19, 4)
                         .HasColumnType("decimal(19,4)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("ProductPrice")
                         .HasPrecision(19, 4)
@@ -550,7 +549,7 @@ namespace Persistance.Migrations
                         .HasPrecision(19, 4)
                         .HasColumnType("decimal(19,4)");
 
-                    b.HasKey("OrderItemId");
+                    b.HasKey("OrderItemId", "OrderId", "ProductId");
 
                     b.HasIndex("OrderId");
 
@@ -711,16 +710,15 @@ namespace Persistance.Migrations
             modelBuilder.Entity("Poseidon.Domain.ProductDiscountOffer", b =>
                 {
                     b.Property<int>("ProductDiscountOfferId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductDiscountOfferId"));
 
                     b.Property<int>("DiscountOfferId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("DiscountOfferID");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductID");
 
                     b.Property<DateTimeOffset>("Sys_CreatedAt")
                         .HasColumnType("datetimeoffset");
@@ -736,7 +734,7 @@ namespace Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductDiscountOfferId");
+                    b.HasKey("ProductDiscountOfferId", "DiscountOfferId", "ProductId");
 
                     b.HasIndex("DiscountOfferId");
 
@@ -897,16 +895,18 @@ namespace Persistance.Migrations
             modelBuilder.Entity("Poseidon.Domain.UserProductReview", b =>
                 {
                     b.Property<int>("UserProductReviewId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserProductReviewId"));
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int")
+                        .HasColumnName("ProductID");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserID");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.Property<short>("Rating")
                         .HasColumnType("smallint");
@@ -928,10 +928,7 @@ namespace Persistance.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserProductReviewId");
+                    b.HasKey("UserProductReviewId", "ProductId", "UserId");
 
                     b.HasIndex("ProductId");
 

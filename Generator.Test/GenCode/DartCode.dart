@@ -5,23 +5,21 @@
     { 
           Address( AddressDto dto): super(
               addressId : dto.addressId,
-              address1 : dto.address1,
-              address2 : dto.address2,
-              city : dto.city,
-              company : dto.company,
-              countryId : dto.countryId,
-              county : dto.county,
-              email : dto.email,
               firstName : dto.firstName,
               lastName : dto.lastName,
-              phoneNumber : dto.phoneNumber,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
+              email : dto.email,
+              company : dto.company,
+              county : dto.county,
+              city : dto.city,
+              address1 : dto.address1,
+              address2 : dto.address2,
               zipPostalCode : dto.zipPostalCode,
+              phoneNumber : dto.phoneNumber,
+              countryId : dto.countryId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Cart extends CartDto with ChangeNotifier
@@ -30,32 +28,33 @@
               cartId : dto.cartId,
               isActive : dto.isActive,
               lockedOnCheckout : dto.lockedOnCheckout,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
               userId : dto.userId,
+              total : dto.total,
+              taxAmount : dto.taxAmount,
+              discountAmount : dto.discountAmount,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class CartItem extends CartItemDto with ChangeNotifier
     { 
           CartItem( CartItemDto dto): super(
               cartItemId : dto.cartItemId,
-              cartId : dto.cartId,
-              imageUrl : dto.imageUrl,
-              price : dto.price,
-              productId : dto.productId,
               quantity : dto.quantity,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
+              price : dto.price,
+              discountAmount : dto.discountAmount,
+              taxAmount : dto.taxAmount,
               title : dto.title,
+              imageUrl : dto.imageUrl,
               unit : dto.unit,
+              cartId : dto.cartId,
+              productId : dto.productId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Category extends CategoryDto with ChangeNotifier
@@ -63,12 +62,10 @@
           Category( CategoryDto dto): super(
               categoryId : dto.categoryId,
               name : dto.name,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Country extends CountryDto with ChangeNotifier
@@ -76,117 +73,103 @@
           Country( CountryDto dto): super(
               countryId : dto.countryId,
               name : dto.name,
+              twoLetterIsoCode : dto.twoLetterIsoCode,
+              threeLetterIsoCode : dto.threeLetterIsoCode,
               numericIsoCode : dto.numericIsoCode,
               phonePrefix : dto.phonePrefix,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
-              threeLetterIsoCode : dto.threeLetterIsoCode,
-              twoLetterIsoCode : dto.twoLetterIsoCode,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class CreditCard extends CreditCardDto with ChangeNotifier
     { 
           CreditCard( CreditCardDto dto): super(
               creditCardId : dto.creditCardId,
-              cVC : dto.cVC,
               creaditCartNumber : dto.creaditCartNumber,
+              cVC : dto.cVC,
               expirationDate : dto.expirationDate,
               imageUrl : dto.imageUrl,
-              paymentProviderId : dto.paymentProviderId,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
               userId : dto.userId,
+              paymentProviderId : dto.paymentProviderId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Delivery extends DeliveryDto with ChangeNotifier
     { 
           Delivery( DeliveryDto dto): super(
               deliveryId : dto.deliveryId,
+              title : dto.title,
               description : dto.description,
               isActive : dto.isActive,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
-              title : dto.title,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class DiscountOffer extends DiscountOfferDto with ChangeNotifier
     { 
           DiscountOffer( DiscountOfferDto dto): super(
               discountOfferId : dto.discountOfferId,
+              title : dto.title,
               description : dto.description,
-              discount : dto.discount,
-              endDate : dto.endDate,
               imageUrl : dto.imageUrl,
               startDate : dto.startDate,
-              sysCreatedAt : dto.sysCreatedAt,
+              endDate : dto.endDate,
+              discount : dto.discount,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
-              title : dto.title,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Order extends OrderDto with ChangeNotifier
     { 
           Order( OrderDto dto): super(
               orderId : dto.orderId,
+              description : dto.description,
+              subTotal : dto.subTotal,
+              productTaxAmount : dto.productTaxAmount,
+              productDiscountAmount : dto.productDiscountAmount,
+              orderDiscountAmount : dto.orderDiscountAmount,
+              orderTaxAmount : dto.orderTaxAmount,
+              orderTotal : dto.orderTotal,
+              orderStatus : dto.orderStatus,
+              payedAndClosed : dto.payedAndClosed,
+              shippingMethod : dto.shippingMethod,
+              shippingFeeAmount : dto.shippingFeeAmount,
+              paymentMethod : dto.paymentMethod,
+              paymentFeeAmount : dto.paymentFeeAmount,
+              shippingAddressId : dto.shippingAddressId,
               billingAddressId : dto.billingAddressId,
+              userId : dto.userId,
               cartId : dto.cartId,
               deliveryId : dto.deliveryId,
-              description : dto.description,
-              discountAmount : dto.discountAmount,
-              orderStatus : dto.orderStatus,
-              orderTotal : dto.orderTotal,
-              payedAndClosed : dto.payedAndClosed,
-              paymentFeeAmount : dto.paymentFeeAmount,
-              paymentMethod : dto.paymentMethod,
-              shippingAddressId : dto.shippingAddressId,
-              shippingFeeAmount : dto.shippingFeeAmount,
-              shippingMethod : dto.shippingMethod,
-              subTotal : dto.subTotal,
-              subTotalWithDiscount : dto.subTotalWithDiscount,
-              subTotalWithFees : dto.subTotalWithFees,
-              subTotalWithOrderTax : dto.subTotalWithOrderTax,
-              subTotalWithProductTax : dto.subTotalWithProductTax,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
-              taxAmount : dto.taxAmount,
-              userId : dto.userId,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class OrderItem extends OrderItemDto with ChangeNotifier
     { 
           OrderItem( OrderItemDto dto): super(
               orderItemId : dto.orderItemId,
-              discountAmount : dto.discountAmount,
-              orderId : dto.orderId,
-              productId : dto.productId,
+              productID : dto.productID,
+              orderID : dto.orderID,
               productPrice : dto.productPrice,
               quantity : dto.quantity,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
+              discountAmount : dto.discountAmount,
               taxAmount : dto.taxAmount,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Payment extends PaymentDto with ChangeNotifier
@@ -194,67 +177,59 @@
           Payment( PaymentDto dto): super(
               paymentId : dto.paymentId,
               amount : dto.amount,
+              paymentFee : dto.paymentFee,
               failureMessage : dto.failureMessage,
               orderId : dto.orderId,
-              paymentFee : dto.paymentFee,
               paymentProviderId : dto.paymentProviderId,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class PaymentProvider extends PaymentProviderDto with ChangeNotifier
     { 
           PaymentProvider( PaymentProviderDto dto): super(
               paymentProviderId : dto.paymentProviderId,
-              additionalSettings : dto.additionalSettings,
-              isEnabled : dto.isEnabled,
               name : dto.name,
-              sysCreatedAt : dto.sysCreatedAt,
+              isEnabled : dto.isEnabled,
+              additionalSettings : dto.additionalSettings,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Product extends ProductDto with ChangeNotifier
     { 
           Product( ProductDto dto): super(
               productId : dto.productId,
-              categoryId : dto.categoryId,
-              description : dto.description,
-              gtin : dto.gtin,
-              imageUrl : dto.imageUrl,
               name : dto.name,
               number : dto.number,
-              price : dto.price,
-              supplier : dto.supplier,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
-              taxRateId : dto.taxRateId,
+              imageUrl : dto.imageUrl,
               unit : dto.unit,
+              price : dto.price,
+              description : dto.description,
+              gtin : dto.gtin,
+              supplier : dto.supplier,
+              taxRateId : dto.taxRateId,
+              categoryId : dto.categoryId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class ProductDiscountOffer extends ProductDiscountOfferDto with ChangeNotifier
     { 
           ProductDiscountOffer( ProductDiscountOfferDto dto): super(
               productDiscountOfferId : dto.productDiscountOfferId,
-              discountOfferId : dto.discountOfferId,
-              productId : dto.productId,
-              sysCreatedAt : dto.sysCreatedAt,
+              productID : dto.productID,
+              discountOfferID : dto.discountOfferID,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class Settings extends SettingsDto with ChangeNotifier
@@ -265,16 +240,14 @@
               orderDiscountAmount : dto.orderDiscountAmount,
               orderTaxAmount : dto.orderTaxAmount,
               paymentFeeAmount : dto.paymentFeeAmount,
-              paymentMethod : dto.paymentMethod,
               shippingFeeAmount : dto.shippingFeeAmount,
               shippingMethod : dto.shippingMethod,
+              paymentMethod : dto.paymentMethod,
               supplier : dto.supplier,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class TaxRate extends TaxRateDto with ChangeNotifier
@@ -283,64 +256,56 @@
               taxRateId : dto.taxRateId,
               name : dto.name,
               rate : dto.rate,
-              sysCreatedAt : dto.sysCreatedAt,
               sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
+              sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class User extends UserDto with ChangeNotifier
     { 
           User( UserDto dto): super(
               userId : dto.userId,
-              addressId : dto.addressId,
-              email : dto.email,
               externalRef : dto.externalRef,
-              firstName : dto.firstName,
-              imageUrl : dto.imageUrl,
-              lastName : dto.lastName,
-              phoneNumber : dto.phoneNumber,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
               username : dto.username,
+              firstName : dto.firstName,
+              phoneNumber : dto.phoneNumber,
+              lastName : dto.lastName,
+              email : dto.email,
+              imageUrl : dto.imageUrl,
+              addressId : dto.addressId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class UserProductReview extends UserProductReviewDto with ChangeNotifier
     { 
           UserProductReview( UserProductReviewDto dto): super(
               userProductReviewId : dto.userProductReviewId,
-              comment : dto.comment,
-              productId : dto.productId,
-              rating : dto.rating,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
+              userID : dto.userID,
+              productID : dto.productID,
               title : dto.title,
-              userId : dto.userId,
+              comment : dto.comment,
+              rating : dto.rating,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class WishList extends WishListDto with ChangeNotifier
     { 
           WishList( WishListDto dto): super(
               wishListId : dto.wishListId,
-              description : dto.description,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
               title : dto.title,
+              description : dto.description,
               userId : dto.userId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }
     class WishListItem extends WishListItemDto with ChangeNotifier
@@ -348,14 +313,12 @@
           WishListItem( WishListItemDto dto): super(
               wishListItemId : dto.wishListItemId,
               note : dto.note,
-              productId : dto.productId,
               quantity : dto.quantity,
-              sysCreatedAt : dto.sysCreatedAt,
-              sysCreatedBy : dto.sysCreatedBy,
-              sysDeactivated : dto.sysDeactivated,
-              sysDisplayOrder : dto.sysDisplayOrder,
-              sysUpdatedAt : dto.sysUpdatedAt,
-              sysUpdatedBy : dto.sysUpdatedBy,
               wishListId : dto.wishListId,
+              productId : dto.productId,
+              sysCreatedBy : dto.sysCreatedBy,
+              sysCreatedAt : dto.sysCreatedAt,
+              sysUpdatedBy : dto.sysUpdatedBy,
+              sysUpdatedAt : dto.sysUpdatedAt,
               );
     }

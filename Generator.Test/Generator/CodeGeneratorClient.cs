@@ -222,8 +222,17 @@ WHERE t.is_ms_shipped = 0;";
             }
 
             // Build the Model objects
+            // Exclude EF framework/infrastructure tables from code generation
+            var excludedTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "__EFMigrationsHistory"
+            };
+
             foreach (var tableName in tableColumns.Keys.OrderBy(k => k))
             {
+                if (excludedTables.Contains(tableName))
+                    continue;
+
                 var model = new Model
                 {
                     Name = tableName,

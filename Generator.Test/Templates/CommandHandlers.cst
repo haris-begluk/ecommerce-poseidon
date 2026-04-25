@@ -1,4 +1,4 @@
-﻿@using Generator;
+@using Generator;
 @using RazorLight;
 @using System;
 @using System.Collections.Generic;
@@ -32,7 +32,10 @@ using System.Threading.Tasks;
 @{ foreach (var model in Model) { 
 
 var maxPropLength = ((IEnumerable<Field>)model.Fields).Select(x => x.PropertyName.Length).Max();
-var type = GeneratorTemplate.GetDataType(((IEnumerable<Field>)model.Fields).First(x => x.PropertyName.Equals(model.Name+"Id"))); 
+var pkField = ((IEnumerable<Field>)model.Fields).FirstOrDefault(x => x.PropertyName.Equals(model.Name+"Id"))
+          ?? ((IEnumerable<Field>)model.Fields).FirstOrDefault(x => x.IsUnique)
+          ?? ((IEnumerable<Field>)model.Fields).First();
+var type = GeneratorTemplate.GetDataType(pkField);  
 var IdType = type.Replace("?", String.Empty);
 @:
 @:////////////////////////////////////////////////////////
@@ -93,10 +96,10 @@ if(field.IsUnique)
 @:             _logger.Info(string.Format("Updated  @(model.Name) {0}", entity.@(model.Name)Id)); 
 @:        } 
 @:
-@:        partial void @(model.Name)PostOperation();
-@:
 @:        return (entity.@(model.Name)Id ,status);
 @:    }
+@:
+@:    partial void @(model.Name)PostOperation();
 @:}
 @:
 @:
@@ -161,8 +164,6 @@ if(field.IsUnique)
 @:            _context.@(model.DbSetName).Remove(entity);
 @:
 @:            await _context.SaveChangesAsync(cancellationToken);
-@: 
-@:             partial void @(model.Name)PostOperation(); 
 @:
 @:            _logger.Info(string.Format("Deleted  @(model.Name) {0}", request.Id)); 
 @:
@@ -173,5 +174,6 @@ if(field.IsUnique)
 
   }
 }
+
 
 

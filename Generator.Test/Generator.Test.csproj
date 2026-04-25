@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="ModelDef\CustomDef.txt" />
+    <Compile Remove="DbContext\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Persistance\Persistance.csproj" />
-    <ProjectReference Include="..\Poseidon.Auth\Poseidon.Auth.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

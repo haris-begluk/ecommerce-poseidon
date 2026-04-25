@@ -17,8 +17,10 @@ namespace Generator.Test
         public static IConfiguration ConfigureServices(IServiceCollection services)
         {
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true, true)
+                // Support running from Generator.Test, solution root, or CI working directories
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(Path.Combine("Generator.Test", "appsettings.json"), optional: true, reloadOnChange: true)
+                .AddJsonFile(Path.Combine(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..")), "appsettings.json"), optional: true, reloadOnChange: true)
                 .AddUserSecrets<Runner>(optional: true)
                 .AddEnvironmentVariables()
                 .Build();
@@ -26,7 +28,10 @@ namespace Generator.Test
             // initialize root paths and connection string from configuration
             Root.Initialize(configuration);
 
-            var connectionString = configuration.GetConnectionString("Auth") ?? "Data Source=localhost;Initial Catalog=Poseidon-Auth;Integrated Security=True";
+            // Auth connection string: appsettings → env var ConnectionStrings__Auth → SA fallback
+            var sqlHost = configuration["Generator:SqlHost"] ?? "localhost,1433";
+            var connectionString = configuration.GetConnectionString("Auth")
+                ?? $"Server={sqlHost};Database=Poseidon-Auth;User Id=sa;Password=Pass123$;TrustServerCertificate=True;";
 
             services.AddLogging(builder =>
             {

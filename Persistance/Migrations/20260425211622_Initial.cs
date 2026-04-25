@@ -18,10 +18,10 @@ namespace Persistance.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,10 +39,10 @@ namespace Persistance.Migrations
                     ThreeLetterIsoCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumericIsoCode = table.Column<int>(type: "int", nullable: false),
                     PhonePrefix = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,10 +58,10 @@ namespace Persistance.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,10 +80,10 @@ namespace Persistance.Migrations
                     StartDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     EndDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,10 +99,10 @@ namespace Persistance.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsEnabled = table.Column<bool>(type: "bit", nullable: false),
                     AdditionalSettings = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,10 +123,10 @@ namespace Persistance.Migrations
                     ShippingMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Supplier = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,10 +141,10 @@ namespace Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rate = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,10 +168,10 @@ namespace Persistance.Migrations
                     ZipPostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountryId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -200,10 +200,10 @@ namespace Persistance.Migrations
                     Supplier = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TaxRateId = table.Column<int>(type: "int", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -234,10 +234,10 @@ namespace Persistance.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -254,27 +254,26 @@ namespace Persistance.Migrations
                 name: "ProductDiscountOffer",
                 columns: table => new
                 {
-                    ProductDiscountOfferId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    DiscountOfferId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    ProductDiscountOfferId = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    DiscountOfferID = table.Column<int>(type: "int", nullable: false),
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductDiscountOffer", x => x.ProductDiscountOfferId);
+                    table.PrimaryKey("PK_ProductDiscountOffer", x => new { x.ProductDiscountOfferId, x.DiscountOfferID, x.ProductID });
                     table.ForeignKey(
-                        name: "FK_ProductDiscountOffer_DiscountOffer_DiscountOfferId",
-                        column: x => x.DiscountOfferId,
+                        name: "FK_ProductDiscountOffer_DiscountOffer_DiscountOfferID",
+                        column: x => x.DiscountOfferID,
                         principalTable: "DiscountOffer",
                         principalColumn: "DiscountOfferId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductDiscountOffer_Product_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_ProductDiscountOffer_Product_ProductID",
+                        column: x => x.ProductID,
                         principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
@@ -292,10 +291,10 @@ namespace Persistance.Migrations
                     Total = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
                     TaxAmount = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
                     DiscountAmount = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -320,10 +319,10 @@ namespace Persistance.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     PaymentProviderId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -346,30 +345,29 @@ namespace Persistance.Migrations
                 name: "UserProductReview",
                 columns: table => new
                 {
-                    UserProductReviewId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserProductReviewId = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<short>(type: "smallint", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProductReview", x => x.UserProductReviewId);
+                    table.PrimaryKey("PK_UserProductReview", x => new { x.UserProductReviewId, x.ProductID, x.UserID });
                     table.ForeignKey(
-                        name: "FK_UserProductReview_Product_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_UserProductReview_Product_ProductID",
+                        column: x => x.ProductID,
                         principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserProductReview_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserProductReview_User_UserID",
+                        column: x => x.UserID,
                         principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -384,10 +382,10 @@ namespace Persistance.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -415,10 +413,10 @@ namespace Persistance.Migrations
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CartId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -461,10 +459,10 @@ namespace Persistance.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CartId = table.Column<int>(type: "int", nullable: true),
                     DeliveryId = table.Column<int>(type: "int", nullable: true),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -507,10 +505,10 @@ namespace Persistance.Migrations
                     Quantity = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
                     WishListId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -533,31 +531,30 @@ namespace Persistance.Migrations
                 name: "OrderItem",
                 columns: table => new
                 {
-                    OrderItemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderItemId = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductPrice = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
                     Quantity = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
                     DiscountAmount = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
                     TaxAmount = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItem", x => x.OrderItemId);
+                    table.PrimaryKey("PK_OrderItem", x => new { x.OrderItemId, x.OrderID, x.ProductID });
                     table.ForeignKey(
-                        name: "FK_OrderItem_Order_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_OrderItem_Order_OrderID",
+                        column: x => x.OrderID,
                         principalTable: "Order",
                         principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItem_Product_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_OrderItem_Product_ProductID",
+                        column: x => x.ProductID,
                         principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
@@ -574,10 +571,10 @@ namespace Persistance.Migrations
                     FailureMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     PaymentProviderId = table.Column<int>(type: "int", nullable: false),
-                    SysCreatedBy = table.Column<string>(name: "Sys_CreatedBy", type: "nvarchar(max)", nullable: false),
-                    SysCreatedAt = table.Column<DateTimeOffset>(name: "Sys_CreatedAt", type: "datetimeoffset", nullable: false),
-                    SysUpdatedBy = table.Column<string>(name: "Sys_UpdatedBy", type: "nvarchar(max)", nullable: false),
-                    SysUpdatedAt = table.Column<DateTimeOffset>(name: "Sys_UpdatedAt", type: "datetimeoffset", nullable: false)
+                    Sys_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Sys_UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sys_UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -654,14 +651,14 @@ namespace Persistance.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_OrderId",
+                name: "IX_OrderItem_OrderID",
                 table: "OrderItem",
-                column: "OrderId");
+                column: "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_ProductId",
+                name: "IX_OrderItem_ProductID",
                 table: "OrderItem",
-                column: "ProductId");
+                column: "ProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_OrderId",
@@ -684,14 +681,14 @@ namespace Persistance.Migrations
                 column: "TaxRateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDiscountOffer_DiscountOfferId",
+                name: "IX_ProductDiscountOffer_DiscountOfferID",
                 table: "ProductDiscountOffer",
-                column: "DiscountOfferId");
+                column: "DiscountOfferID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDiscountOffer_ProductId",
+                name: "IX_ProductDiscountOffer_ProductID",
                 table: "ProductDiscountOffer",
-                column: "ProductId");
+                column: "ProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_AddressId",
@@ -699,14 +696,14 @@ namespace Persistance.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProductReview_ProductId",
+                name: "IX_UserProductReview_ProductID",
                 table: "UserProductReview",
-                column: "ProductId");
+                column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProductReview_UserId",
+                name: "IX_UserProductReview_UserID",
                 table: "UserProductReview",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WishList_UserId",

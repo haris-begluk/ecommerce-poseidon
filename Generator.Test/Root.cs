@@ -37,23 +37,65 @@ namespace Generator.Test
             ,$"{endpointsPath}/Endpoints.cs"
         };
 
+        /// <summary>
+        /// Resolves the solution root by walking up from the Generator.Test binary until
+        /// we find a .slnx/.sln file, or falls back to the parent of the working directory.
+        /// </summary>
+        private static string AutoDetectSolutionBasePath()
+        {
+            // Walk up from the directory containing this running assembly
+            var dir = new DirectoryInfo(AppContext.BaseDirectory);
+            while (dir != null)
+            {
+                if (dir.GetFiles("*.slnx").Length > 0 || dir.GetFiles("*.sln").Length > 0)
+                    return dir.FullName.Replace('\\', '/');
+                dir = dir.Parent;
+            }
+            // Fallback: parent of current working directory (covers `dotnet run` inside Generator.Test)
+            return Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..")).Replace('\\', '/');
+        }
+
         public static void Initialize(IConfiguration configuration)
         {
-            // Override from configuration if present
-            var configuredSolutionPath = configuration["Paths:SolutionBasePath"];            
-            var configuredGeneratorPath = configuration["Paths:GeneratorAppPath"];            
-            var configuredConn          = configuration.GetConnectionString("Default");
+            // 1. Resolve connection string (appsettings → env var ConnectionStrings__Default)
+            var configuredConn = configuration.GetConnectionString("Default");
 
-            if (!string.IsNullOrWhiteSpace(configuredSolutionPath))
-                SolutionBasePath = configuredSolutionPath!;
+            // Additional fallback for local/dev environments when configuration files are not resolved
+            if (string.IsNullOrWhiteSpace(configuredConn))
+            {
+                configuredConn = Environment.GetEnvironmentVariable("POSEIDON_GENERATOR_CONNECTION")
+                              ?? "Server=localhost,1433;Database=PoseidonApiDB;User Id=sa;Password=Pass123$;MultipleActiveResultSets=true;TrustServerCertificate=True;";
+            }
 
-            if (!string.IsNullOrWhiteSpace(configuredGeneratorPath))
-                GeneratorAppPath = configuredGeneratorPath!;
-            else
-                GeneratorAppPath = $"{SolutionBasePath}/Generator.Test"; // recompute if solution base changed
+            // 2. Optionally remap the SQL host (useful when SQL Server is in docker-compose
+            //    and the service name differs from the default "localhost,1433").
+            //    Set  Generator__SqlHost  env var or appsettings "Generator:SqlHost" to override.
+            var sqlHost = configuration["Generator:SqlHost"];
+            if (!string.IsNullOrWhiteSpace(configuredConn) && !string.IsNullOrWhiteSpace(sqlHost))
+            {
+                // Replace the Server= part of the connection string with the configured host
+                configuredConn = System.Text.RegularExpressions.Regex.Replace(
+                    configuredConn,
+                    @"(?i)Server=[^;]+",
+                    $"Server={sqlHost}");
+            }
 
             if (!string.IsNullOrWhiteSpace(configuredConn))
                 ConnectionString = configuredConn!;
+
+            // 3. Resolve solution base path: config → auto-detect
+            var configuredSolutionPath  = configuration["Paths:SolutionBasePath"];
+            var configuredGeneratorPath = configuration["Paths:GeneratorAppPath"];
+
+            if (!string.IsNullOrWhiteSpace(configuredSolutionPath))
+                SolutionBasePath = configuredSolutionPath!.Replace('\\', '/');
+            else
+                SolutionBasePath = AutoDetectSolutionBasePath();
+
+            if (!string.IsNullOrWhiteSpace(configuredGeneratorPath))
+                GeneratorAppPath = configuredGeneratorPath!.Replace('\\', '/');
+            else
+                GeneratorAppPath = $"{SolutionBasePath}/Generator.Test";
 
             // Recalculate dependent paths
             commandPath         = $"{SolutionBasePath}/Application/Commands";
