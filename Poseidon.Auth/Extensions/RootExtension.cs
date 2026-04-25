@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Poseidon.Auth.Endpoints;
 using Poseidon.Auth.Services;
 using Poseidon.Logs;
@@ -211,7 +211,7 @@ internal static class RootExtensions
             options.MapType<decimal>(
             () => new OpenApiSchema
             {
-                Type = "number"
+                Type = JsonSchemaType.Number
                 ,
                 Format = "decimal"
             });

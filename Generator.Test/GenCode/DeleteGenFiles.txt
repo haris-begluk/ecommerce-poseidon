@@ -1,0 +1,8 @@
+function DeleteGenFiles {
+Remove-Item -Path  C:/Users/AdminUser/Desktop/IB210382/poseidon/Application/Commands/Commands.cs -Force;
+Remove-Item -Path  C:/Users/AdminUser/Desktop/IB210382/poseidon/Application/Dtos/Dtos.cs -Force;
+Remove-Item -Path  C:/Users/AdminUser/Desktop/IB210382/poseidon/Application/Queries/Queries.cs -Force;
+Remove-Item -Path  C:/Users/AdminUser/Desktop/IB210382/poseidon/Application/CommandHandlers/CommandHandlers.cs -Force;
+Remove-Item -Path  C:/Users/AdminUser/Desktop/IB210382/poseidon/Poseidon.Api/Endpoints/Endpoints.cs -Force;
+}
+DeleteGenFiles;

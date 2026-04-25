@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+	<PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ModelDef\CustomDef.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ModelDef\CustomDef.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="RazorLight.NetCore3" />
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Persistance\Persistance.csproj" />
+    <ProjectReference Include="..\Poseidon.Auth\Poseidon.Auth.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GenCode\" />
+  </ItemGroup>
+
+</Project>

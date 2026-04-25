@@ -21,9 +21,8 @@ try
             .AddAuth()
             .Build();
 
-
-    app.ConfigurePipeline() 
-        .Run();
+    await app.ConfigurePipelineAsync();
+    app.Run();
 }
 catch (Exception ex)
 {

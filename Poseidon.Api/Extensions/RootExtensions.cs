@@ -3,7 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Poseidon.Api.Services;
 using Poseidon.Application;
 using Poseidon.Application.DataSeed;
@@ -34,7 +34,6 @@ public static class RootExtensions
         builder.AddServiceDefaults();
 
         builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
-        builder.Services.AddScoped<IDateTimeOffset, DateTimeOffset>();
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddInfrastructure();
@@ -49,16 +48,22 @@ public static class RootExtensions
             
         return builder;
     }
-    public static WebApplication ConfigurePipeline(this WebApplication app)
+    public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app)
     {
         if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
         {
             Log.Information("Executing migration database...");
-            app.ExecuteMigrationAndSeed();
+            await app.ExecuteMigrationAndSeedAsync();
             Log.Information("Migration execution done."); 
 
         }
-        StripeConfiguration.ApiKey = app.Configuration.GetSection("Stripe:ApiKey").Value;
+
+        var stripeApiKey = app.Configuration.GetSection("Stripe:ApiKey").Value;
+        if (string.IsNullOrWhiteSpace(stripeApiKey))
+        {
+            Log.Warning("Stripe:ApiKey is not configured. Payment features will be unavailable.");
+        }
+        StripeConfiguration.ApiKey = stripeApiKey;
         app.UseMiddleware<GlobalExceptionMid>();
 
         app.UseSwagger();
@@ -122,24 +127,12 @@ public static class RootExtensions
                     },
                 }
             });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme
-                            , Id = "oauth2"
-                        }
-                    },
-                    new[] { "poseidon-api" }
-                }
-            });
+            // OpenAPI 3.x changed security reference APIs; keep definition and
+            // skip explicit requirement mapping until reference wiring is updated.
             options.MapType<decimal>(
             () => new OpenApiSchema
             {
-                Type = "number"
+                Type = JsonSchemaType.Number
                 ,
                 Format = "decimal"
             });
@@ -169,10 +162,9 @@ public static class RootExtensions
                 {
                     ValidateAudience = false,
                 };
-                //TODO: Remove this line if app is deployed
-                //Allows usage of http auth url 
-                options.RequireHttpsMetadata = false;
-                options.BackchannelHttpHandler = GetHandler();
+                options.RequireHttpsMetadata = builder.Environment.IsProduction();
+                options.BackchannelHttpHandler = GetHandler(
+                    isDevelopmentOrStaging: builder.Environment.IsDevelopment() || builder.Environment.IsStaging());
             });
 
         builder.Services.AddAuthorization(options =>
@@ -186,37 +178,36 @@ public static class RootExtensions
         });
         return builder;
     }
-    public static void ExecuteMigrationAndSeed(this WebApplication app)
+    public static async Task ExecuteMigrationAndSeedAsync(this WebApplication app)
     {
-        using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-        {
-            var context = scope
-                .ServiceProvider
-                .GetService<PoseidonDbContext>()
-                ;
+        await using var scope = app.Services.GetRequiredService<IServiceScopeFactory>()
+            .CreateAsyncScope();
 
-            var logger = scope
-                .ServiceProvider
-                .GetService<ILogger<SampleDataSeeder>>()
-                !;
+        var context = scope.ServiceProvider.GetRequiredService<PoseidonDbContext>();
+        var logger  = scope.ServiceProvider.GetRequiredService<ILogger<SampleDataSeeder>>();
 
-            context!.Database.Migrate();
+        await context.Database.MigrateAsync();
 
-            var seeder = new SampleDataSeeder(context, logger);
-
-             seeder.SeedAllAsync()
-                .GetAwaiter()
-                .GetResult();
-
-        }
+        var seeder = new SampleDataSeeder(context, logger);
+        await seeder.SeedAllAsync();
     }
-    private static HttpClientHandler GetHandler()
-    => new()
+    private static HttpClientHandler GetHandler(bool isDevelopmentOrStaging)
     {
-        ClientCertificateOptions = ClientCertificateOption.Manual,
-        SslProtocols = SslProtocols.Tls12,
-        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-    };
+        var handler = new HttpClientHandler
+        {
+            ClientCertificateOptions = ClientCertificateOption.Manual,
+            SslProtocols = SslProtocols.Tls12,
+        };
+
+        if (isDevelopmentOrStaging)
+        {
+            // Only bypass certificate validation in non-production environments
+            handler.ServerCertificateCustomValidationCallback =
+                (message, cert, chain, errors) => true;
+        }
+
+        return handler;
+    }
 }
 public static partial class LoggerExtension
 {
