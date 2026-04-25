@@ -18,9 +18,9 @@ class SettingsCommand {
     this.orderDiscountAmount,
     this.orderTaxAmount,
     this.paymentFeeAmount,
-    this.paymentMethod,
     this.shippingFeeAmount,
     this.shippingMethod,
+    this.paymentMethod,
     this.supplier,
   });
 
@@ -34,11 +34,11 @@ class SettingsCommand {
 
   num? paymentFeeAmount;
 
-  String? paymentMethod;
-
   num? shippingFeeAmount;
 
   String? shippingMethod;
+
+  String? paymentMethod;
 
   String? supplier;
 
@@ -49,9 +49,9 @@ class SettingsCommand {
      other.orderDiscountAmount == orderDiscountAmount &&
      other.orderTaxAmount == orderTaxAmount &&
      other.paymentFeeAmount == paymentFeeAmount &&
-     other.paymentMethod == paymentMethod &&
      other.shippingFeeAmount == shippingFeeAmount &&
      other.shippingMethod == shippingMethod &&
+     other.paymentMethod == paymentMethod &&
      other.supplier == supplier;
 
   @override
@@ -62,13 +62,13 @@ class SettingsCommand {
     (orderDiscountAmount == null ? 0 : orderDiscountAmount!.hashCode) +
     (orderTaxAmount == null ? 0 : orderTaxAmount!.hashCode) +
     (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
-    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
     (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
     (shippingMethod == null ? 0 : shippingMethod!.hashCode) +
+    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
     (supplier == null ? 0 : supplier!.hashCode);
 
   @override
-  String toString() => 'SettingsCommand[settingsId=$settingsId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, paymentFeeAmount=$paymentFeeAmount, paymentMethod=$paymentMethod, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, supplier=$supplier]';
+  String toString() => 'SettingsCommand[settingsId=$settingsId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, paymentFeeAmount=$paymentFeeAmount, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, paymentMethod=$paymentMethod, supplier=$supplier]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -87,14 +87,14 @@ class SettingsCommand {
     if (paymentFeeAmount != null) {
       _json[r'paymentFeeAmount'] = paymentFeeAmount;
     }
-    if (paymentMethod != null) {
-      _json[r'paymentMethod'] = paymentMethod;
-    }
     if (shippingFeeAmount != null) {
       _json[r'shippingFeeAmount'] = shippingFeeAmount;
     }
     if (shippingMethod != null) {
       _json[r'shippingMethod'] = shippingMethod;
+    }
+    if (paymentMethod != null) {
+      _json[r'paymentMethod'] = paymentMethod;
     }
     if (supplier != null) {
       _json[r'supplier'] = supplier;
@@ -132,11 +132,11 @@ class SettingsCommand {
         paymentFeeAmount: json[r'paymentFeeAmount'] == null
             ? null
             : num.parse(json[r'paymentFeeAmount'].toString()),
-        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
         shippingFeeAmount: json[r'shippingFeeAmount'] == null
             ? null
             : num.parse(json[r'shippingFeeAmount'].toString()),
         shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
+        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
         supplier: mapValueOfType<String>(json, r'supplier'),
       );
     }

@@ -15,45 +15,45 @@ class CountryCommand {
   CountryCommand({
     this.countryId,
     this.name,
+    this.twoLetterIsoCode,
+    this.threeLetterIsoCode,
     this.numericIsoCode,
     this.phonePrefix,
-    this.threeLetterIsoCode,
-    this.twoLetterIsoCode,
   });
 
   int? countryId;
 
   String? name;
 
-  int? numericIsoCode;
-
-  String? phonePrefix;
+  String? twoLetterIsoCode;
 
   String? threeLetterIsoCode;
 
-  String? twoLetterIsoCode;
+  int? numericIsoCode;
+
+  String? phonePrefix;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CountryCommand &&
      other.countryId == countryId &&
      other.name == name &&
-     other.numericIsoCode == numericIsoCode &&
-     other.phonePrefix == phonePrefix &&
+     other.twoLetterIsoCode == twoLetterIsoCode &&
      other.threeLetterIsoCode == threeLetterIsoCode &&
-     other.twoLetterIsoCode == twoLetterIsoCode;
+     other.numericIsoCode == numericIsoCode &&
+     other.phonePrefix == phonePrefix;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (countryId == null ? 0 : countryId!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
-    (numericIsoCode == null ? 0 : numericIsoCode!.hashCode) +
-    (phonePrefix == null ? 0 : phonePrefix!.hashCode) +
+    (twoLetterIsoCode == null ? 0 : twoLetterIsoCode!.hashCode) +
     (threeLetterIsoCode == null ? 0 : threeLetterIsoCode!.hashCode) +
-    (twoLetterIsoCode == null ? 0 : twoLetterIsoCode!.hashCode);
+    (numericIsoCode == null ? 0 : numericIsoCode!.hashCode) +
+    (phonePrefix == null ? 0 : phonePrefix!.hashCode);
 
   @override
-  String toString() => 'CountryCommand[countryId=$countryId, name=$name, numericIsoCode=$numericIsoCode, phonePrefix=$phonePrefix, threeLetterIsoCode=$threeLetterIsoCode, twoLetterIsoCode=$twoLetterIsoCode]';
+  String toString() => 'CountryCommand[countryId=$countryId, name=$name, twoLetterIsoCode=$twoLetterIsoCode, threeLetterIsoCode=$threeLetterIsoCode, numericIsoCode=$numericIsoCode, phonePrefix=$phonePrefix]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -63,17 +63,17 @@ class CountryCommand {
     if (name != null) {
       _json[r'name'] = name;
     }
+    if (twoLetterIsoCode != null) {
+      _json[r'twoLetterIsoCode'] = twoLetterIsoCode;
+    }
+    if (threeLetterIsoCode != null) {
+      _json[r'threeLetterIsoCode'] = threeLetterIsoCode;
+    }
     if (numericIsoCode != null) {
       _json[r'numericIsoCode'] = numericIsoCode;
     }
     if (phonePrefix != null) {
       _json[r'phonePrefix'] = phonePrefix;
-    }
-    if (threeLetterIsoCode != null) {
-      _json[r'threeLetterIsoCode'] = threeLetterIsoCode;
-    }
-    if (twoLetterIsoCode != null) {
-      _json[r'twoLetterIsoCode'] = twoLetterIsoCode;
     }
     return _json;
   }
@@ -99,10 +99,10 @@ class CountryCommand {
       return CountryCommand(
         countryId: mapValueOfType<int>(json, r'countryId'),
         name: mapValueOfType<String>(json, r'name'),
+        twoLetterIsoCode: mapValueOfType<String>(json, r'twoLetterIsoCode'),
+        threeLetterIsoCode: mapValueOfType<String>(json, r'threeLetterIsoCode'),
         numericIsoCode: mapValueOfType<int>(json, r'numericIsoCode'),
         phonePrefix: mapValueOfType<String>(json, r'phonePrefix'),
-        threeLetterIsoCode: mapValueOfType<String>(json, r'threeLetterIsoCode'),
-        twoLetterIsoCode: mapValueOfType<String>(json, r'twoLetterIsoCode'),
       );
     }
     return null;

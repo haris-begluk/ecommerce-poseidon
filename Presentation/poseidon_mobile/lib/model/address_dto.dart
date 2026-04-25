@@ -14,32 +14,22 @@ class AddressDto {
   /// Returns a new [AddressDto] instance.
   AddressDto({
     this.addressId,
-    this.address1,
-    this.address2,
-    this.city,
-    this.company,
-    this.countryId,
-    this.county,
-    this.email,
     this.firstName,
     this.lastName,
-    this.phoneNumber,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
+    this.email,
+    this.company,
+    this.county,
+    this.city,
+    this.address1,
+    this.address2,
     this.zipPostalCode,
+    this.phoneNumber,
+    this.countryId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
-
-  int? addressId;
-
-  String? address1;
-
-  String? address2;
-
-  String? city;
-
-  String? company;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -47,15 +37,25 @@ class AddressDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? countryId;
-
-  String? county;
-
-  String? email;
+  int? addressId;
 
   String? firstName;
 
   String? lastName;
+
+  String? email;
+
+  String? company;
+
+  String? county;
+
+  String? city;
+
+  String? address1;
+
+  String? address2;
+
+  String? zipPostalCode;
 
   String? phoneNumber;
 
@@ -65,7 +65,7 @@ class AddressDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  int? countryId;
 
   String? sysCreatedBy;
 
@@ -75,79 +75,64 @@ class AddressDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
 
-  String? zipPostalCode;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AddressDto &&
      other.addressId == addressId &&
-     other.address1 == address1 &&
-     other.address2 == address2 &&
-     other.city == city &&
-     other.company == company &&
-     other.countryId == countryId &&
-     other.county == county &&
-     other.email == email &&
      other.firstName == firstName &&
      other.lastName == lastName &&
+     other.email == email &&
+     other.company == company &&
+     other.county == county &&
+     other.city == city &&
+     other.address1 == address1 &&
+     other.address2 == address2 &&
+     other.zipPostalCode == zipPostalCode &&
      other.phoneNumber == phoneNumber &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.countryId == countryId &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.zipPostalCode == zipPostalCode;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (addressId == null ? 0 : addressId!.hashCode) +
-    (address1 == null ? 0 : address1!.hashCode) +
-    (address2 == null ? 0 : address2!.hashCode) +
-    (city == null ? 0 : city!.hashCode) +
-    (company == null ? 0 : company!.hashCode) +
-    (countryId == null ? 0 : countryId!.hashCode) +
-    (county == null ? 0 : county!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
     (lastName == null ? 0 : lastName!.hashCode) +
+    (email == null ? 0 : email!.hashCode) +
+    (company == null ? 0 : company!.hashCode) +
+    (county == null ? 0 : county!.hashCode) +
+    (city == null ? 0 : city!.hashCode) +
+    (address1 == null ? 0 : address1!.hashCode) +
+    (address2 == null ? 0 : address2!.hashCode) +
+    (zipPostalCode == null ? 0 : zipPostalCode!.hashCode) +
     (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (countryId == null ? 0 : countryId!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (zipPostalCode == null ? 0 : zipPostalCode!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'AddressDto[addressId=$addressId, address1=$address1, address2=$address2, city=$city, company=$company, countryId=$countryId, county=$county, email=$email, firstName=$firstName, lastName=$lastName, phoneNumber=$phoneNumber, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, zipPostalCode=$zipPostalCode]';
+  String toString() => 'AddressDto[addressId=$addressId, firstName=$firstName, lastName=$lastName, email=$email, company=$company, county=$county, city=$city, address1=$address1, address2=$address2, zipPostalCode=$zipPostalCode, phoneNumber=$phoneNumber, countryId=$countryId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (addressId != null) {
       _json[r'addressId'] = addressId;
-    }
-    if (address1 != null) {
-      _json[r'address1'] = address1;
-    }
-    if (address2 != null) {
-      _json[r'address2'] = address2;
-    }
-    if (city != null) {
-      _json[r'city'] = city;
-    }
-    if (company != null) {
-      _json[r'company'] = company;
-    }
-    if (countryId != null) {
-      _json[r'countryId'] = countryId;
-    }
-    if (county != null) {
-      _json[r'county'] = county;
-    }
-    if (email != null) {
-      _json[r'email'] = email;
     }
     if (firstName != null) {
       _json[r'firstName'] = firstName;
@@ -155,23 +140,44 @@ class AddressDto {
     if (lastName != null) {
       _json[r'lastName'] = lastName;
     }
+    if (email != null) {
+      _json[r'email'] = email;
+    }
+    if (company != null) {
+      _json[r'company'] = company;
+    }
+    if (county != null) {
+      _json[r'county'] = county;
+    }
+    if (city != null) {
+      _json[r'city'] = city;
+    }
+    if (address1 != null) {
+      _json[r'address1'] = address1;
+    }
+    if (address2 != null) {
+      _json[r'address2'] = address2;
+    }
+    if (zipPostalCode != null) {
+      _json[r'zipPostalCode'] = zipPostalCode;
+    }
     if (phoneNumber != null) {
       _json[r'phoneNumber'] = phoneNumber;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (countryId != null) {
+      _json[r'countryId'] = countryId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (zipPostalCode != null) {
-      _json[r'zipPostalCode'] = zipPostalCode;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -196,21 +202,21 @@ class AddressDto {
 
       return AddressDto(
         addressId: mapValueOfType<int>(json, r'addressId'),
-        address1: mapValueOfType<String>(json, r'address1'),
-        address2: mapValueOfType<String>(json, r'address2'),
-        city: mapValueOfType<String>(json, r'city'),
-        company: mapValueOfType<String>(json, r'company'),
-        countryId: mapValueOfType<int>(json, r'countryId'),
-        county: mapValueOfType<String>(json, r'county'),
-        email: mapValueOfType<String>(json, r'email'),
         firstName: mapValueOfType<String>(json, r'firstName'),
         lastName: mapValueOfType<String>(json, r'lastName'),
-        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        email: mapValueOfType<String>(json, r'email'),
+        company: mapValueOfType<String>(json, r'company'),
+        county: mapValueOfType<String>(json, r'county'),
+        city: mapValueOfType<String>(json, r'city'),
+        address1: mapValueOfType<String>(json, r'address1'),
+        address2: mapValueOfType<String>(json, r'address2'),
         zipPostalCode: mapValueOfType<String>(json, r'zipPostalCode'),
+        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
+        countryId: mapValueOfType<int>(json, r'countryId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

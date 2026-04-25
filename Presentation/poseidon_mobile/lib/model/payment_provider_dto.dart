@@ -14,18 +14,14 @@ class PaymentProviderDto {
   /// Returns a new [PaymentProviderDto] instance.
   PaymentProviderDto({
     this.paymentProviderId,
-    this.additionalSettings,
-    this.isEnabled,
     this.name,
-    this.sysCreatedAt,
+    this.isEnabled,
+    this.additionalSettings,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
-
-  int? paymentProviderId;
-
-  String? additionalSettings;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -33,7 +29,7 @@ class PaymentProviderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  bool? isEnabled;
+  int? paymentProviderId;
 
   String? name;
 
@@ -43,7 +39,9 @@ class PaymentProviderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  bool? isEnabled;
+
+  String? additionalSettings;
 
   String? sysCreatedBy;
 
@@ -53,61 +51,69 @@ class PaymentProviderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PaymentProviderDto &&
      other.paymentProviderId == paymentProviderId &&
-     other.additionalSettings == additionalSettings &&
-     other.isEnabled == isEnabled &&
      other.name == name &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.isEnabled == isEnabled &&
+     other.additionalSettings == additionalSettings &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy;
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (paymentProviderId == null ? 0 : paymentProviderId!.hashCode) +
-    (additionalSettings == null ? 0 : additionalSettings!.hashCode) +
-    (isEnabled == null ? 0 : isEnabled!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (isEnabled == null ? 0 : isEnabled!.hashCode) +
+    (additionalSettings == null ? 0 : additionalSettings!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode);
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'PaymentProviderDto[paymentProviderId=$paymentProviderId, additionalSettings=$additionalSettings, isEnabled=$isEnabled, name=$name, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy]';
+  String toString() => 'PaymentProviderDto[paymentProviderId=$paymentProviderId, name=$name, isEnabled=$isEnabled, additionalSettings=$additionalSettings, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (paymentProviderId != null) {
       _json[r'paymentProviderId'] = paymentProviderId;
     }
-    if (additionalSettings != null) {
-      _json[r'additionalSettings'] = additionalSettings;
+    if (name != null) {
+      _json[r'name'] = name;
     }
     if (isEnabled != null) {
       _json[r'isEnabled'] = isEnabled;
     }
-    if (name != null) {
-      _json[r'name'] = name;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (additionalSettings != null) {
+      _json[r'additionalSettings'] = additionalSettings;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -132,13 +138,13 @@ class PaymentProviderDto {
 
       return PaymentProviderDto(
         paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
-        additionalSettings: mapValueOfType<String>(json, r'additionalSettings'),
-        isEnabled: mapValueOfType<bool>(json, r'isEnabled'),
         name: mapValueOfType<String>(json, r'name'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        isEnabled: mapValueOfType<bool>(json, r'isEnabled'),
+        additionalSettings: mapValueOfType<String>(json, r'additionalSettings'),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

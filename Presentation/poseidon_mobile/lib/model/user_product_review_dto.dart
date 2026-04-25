@@ -14,58 +14,24 @@ class UserProductReviewDto {
   /// Returns a new [UserProductReviewDto] instance.
   UserProductReviewDto({
     this.userProductReviewId,
-    this.comment,
-    this.productId,
-    this.rating,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
-    this.title,
     this.userId,
+    this.productId,
+    this.title,
+    this.comment,
+    this.rating,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? userProductReviewId;
-
-  String? comment;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? productId;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? rating;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
-
-  String? sysCreatedBy;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysUpdatedAt;
-
-  String? sysUpdatedBy;
-
-  String? title;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -75,67 +41,107 @@ class UserProductReviewDto {
   ///
   int? userId;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? productId;
+
+  String? title;
+
+  String? comment;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? rating;
+
+  String? sysCreatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysCreatedAt;
+
+  String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserProductReviewDto &&
      other.userProductReviewId == userProductReviewId &&
-     other.comment == comment &&
+     other.userId == userId &&
      other.productId == productId &&
-     other.rating == rating &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
      other.title == title &&
-     other.userId == userId;
+     other.comment == comment &&
+     other.rating == rating &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (userProductReviewId == null ? 0 : userProductReviewId!.hashCode) +
-    (comment == null ? 0 : comment!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
     (productId == null ? 0 : productId!.hashCode) +
-    (rating == null ? 0 : rating!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (comment == null ? 0 : comment!.hashCode) +
+    (rating == null ? 0 : rating!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'UserProductReviewDto[userProductReviewId=$userProductReviewId, comment=$comment, productId=$productId, rating=$rating, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, title=$title, userId=$userId]';
+  String toString() => 'UserProductReviewDto[userProductReviewId=$userProductReviewId, userId=$userId, productId=$productId, title=$title, comment=$comment, rating=$rating, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (userProductReviewId != null) {
       _json[r'userProductReviewId'] = userProductReviewId;
     }
-    if (comment != null) {
-      _json[r'comment'] = comment;
+    if (userId != null) {
+      _json[r'userId'] = userId;
     }
     if (productId != null) {
       _json[r'productId'] = productId;
     }
+    if (title != null) {
+      _json[r'title'] = title;
+    }
+    if (comment != null) {
+      _json[r'comment'] = comment;
+    }
     if (rating != null) {
       _json[r'rating'] = rating;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (title != null) {
-      _json[r'title'] = title;
-    }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -160,15 +166,15 @@ class UserProductReviewDto {
 
       return UserProductReviewDto(
         userProductReviewId: mapValueOfType<int>(json, r'userProductReviewId'),
-        comment: mapValueOfType<String>(json, r'comment'),
-        productId: mapValueOfType<int>(json, r'productId'),
-        rating: mapValueOfType<int>(json, r'rating'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
-        title: mapValueOfType<String>(json, r'title'),
         userId: mapValueOfType<int>(json, r'userId'),
+        productId: mapValueOfType<int>(json, r'productId'),
+        title: mapValueOfType<String>(json, r'title'),
+        comment: mapValueOfType<String>(json, r'comment'),
+        rating: mapValueOfType<int>(json, r'rating'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

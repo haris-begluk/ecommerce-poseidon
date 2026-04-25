@@ -14,88 +14,76 @@ class ProductCommand {
   /// Returns a new [ProductCommand] instance.
   ProductCommand({
     this.productId,
-    this.categoryId,
-    this.description,
-    this.gtin,
-    this.imageUrl,
     this.name,
     this.number,
+    this.imageUrl,
+    this.unit,
     this.price,
+    this.description,
+    this.gtin,
     this.supplier,
     this.taxRateId,
-    this.unit,
+    this.categoryId,
   });
 
   int? productId;
-
-  int? categoryId;
-
-  String? description;
-
-  String? gtin;
-
-  String? imageUrl;
 
   String? name;
 
   String? number;
 
+  String? imageUrl;
+
+  String? unit;
+
   num? price;
+
+  String? description;
+
+  String? gtin;
 
   String? supplier;
 
   int? taxRateId;
 
-  String? unit;
+  int? categoryId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ProductCommand &&
      other.productId == productId &&
-     other.categoryId == categoryId &&
-     other.description == description &&
-     other.gtin == gtin &&
-     other.imageUrl == imageUrl &&
      other.name == name &&
      other.number == number &&
+     other.imageUrl == imageUrl &&
+     other.unit == unit &&
      other.price == price &&
+     other.description == description &&
+     other.gtin == gtin &&
      other.supplier == supplier &&
      other.taxRateId == taxRateId &&
-     other.unit == unit;
+     other.categoryId == categoryId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (productId == null ? 0 : productId!.hashCode) +
-    (categoryId == null ? 0 : categoryId!.hashCode) +
-    (description == null ? 0 : description!.hashCode) +
-    (gtin == null ? 0 : gtin!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
     (number == null ? 0 : number!.hashCode) +
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (unit == null ? 0 : unit!.hashCode) +
     (price == null ? 0 : price!.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
+    (gtin == null ? 0 : gtin!.hashCode) +
     (supplier == null ? 0 : supplier!.hashCode) +
     (taxRateId == null ? 0 : taxRateId!.hashCode) +
-    (unit == null ? 0 : unit!.hashCode);
+    (categoryId == null ? 0 : categoryId!.hashCode);
 
   @override
-  String toString() => 'ProductCommand[productId=$productId, categoryId=$categoryId, description=$description, gtin=$gtin, imageUrl=$imageUrl, name=$name, number=$number, price=$price, supplier=$supplier, taxRateId=$taxRateId, unit=$unit]';
+  String toString() => 'ProductCommand[productId=$productId, name=$name, number=$number, imageUrl=$imageUrl, unit=$unit, price=$price, description=$description, gtin=$gtin, supplier=$supplier, taxRateId=$taxRateId, categoryId=$categoryId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (productId != null) {
       _json[r'productId'] = productId;
-    }
-    if (categoryId != null) {
-      _json[r'categoryId'] = categoryId;
-    }
-    if (description != null) {
-      _json[r'description'] = description;
-    }
-    if (gtin != null) {
-      _json[r'gtin'] = gtin;
-    }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
     }
     if (name != null) {
       _json[r'name'] = name;
@@ -103,8 +91,20 @@ class ProductCommand {
     if (number != null) {
       _json[r'number'] = number;
     }
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
+    if (unit != null) {
+      _json[r'unit'] = unit;
+    }
     if (price != null) {
       _json[r'price'] = price;
+    }
+    if (description != null) {
+      _json[r'description'] = description;
+    }
+    if (gtin != null) {
+      _json[r'gtin'] = gtin;
     }
     if (supplier != null) {
       _json[r'supplier'] = supplier;
@@ -112,8 +112,8 @@ class ProductCommand {
     if (taxRateId != null) {
       _json[r'taxRateId'] = taxRateId;
     }
-    if (unit != null) {
-      _json[r'unit'] = unit;
+    if (categoryId != null) {
+      _json[r'categoryId'] = categoryId;
     }
     return _json;
   }
@@ -138,18 +138,18 @@ class ProductCommand {
 
       return ProductCommand(
         productId: mapValueOfType<int>(json, r'productId'),
-        categoryId: mapValueOfType<int>(json, r'categoryId'),
-        description: mapValueOfType<String>(json, r'description'),
-        gtin: mapValueOfType<String>(json, r'gtin'),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         name: mapValueOfType<String>(json, r'name'),
         number: mapValueOfType<String>(json, r'number'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        unit: mapValueOfType<String>(json, r'unit'),
         price: json[r'price'] == null
             ? null
             : num.parse(json[r'price'].toString()),
+        description: mapValueOfType<String>(json, r'description'),
+        gtin: mapValueOfType<String>(json, r'gtin'),
         supplier: mapValueOfType<String>(json, r'supplier'),
         taxRateId: mapValueOfType<int>(json, r'taxRateId'),
-        unit: mapValueOfType<String>(json, r'unit'),
+        categoryId: mapValueOfType<int>(json, r'categoryId'),
       );
     }
     return null;

@@ -14,102 +14,81 @@ class AddressCommand {
   /// Returns a new [AddressCommand] instance.
   AddressCommand({
     this.addressId,
-    this.address1,
-    this.address2,
-    this.city,
-    this.company,
-    this.countryId,
-    this.county,
-    this.email,
     this.firstName,
     this.lastName,
-    this.phoneNumber,
+    this.email,
+    this.company,
+    this.county,
+    this.city,
+    this.address1,
+    this.address2,
     this.zipPostalCode,
+    this.phoneNumber,
+    this.countryId,
   });
 
   int? addressId;
-
-  String? address1;
-
-  String? address2;
-
-  String? city;
-
-  String? company;
-
-  int? countryId;
-
-  String? county;
-
-  String? email;
 
   String? firstName;
 
   String? lastName;
 
-  String? phoneNumber;
+  String? email;
+
+  String? company;
+
+  String? county;
+
+  String? city;
+
+  String? address1;
+
+  String? address2;
 
   String? zipPostalCode;
+
+  String? phoneNumber;
+
+  int? countryId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AddressCommand &&
      other.addressId == addressId &&
-     other.address1 == address1 &&
-     other.address2 == address2 &&
-     other.city == city &&
-     other.company == company &&
-     other.countryId == countryId &&
-     other.county == county &&
-     other.email == email &&
      other.firstName == firstName &&
      other.lastName == lastName &&
+     other.email == email &&
+     other.company == company &&
+     other.county == county &&
+     other.city == city &&
+     other.address1 == address1 &&
+     other.address2 == address2 &&
+     other.zipPostalCode == zipPostalCode &&
      other.phoneNumber == phoneNumber &&
-     other.zipPostalCode == zipPostalCode;
+     other.countryId == countryId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (addressId == null ? 0 : addressId!.hashCode) +
-    (address1 == null ? 0 : address1!.hashCode) +
-    (address2 == null ? 0 : address2!.hashCode) +
-    (city == null ? 0 : city!.hashCode) +
-    (company == null ? 0 : company!.hashCode) +
-    (countryId == null ? 0 : countryId!.hashCode) +
-    (county == null ? 0 : county!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
     (lastName == null ? 0 : lastName!.hashCode) +
+    (email == null ? 0 : email!.hashCode) +
+    (company == null ? 0 : company!.hashCode) +
+    (county == null ? 0 : county!.hashCode) +
+    (city == null ? 0 : city!.hashCode) +
+    (address1 == null ? 0 : address1!.hashCode) +
+    (address2 == null ? 0 : address2!.hashCode) +
+    (zipPostalCode == null ? 0 : zipPostalCode!.hashCode) +
     (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
-    (zipPostalCode == null ? 0 : zipPostalCode!.hashCode);
+    (countryId == null ? 0 : countryId!.hashCode);
 
   @override
-  String toString() => 'AddressCommand[addressId=$addressId, address1=$address1, address2=$address2, city=$city, company=$company, countryId=$countryId, county=$county, email=$email, firstName=$firstName, lastName=$lastName, phoneNumber=$phoneNumber, zipPostalCode=$zipPostalCode]';
+  String toString() => 'AddressCommand[addressId=$addressId, firstName=$firstName, lastName=$lastName, email=$email, company=$company, county=$county, city=$city, address1=$address1, address2=$address2, zipPostalCode=$zipPostalCode, phoneNumber=$phoneNumber, countryId=$countryId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (addressId != null) {
       _json[r'addressId'] = addressId;
-    }
-    if (address1 != null) {
-      _json[r'address1'] = address1;
-    }
-    if (address2 != null) {
-      _json[r'address2'] = address2;
-    }
-    if (city != null) {
-      _json[r'city'] = city;
-    }
-    if (company != null) {
-      _json[r'company'] = company;
-    }
-    if (countryId != null) {
-      _json[r'countryId'] = countryId;
-    }
-    if (county != null) {
-      _json[r'county'] = county;
-    }
-    if (email != null) {
-      _json[r'email'] = email;
     }
     if (firstName != null) {
       _json[r'firstName'] = firstName;
@@ -117,11 +96,32 @@ class AddressCommand {
     if (lastName != null) {
       _json[r'lastName'] = lastName;
     }
-    if (phoneNumber != null) {
-      _json[r'phoneNumber'] = phoneNumber;
+    if (email != null) {
+      _json[r'email'] = email;
+    }
+    if (company != null) {
+      _json[r'company'] = company;
+    }
+    if (county != null) {
+      _json[r'county'] = county;
+    }
+    if (city != null) {
+      _json[r'city'] = city;
+    }
+    if (address1 != null) {
+      _json[r'address1'] = address1;
+    }
+    if (address2 != null) {
+      _json[r'address2'] = address2;
     }
     if (zipPostalCode != null) {
       _json[r'zipPostalCode'] = zipPostalCode;
+    }
+    if (phoneNumber != null) {
+      _json[r'phoneNumber'] = phoneNumber;
+    }
+    if (countryId != null) {
+      _json[r'countryId'] = countryId;
     }
     return _json;
   }
@@ -146,17 +146,17 @@ class AddressCommand {
 
       return AddressCommand(
         addressId: mapValueOfType<int>(json, r'addressId'),
-        address1: mapValueOfType<String>(json, r'address1'),
-        address2: mapValueOfType<String>(json, r'address2'),
-        city: mapValueOfType<String>(json, r'city'),
-        company: mapValueOfType<String>(json, r'company'),
-        countryId: mapValueOfType<int>(json, r'countryId'),
-        county: mapValueOfType<String>(json, r'county'),
-        email: mapValueOfType<String>(json, r'email'),
         firstName: mapValueOfType<String>(json, r'firstName'),
         lastName: mapValueOfType<String>(json, r'lastName'),
-        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
+        email: mapValueOfType<String>(json, r'email'),
+        company: mapValueOfType<String>(json, r'company'),
+        county: mapValueOfType<String>(json, r'county'),
+        city: mapValueOfType<String>(json, r'city'),
+        address1: mapValueOfType<String>(json, r'address1'),
+        address2: mapValueOfType<String>(json, r'address2'),
         zipPostalCode: mapValueOfType<String>(json, r'zipPostalCode'),
+        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
+        countryId: mapValueOfType<int>(json, r'countryId'),
       );
     }
     return null;

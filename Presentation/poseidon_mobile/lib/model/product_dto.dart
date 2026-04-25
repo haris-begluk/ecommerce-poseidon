@@ -14,35 +14,37 @@ class ProductDto {
   /// Returns a new [ProductDto] instance.
   ProductDto({
     this.productId,
-    this.categoryId,
-    this.description,
-    this.gtin,
-    this.imageUrl,
     this.name,
     this.number,
-    this.price,
-    this.supplier,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
-    this.taxRateId,
+    this.imageUrl,
     this.unit,
+    this.price,
+    this.description,
+    this.gtin,
+    this.supplier,
+    this.taxRateId,
+    this.categoryId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? productId;
-
-  int? categoryId;
-
-  String? description;
-
-  String? gtin;
-
-  String? imageUrl;
 
   String? name;
 
   String? number;
+
+  String? imageUrl;
+
+  String? unit;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -52,15 +54,15 @@ class ProductDto {
   ///
   num? price;
 
+  String? description;
+
+  String? gtin;
+
   String? supplier;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
+  int? taxRateId;
+
+  int? categoryId;
 
   String? sysCreatedBy;
 
@@ -70,70 +72,62 @@ class ProductDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
 
-  int? taxRateId;
-
-  String? unit;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ProductDto &&
      other.productId == productId &&
-     other.categoryId == categoryId &&
-     other.description == description &&
-     other.gtin == gtin &&
-     other.imageUrl == imageUrl &&
      other.name == name &&
      other.number == number &&
+     other.imageUrl == imageUrl &&
+     other.unit == unit &&
      other.price == price &&
+     other.description == description &&
+     other.gtin == gtin &&
      other.supplier == supplier &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
      other.taxRateId == taxRateId &&
-     other.unit == unit;
+     other.categoryId == categoryId &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (productId == null ? 0 : productId!.hashCode) +
-    (categoryId == null ? 0 : categoryId!.hashCode) +
-    (description == null ? 0 : description!.hashCode) +
-    (gtin == null ? 0 : gtin!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
     (number == null ? 0 : number!.hashCode) +
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (unit == null ? 0 : unit!.hashCode) +
     (price == null ? 0 : price!.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
+    (gtin == null ? 0 : gtin!.hashCode) +
     (supplier == null ? 0 : supplier!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
     (taxRateId == null ? 0 : taxRateId!.hashCode) +
-    (unit == null ? 0 : unit!.hashCode);
+    (categoryId == null ? 0 : categoryId!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'ProductDto[productId=$productId, categoryId=$categoryId, description=$description, gtin=$gtin, imageUrl=$imageUrl, name=$name, number=$number, price=$price, supplier=$supplier, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, taxRateId=$taxRateId, unit=$unit]';
+  String toString() => 'ProductDto[productId=$productId, name=$name, number=$number, imageUrl=$imageUrl, unit=$unit, price=$price, description=$description, gtin=$gtin, supplier=$supplier, taxRateId=$taxRateId, categoryId=$categoryId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (productId != null) {
       _json[r'productId'] = productId;
-    }
-    if (categoryId != null) {
-      _json[r'categoryId'] = categoryId;
-    }
-    if (description != null) {
-      _json[r'description'] = description;
-    }
-    if (gtin != null) {
-      _json[r'gtin'] = gtin;
-    }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
     }
     if (name != null) {
       _json[r'name'] = name;
@@ -141,29 +135,41 @@ class ProductDto {
     if (number != null) {
       _json[r'number'] = number;
     }
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
+    if (unit != null) {
+      _json[r'unit'] = unit;
+    }
     if (price != null) {
       _json[r'price'] = price;
+    }
+    if (description != null) {
+      _json[r'description'] = description;
+    }
+    if (gtin != null) {
+      _json[r'gtin'] = gtin;
     }
     if (supplier != null) {
       _json[r'supplier'] = supplier;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (taxRateId != null) {
+      _json[r'taxRateId'] = taxRateId;
+    }
+    if (categoryId != null) {
+      _json[r'categoryId'] = categoryId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (taxRateId != null) {
-      _json[r'taxRateId'] = taxRateId;
-    }
-    if (unit != null) {
-      _json[r'unit'] = unit;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -188,22 +194,22 @@ class ProductDto {
 
       return ProductDto(
         productId: mapValueOfType<int>(json, r'productId'),
-        categoryId: mapValueOfType<int>(json, r'categoryId'),
-        description: mapValueOfType<String>(json, r'description'),
-        gtin: mapValueOfType<String>(json, r'gtin'),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         name: mapValueOfType<String>(json, r'name'),
         number: mapValueOfType<String>(json, r'number'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        unit: mapValueOfType<String>(json, r'unit'),
         price: json[r'price'] == null
             ? null
             : num.parse(json[r'price'].toString()),
+        description: mapValueOfType<String>(json, r'description'),
+        gtin: mapValueOfType<String>(json, r'gtin'),
         supplier: mapValueOfType<String>(json, r'supplier'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
         taxRateId: mapValueOfType<int>(json, r'taxRateId'),
-        unit: mapValueOfType<String>(json, r'unit'),
+        categoryId: mapValueOfType<int>(json, r'categoryId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

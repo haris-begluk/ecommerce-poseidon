@@ -14,62 +14,62 @@ class CreditCardCommand {
   /// Returns a new [CreditCardCommand] instance.
   CreditCardCommand({
     this.creditCardId,
-    this.cvc,
     this.creaditCartNumber,
+    this.cvc,
     this.expirationDate,
     this.imageUrl,
-    this.paymentProviderId,
     this.userId,
+    this.paymentProviderId,
   });
 
   int? creditCardId;
 
-  String? cvc;
-
   String? creaditCartNumber;
+
+  String? cvc;
 
   DateTime? expirationDate;
 
   String? imageUrl;
 
-  int? paymentProviderId;
-
   int? userId;
+
+  int? paymentProviderId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreditCardCommand &&
      other.creditCardId == creditCardId &&
-     other.cvc == cvc &&
      other.creaditCartNumber == creaditCartNumber &&
+     other.cvc == cvc &&
      other.expirationDate == expirationDate &&
      other.imageUrl == imageUrl &&
-     other.paymentProviderId == paymentProviderId &&
-     other.userId == userId;
+     other.userId == userId &&
+     other.paymentProviderId == paymentProviderId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (creditCardId == null ? 0 : creditCardId!.hashCode) +
-    (cvc == null ? 0 : cvc!.hashCode) +
     (creaditCartNumber == null ? 0 : creaditCartNumber!.hashCode) +
+    (cvc == null ? 0 : cvc!.hashCode) +
     (expirationDate == null ? 0 : expirationDate!.hashCode) +
     (imageUrl == null ? 0 : imageUrl!.hashCode) +
-    (paymentProviderId == null ? 0 : paymentProviderId!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (userId == null ? 0 : userId!.hashCode) +
+    (paymentProviderId == null ? 0 : paymentProviderId!.hashCode);
 
   @override
-  String toString() => 'CreditCardCommand[creditCardId=$creditCardId, cvc=$cvc, creaditCartNumber=$creaditCartNumber, expirationDate=$expirationDate, imageUrl=$imageUrl, paymentProviderId=$paymentProviderId, userId=$userId]';
+  String toString() => 'CreditCardCommand[creditCardId=$creditCardId, creaditCartNumber=$creaditCartNumber, cvc=$cvc, expirationDate=$expirationDate, imageUrl=$imageUrl, userId=$userId, paymentProviderId=$paymentProviderId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (creditCardId != null) {
       _json[r'creditCardId'] = creditCardId;
     }
-    if (cvc != null) {
-      _json[r'cvc'] = cvc;
-    }
     if (creaditCartNumber != null) {
       _json[r'creaditCartNumber'] = creaditCartNumber;
+    }
+    if (cvc != null) {
+      _json[r'cvc'] = cvc;
     }
     if (expirationDate != null) {
       _json[r'expirationDate'] = expirationDate!.toUtc().toIso8601String();
@@ -77,11 +77,11 @@ class CreditCardCommand {
     if (imageUrl != null) {
       _json[r'imageUrl'] = imageUrl;
     }
-    if (paymentProviderId != null) {
-      _json[r'paymentProviderId'] = paymentProviderId;
-    }
     if (userId != null) {
       _json[r'userId'] = userId;
+    }
+    if (paymentProviderId != null) {
+      _json[r'paymentProviderId'] = paymentProviderId;
     }
     return _json;
   }
@@ -106,12 +106,12 @@ class CreditCardCommand {
 
       return CreditCardCommand(
         creditCardId: mapValueOfType<int>(json, r'creditCardId'),
-        cvc: mapValueOfType<String>(json, r'cvc'),
         creaditCartNumber: mapValueOfType<String>(json, r'creaditCartNumber'),
+        cvc: mapValueOfType<String>(json, r'cvc'),
         expirationDate: mapDateTime(json, r'expirationDate', ''),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
         userId: mapValueOfType<int>(json, r'userId'),
+        paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
       );
     }
     return null;

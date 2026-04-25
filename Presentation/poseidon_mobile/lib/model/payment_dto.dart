@@ -15,16 +15,22 @@ class PaymentDto {
   PaymentDto({
     this.paymentId,
     this.amount,
+    this.paymentFee,
     this.failureMessage,
     this.orderId,
-    this.paymentFee,
     this.paymentProviderId,
-    this.sysCreatedAt,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? paymentId;
 
   ///
@@ -34,6 +40,14 @@ class PaymentDto {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   num? amount;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? paymentFee;
 
   String? failureMessage;
 
@@ -51,23 +65,7 @@ class PaymentDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  num? paymentFee;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
   int? paymentProviderId;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
 
   String? sysCreatedBy;
 
@@ -77,39 +75,47 @@ class PaymentDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PaymentDto &&
      other.paymentId == paymentId &&
      other.amount == amount &&
+     other.paymentFee == paymentFee &&
      other.failureMessage == failureMessage &&
      other.orderId == orderId &&
-     other.paymentFee == paymentFee &&
      other.paymentProviderId == paymentProviderId &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy;
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (paymentId == null ? 0 : paymentId!.hashCode) +
     (amount == null ? 0 : amount!.hashCode) +
+    (paymentFee == null ? 0 : paymentFee!.hashCode) +
     (failureMessage == null ? 0 : failureMessage!.hashCode) +
     (orderId == null ? 0 : orderId!.hashCode) +
-    (paymentFee == null ? 0 : paymentFee!.hashCode) +
     (paymentProviderId == null ? 0 : paymentProviderId!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode);
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'PaymentDto[paymentId=$paymentId, amount=$amount, failureMessage=$failureMessage, orderId=$orderId, paymentFee=$paymentFee, paymentProviderId=$paymentProviderId, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy]';
+  String toString() => 'PaymentDto[paymentId=$paymentId, amount=$amount, paymentFee=$paymentFee, failureMessage=$failureMessage, orderId=$orderId, paymentProviderId=$paymentProviderId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -119,29 +125,29 @@ class PaymentDto {
     if (amount != null) {
       _json[r'amount'] = amount;
     }
+    if (paymentFee != null) {
+      _json[r'paymentFee'] = paymentFee;
+    }
     if (failureMessage != null) {
       _json[r'failureMessage'] = failureMessage;
     }
     if (orderId != null) {
       _json[r'orderId'] = orderId;
     }
-    if (paymentFee != null) {
-      _json[r'paymentFee'] = paymentFee;
-    }
     if (paymentProviderId != null) {
       _json[r'paymentProviderId'] = paymentProviderId;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -169,16 +175,16 @@ class PaymentDto {
         amount: json[r'amount'] == null
             ? null
             : num.parse(json[r'amount'].toString()),
-        failureMessage: mapValueOfType<String>(json, r'failureMessage'),
-        orderId: mapValueOfType<int>(json, r'orderId'),
         paymentFee: json[r'paymentFee'] == null
             ? null
             : num.parse(json[r'paymentFee'].toString()),
+        failureMessage: mapValueOfType<String>(json, r'failureMessage'),
+        orderId: mapValueOfType<int>(json, r'orderId'),
         paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

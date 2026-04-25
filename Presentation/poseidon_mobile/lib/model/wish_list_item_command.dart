@@ -15,40 +15,40 @@ class WishListItemCommand {
   WishListItemCommand({
     this.wishListItemId,
     this.note,
-    this.productId,
     this.quantity,
     this.wishListId,
+    this.productId,
   });
 
   int? wishListItemId;
 
   String? note;
 
-  int? productId;
-
   num? quantity;
 
   int? wishListId;
+
+  int? productId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WishListItemCommand &&
      other.wishListItemId == wishListItemId &&
      other.note == note &&
-     other.productId == productId &&
      other.quantity == quantity &&
-     other.wishListId == wishListId;
+     other.wishListId == wishListId &&
+     other.productId == productId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (wishListItemId == null ? 0 : wishListItemId!.hashCode) +
     (note == null ? 0 : note!.hashCode) +
-    (productId == null ? 0 : productId!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
-    (wishListId == null ? 0 : wishListId!.hashCode);
+    (wishListId == null ? 0 : wishListId!.hashCode) +
+    (productId == null ? 0 : productId!.hashCode);
 
   @override
-  String toString() => 'WishListItemCommand[wishListItemId=$wishListItemId, note=$note, productId=$productId, quantity=$quantity, wishListId=$wishListId]';
+  String toString() => 'WishListItemCommand[wishListItemId=$wishListItemId, note=$note, quantity=$quantity, wishListId=$wishListId, productId=$productId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -58,14 +58,14 @@ class WishListItemCommand {
     if (note != null) {
       _json[r'note'] = note;
     }
-    if (productId != null) {
-      _json[r'productId'] = productId;
-    }
     if (quantity != null) {
       _json[r'quantity'] = quantity;
     }
     if (wishListId != null) {
       _json[r'wishListId'] = wishListId;
+    }
+    if (productId != null) {
+      _json[r'productId'] = productId;
     }
     return _json;
   }
@@ -91,11 +91,11 @@ class WishListItemCommand {
       return WishListItemCommand(
         wishListItemId: mapValueOfType<int>(json, r'wishListItemId'),
         note: mapValueOfType<String>(json, r'note'),
-        productId: mapValueOfType<int>(json, r'productId'),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
         wishListId: mapValueOfType<int>(json, r'wishListId'),
+        productId: mapValueOfType<int>(json, r'productId'),
       );
     }
     return null;

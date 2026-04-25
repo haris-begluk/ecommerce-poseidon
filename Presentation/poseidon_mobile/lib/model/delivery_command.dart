@@ -14,50 +14,50 @@ class DeliveryCommand {
   /// Returns a new [DeliveryCommand] instance.
   DeliveryCommand({
     this.deliveryId,
+    this.title,
     this.description,
     this.isActive,
-    this.title,
   });
 
   int? deliveryId;
+
+  String? title;
 
   String? description;
 
   bool? isActive;
 
-  String? title;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is DeliveryCommand &&
      other.deliveryId == deliveryId &&
+     other.title == title &&
      other.description == description &&
-     other.isActive == isActive &&
-     other.title == title;
+     other.isActive == isActive;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (deliveryId == null ? 0 : deliveryId!.hashCode) +
+    (title == null ? 0 : title!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
-    (isActive == null ? 0 : isActive!.hashCode) +
-    (title == null ? 0 : title!.hashCode);
+    (isActive == null ? 0 : isActive!.hashCode);
 
   @override
-  String toString() => 'DeliveryCommand[deliveryId=$deliveryId, description=$description, isActive=$isActive, title=$title]';
+  String toString() => 'DeliveryCommand[deliveryId=$deliveryId, title=$title, description=$description, isActive=$isActive]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (deliveryId != null) {
       _json[r'deliveryId'] = deliveryId;
     }
+    if (title != null) {
+      _json[r'title'] = title;
+    }
     if (description != null) {
       _json[r'description'] = description;
     }
     if (isActive != null) {
       _json[r'isActive'] = isActive;
-    }
-    if (title != null) {
-      _json[r'title'] = title;
     }
     return _json;
   }
@@ -82,9 +82,9 @@ class DeliveryCommand {
 
       return DeliveryCommand(
         deliveryId: mapValueOfType<int>(json, r'deliveryId'),
+        title: mapValueOfType<String>(json, r'title'),
         description: mapValueOfType<String>(json, r'description'),
         isActive: mapValueOfType<bool>(json, r'isActive'),
-        title: mapValueOfType<String>(json, r'title'),
       );
     }
     return null;

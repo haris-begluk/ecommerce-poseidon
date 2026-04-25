@@ -15,19 +15,29 @@ class CountryDto {
   CountryDto({
     this.countryId,
     this.name,
+    this.twoLetterIsoCode,
+    this.threeLetterIsoCode,
     this.numericIsoCode,
     this.phonePrefix,
-    this.sysCreatedAt,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
-    this.threeLetterIsoCode,
-    this.twoLetterIsoCode,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? countryId;
 
   String? name;
+
+  String? twoLetterIsoCode;
+
+  String? threeLetterIsoCode;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -39,6 +49,8 @@ class CountryDto {
 
   String? phonePrefix;
 
+  String? sysCreatedBy;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -47,7 +59,7 @@ class CountryDto {
   ///
   DateTime? sysCreatedAt;
 
-  String? sysCreatedBy;
+  String? sysUpdatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -57,41 +69,35 @@ class CountryDto {
   ///
   DateTime? sysUpdatedAt;
 
-  String? sysUpdatedBy;
-
-  String? threeLetterIsoCode;
-
-  String? twoLetterIsoCode;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is CountryDto &&
      other.countryId == countryId &&
      other.name == name &&
+     other.twoLetterIsoCode == twoLetterIsoCode &&
+     other.threeLetterIsoCode == threeLetterIsoCode &&
      other.numericIsoCode == numericIsoCode &&
      other.phonePrefix == phonePrefix &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.threeLetterIsoCode == threeLetterIsoCode &&
-     other.twoLetterIsoCode == twoLetterIsoCode;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (countryId == null ? 0 : countryId!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
+    (twoLetterIsoCode == null ? 0 : twoLetterIsoCode!.hashCode) +
+    (threeLetterIsoCode == null ? 0 : threeLetterIsoCode!.hashCode) +
     (numericIsoCode == null ? 0 : numericIsoCode!.hashCode) +
     (phonePrefix == null ? 0 : phonePrefix!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (threeLetterIsoCode == null ? 0 : threeLetterIsoCode!.hashCode) +
-    (twoLetterIsoCode == null ? 0 : twoLetterIsoCode!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'CountryDto[countryId=$countryId, name=$name, numericIsoCode=$numericIsoCode, phonePrefix=$phonePrefix, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, threeLetterIsoCode=$threeLetterIsoCode, twoLetterIsoCode=$twoLetterIsoCode]';
+  String toString() => 'CountryDto[countryId=$countryId, name=$name, twoLetterIsoCode=$twoLetterIsoCode, threeLetterIsoCode=$threeLetterIsoCode, numericIsoCode=$numericIsoCode, phonePrefix=$phonePrefix, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -101,29 +107,29 @@ class CountryDto {
     if (name != null) {
       _json[r'name'] = name;
     }
+    if (twoLetterIsoCode != null) {
+      _json[r'twoLetterIsoCode'] = twoLetterIsoCode;
+    }
+    if (threeLetterIsoCode != null) {
+      _json[r'threeLetterIsoCode'] = threeLetterIsoCode;
+    }
     if (numericIsoCode != null) {
       _json[r'numericIsoCode'] = numericIsoCode;
     }
     if (phonePrefix != null) {
       _json[r'phonePrefix'] = phonePrefix;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
-    }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (threeLetterIsoCode != null) {
-      _json[r'threeLetterIsoCode'] = threeLetterIsoCode;
-    }
-    if (twoLetterIsoCode != null) {
-      _json[r'twoLetterIsoCode'] = twoLetterIsoCode;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -149,14 +155,14 @@ class CountryDto {
       return CountryDto(
         countryId: mapValueOfType<int>(json, r'countryId'),
         name: mapValueOfType<String>(json, r'name'),
+        twoLetterIsoCode: mapValueOfType<String>(json, r'twoLetterIsoCode'),
+        threeLetterIsoCode: mapValueOfType<String>(json, r'threeLetterIsoCode'),
         numericIsoCode: mapValueOfType<int>(json, r'numericIsoCode'),
         phonePrefix: mapValueOfType<String>(json, r'phonePrefix'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
-        threeLetterIsoCode: mapValueOfType<String>(json, r'threeLetterIsoCode'),
-        twoLetterIsoCode: mapValueOfType<String>(json, r'twoLetterIsoCode'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

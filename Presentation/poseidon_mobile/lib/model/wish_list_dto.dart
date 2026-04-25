@@ -14,16 +14,24 @@ class WishListDto {
   /// Returns a new [WishListDto] instance.
   WishListDto({
     this.wishListId,
-    this.description,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
     this.title,
+    this.description,
     this.userId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? wishListId;
+
+  String? title;
 
   String? description;
 
@@ -33,7 +41,7 @@ class WishListDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  int? userId;
 
   String? sysCreatedBy;
 
@@ -43,11 +51,9 @@ class WishListDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
-
-  String? title;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -55,59 +61,59 @@ class WishListDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? userId;
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WishListDto &&
      other.wishListId == wishListId &&
-     other.description == description &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
      other.title == title &&
-     other.userId == userId;
+     other.description == description &&
+     other.userId == userId &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (wishListId == null ? 0 : wishListId!.hashCode) +
-    (description == null ? 0 : description!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (description == null ? 0 : description!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'WishListDto[wishListId=$wishListId, description=$description, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, title=$title, userId=$userId]';
+  String toString() => 'WishListDto[wishListId=$wishListId, title=$title, description=$description, userId=$userId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (wishListId != null) {
       _json[r'wishListId'] = wishListId;
     }
+    if (title != null) {
+      _json[r'title'] = title;
+    }
     if (description != null) {
       _json[r'description'] = description;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (userId != null) {
+      _json[r'userId'] = userId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (title != null) {
-      _json[r'title'] = title;
-    }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -132,13 +138,13 @@ class WishListDto {
 
       return WishListDto(
         wishListId: mapValueOfType<int>(json, r'wishListId'),
-        description: mapValueOfType<String>(json, r'description'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
         title: mapValueOfType<String>(json, r'title'),
+        description: mapValueOfType<String>(json, r'description'),
         userId: mapValueOfType<int>(json, r'userId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

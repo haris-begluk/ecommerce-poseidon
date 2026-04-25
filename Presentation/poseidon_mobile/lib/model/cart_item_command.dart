@@ -14,89 +14,80 @@ class CartItemCommand {
   /// Returns a new [CartItemCommand] instance.
   CartItemCommand({
     this.cartItemId,
-    this.cartId,
-    this.discountAmount,
-    this.imageUrl,
-    this.price,
-    this.productId,
     this.quantity,
+    this.price,
+    this.discountAmount,
     this.taxAmount,
     this.title,
+    this.imageUrl,
     this.unit,
+    this.cartId,
+    this.productId,
   });
 
   int? cartItemId;
 
-  int? cartId;
-
-  num? discountAmount;
-
-  String? imageUrl;
+  num? quantity;
 
   num? price;
 
-  int? productId;
-
-  num? quantity;
+  num? discountAmount;
 
   num? taxAmount;
 
   String? title;
 
+  String? imageUrl;
+
   String? unit;
+
+  int? cartId;
+
+  int? productId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CartItemCommand &&
      other.cartItemId == cartItemId &&
-     other.cartId == cartId &&
-     other.discountAmount == discountAmount &&
-     other.imageUrl == imageUrl &&
-     other.price == price &&
-     other.productId == productId &&
      other.quantity == quantity &&
+     other.price == price &&
+     other.discountAmount == discountAmount &&
      other.taxAmount == taxAmount &&
      other.title == title &&
-     other.unit == unit;
+     other.imageUrl == imageUrl &&
+     other.unit == unit &&
+     other.cartId == cartId &&
+     other.productId == productId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (cartItemId == null ? 0 : cartItemId!.hashCode) +
-    (cartId == null ? 0 : cartId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
-    (price == null ? 0 : price!.hashCode) +
-    (productId == null ? 0 : productId!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
+    (price == null ? 0 : price!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode) +
     (taxAmount == null ? 0 : taxAmount!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
-    (unit == null ? 0 : unit!.hashCode);
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (unit == null ? 0 : unit!.hashCode) +
+    (cartId == null ? 0 : cartId!.hashCode) +
+    (productId == null ? 0 : productId!.hashCode);
 
   @override
-  String toString() => 'CartItemCommand[cartItemId=$cartItemId, cartId=$cartId, discountAmount=$discountAmount, imageUrl=$imageUrl, price=$price, productId=$productId, quantity=$quantity, taxAmount=$taxAmount, title=$title, unit=$unit]';
+  String toString() => 'CartItemCommand[cartItemId=$cartItemId, quantity=$quantity, price=$price, discountAmount=$discountAmount, taxAmount=$taxAmount, title=$title, imageUrl=$imageUrl, unit=$unit, cartId=$cartId, productId=$productId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (cartItemId != null) {
       _json[r'cartItemId'] = cartItemId;
     }
-    if (cartId != null) {
-      _json[r'cartId'] = cartId;
-    }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
-    }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
+    if (quantity != null) {
+      _json[r'quantity'] = quantity;
     }
     if (price != null) {
       _json[r'price'] = price;
     }
-    if (productId != null) {
-      _json[r'productId'] = productId;
-    }
-    if (quantity != null) {
-      _json[r'quantity'] = quantity;
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
     }
     if (taxAmount != null) {
       _json[r'taxAmount'] = taxAmount;
@@ -104,8 +95,17 @@ class CartItemCommand {
     if (title != null) {
       _json[r'title'] = title;
     }
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
     if (unit != null) {
       _json[r'unit'] = unit;
+    }
+    if (cartId != null) {
+      _json[r'cartId'] = cartId;
+    }
+    if (productId != null) {
+      _json[r'productId'] = productId;
     }
     return _json;
   }
@@ -130,23 +130,23 @@ class CartItemCommand {
 
       return CartItemCommand(
         cartItemId: mapValueOfType<int>(json, r'cartItemId'),
-        cartId: mapValueOfType<int>(json, r'cartId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        price: json[r'price'] == null
-            ? null
-            : num.parse(json[r'price'].toString()),
-        productId: mapValueOfType<int>(json, r'productId'),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
+        price: json[r'price'] == null
+            ? null
+            : num.parse(json[r'price'].toString()),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
         taxAmount: json[r'taxAmount'] == null
             ? null
             : num.parse(json[r'taxAmount'].toString()),
         title: mapValueOfType<String>(json, r'title'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         unit: mapValueOfType<String>(json, r'unit'),
+        cartId: mapValueOfType<int>(json, r'cartId'),
+        productId: mapValueOfType<int>(json, r'productId'),
       );
     }
     return null;

@@ -14,21 +14,41 @@ class UserDto {
   /// Returns a new [UserDto] instance.
   UserDto({
     this.userId,
-    this.addressId,
-    this.email,
     this.externalRef,
-    this.firstName,
-    this.imageUrl,
-    this.lastName,
-    this.phoneNumber,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
     this.username,
+    this.firstName,
+    this.phoneNumber,
+    this.lastName,
+    this.email,
+    this.imageUrl,
+    this.addressId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? userId;
+
+  String? externalRef;
+
+  String? username;
+
+  String? firstName;
+
+  String? phoneNumber;
+
+  String? lastName;
+
+  String? email;
+
+  String? imageUrl;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -38,17 +58,7 @@ class UserDto {
   ///
   int? addressId;
 
-  String? email;
-
-  String? externalRef;
-
-  String? firstName;
-
-  String? imageUrl;
-
-  String? lastName;
-
-  String? phoneNumber;
+  String? sysCreatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -58,7 +68,7 @@ class UserDto {
   ///
   DateTime? sysCreatedAt;
 
-  String? sysCreatedBy;
+  String? sysUpdatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -68,86 +78,82 @@ class UserDto {
   ///
   DateTime? sysUpdatedAt;
 
-  String? sysUpdatedBy;
-
-  String? username;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserDto &&
      other.userId == userId &&
-     other.addressId == addressId &&
-     other.email == email &&
      other.externalRef == externalRef &&
+     other.username == username &&
      other.firstName == firstName &&
-     other.imageUrl == imageUrl &&
-     other.lastName == lastName &&
      other.phoneNumber == phoneNumber &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.lastName == lastName &&
+     other.email == email &&
+     other.imageUrl == imageUrl &&
+     other.addressId == addressId &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.username == username;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (userId == null ? 0 : userId!.hashCode) +
-    (addressId == null ? 0 : addressId!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
     (externalRef == null ? 0 : externalRef!.hashCode) +
+    (username == null ? 0 : username!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
-    (lastName == null ? 0 : lastName!.hashCode) +
     (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (lastName == null ? 0 : lastName!.hashCode) +
+    (email == null ? 0 : email!.hashCode) +
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (addressId == null ? 0 : addressId!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (username == null ? 0 : username!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'UserDto[userId=$userId, addressId=$addressId, email=$email, externalRef=$externalRef, firstName=$firstName, imageUrl=$imageUrl, lastName=$lastName, phoneNumber=$phoneNumber, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, username=$username]';
+  String toString() => 'UserDto[userId=$userId, externalRef=$externalRef, username=$username, firstName=$firstName, phoneNumber=$phoneNumber, lastName=$lastName, email=$email, imageUrl=$imageUrl, addressId=$addressId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (userId != null) {
       _json[r'userId'] = userId;
     }
-    if (addressId != null) {
-      _json[r'addressId'] = addressId;
-    }
-    if (email != null) {
-      _json[r'email'] = email;
-    }
     if (externalRef != null) {
       _json[r'externalRef'] = externalRef;
+    }
+    if (username != null) {
+      _json[r'username'] = username;
     }
     if (firstName != null) {
       _json[r'firstName'] = firstName;
     }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
+    if (phoneNumber != null) {
+      _json[r'phoneNumber'] = phoneNumber;
     }
     if (lastName != null) {
       _json[r'lastName'] = lastName;
     }
-    if (phoneNumber != null) {
-      _json[r'phoneNumber'] = phoneNumber;
+    if (email != null) {
+      _json[r'email'] = email;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
+    if (addressId != null) {
+      _json[r'addressId'] = addressId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (username != null) {
-      _json[r'username'] = username;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -172,18 +178,18 @@ class UserDto {
 
       return UserDto(
         userId: mapValueOfType<int>(json, r'userId'),
-        addressId: mapValueOfType<int>(json, r'addressId'),
-        email: mapValueOfType<String>(json, r'email'),
         externalRef: mapValueOfType<String>(json, r'externalRef'),
-        firstName: mapValueOfType<String>(json, r'firstName'),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        lastName: mapValueOfType<String>(json, r'lastName'),
-        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
         username: mapValueOfType<String>(json, r'username'),
+        firstName: mapValueOfType<String>(json, r'firstName'),
+        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
+        lastName: mapValueOfType<String>(json, r'lastName'),
+        email: mapValueOfType<String>(json, r'email'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        addressId: mapValueOfType<int>(json, r'addressId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

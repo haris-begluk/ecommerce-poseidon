@@ -14,16 +14,24 @@ class DeliveryDto {
   /// Returns a new [DeliveryDto] instance.
   DeliveryDto({
     this.deliveryId,
+    this.title,
     this.description,
     this.isActive,
-    this.sysCreatedAt,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
-    this.title,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? deliveryId;
+
+  String? title;
 
   String? description;
 
@@ -35,6 +43,8 @@ class DeliveryDto {
   ///
   bool? isActive;
 
+  String? sysCreatedBy;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -43,7 +53,7 @@ class DeliveryDto {
   ///
   DateTime? sysCreatedAt;
 
-  String? sysCreatedBy;
+  String? sysUpdatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -53,40 +63,39 @@ class DeliveryDto {
   ///
   DateTime? sysUpdatedAt;
 
-  String? sysUpdatedBy;
-
-  String? title;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is DeliveryDto &&
      other.deliveryId == deliveryId &&
+     other.title == title &&
      other.description == description &&
      other.isActive == isActive &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.title == title;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (deliveryId == null ? 0 : deliveryId!.hashCode) +
+    (title == null ? 0 : title!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
     (isActive == null ? 0 : isActive!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (title == null ? 0 : title!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'DeliveryDto[deliveryId=$deliveryId, description=$description, isActive=$isActive, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, title=$title]';
+  String toString() => 'DeliveryDto[deliveryId=$deliveryId, title=$title, description=$description, isActive=$isActive, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (deliveryId != null) {
       _json[r'deliveryId'] = deliveryId;
+    }
+    if (title != null) {
+      _json[r'title'] = title;
     }
     if (description != null) {
       _json[r'description'] = description;
@@ -94,20 +103,17 @@ class DeliveryDto {
     if (isActive != null) {
       _json[r'isActive'] = isActive;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
-    }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (title != null) {
-      _json[r'title'] = title;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -132,13 +138,13 @@ class DeliveryDto {
 
       return DeliveryDto(
         deliveryId: mapValueOfType<int>(json, r'deliveryId'),
+        title: mapValueOfType<String>(json, r'title'),
         description: mapValueOfType<String>(json, r'description'),
         isActive: mapValueOfType<bool>(json, r'isActive'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
-        title: mapValueOfType<String>(json, r'title'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

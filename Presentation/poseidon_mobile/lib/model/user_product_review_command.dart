@@ -14,66 +14,66 @@ class UserProductReviewCommand {
   /// Returns a new [UserProductReviewCommand] instance.
   UserProductReviewCommand({
     this.userProductReviewId,
-    this.comment,
-    this.productId,
-    this.rating,
-    this.title,
     this.userId,
+    this.productId,
+    this.title,
+    this.comment,
+    this.rating,
   });
 
   int? userProductReviewId;
 
-  String? comment;
+  int? userId;
 
   int? productId;
 
-  int? rating;
-
   String? title;
 
-  int? userId;
+  String? comment;
+
+  int? rating;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserProductReviewCommand &&
      other.userProductReviewId == userProductReviewId &&
-     other.comment == comment &&
+     other.userId == userId &&
      other.productId == productId &&
-     other.rating == rating &&
      other.title == title &&
-     other.userId == userId;
+     other.comment == comment &&
+     other.rating == rating;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (userProductReviewId == null ? 0 : userProductReviewId!.hashCode) +
-    (comment == null ? 0 : comment!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
     (productId == null ? 0 : productId!.hashCode) +
-    (rating == null ? 0 : rating!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (comment == null ? 0 : comment!.hashCode) +
+    (rating == null ? 0 : rating!.hashCode);
 
   @override
-  String toString() => 'UserProductReviewCommand[userProductReviewId=$userProductReviewId, comment=$comment, productId=$productId, rating=$rating, title=$title, userId=$userId]';
+  String toString() => 'UserProductReviewCommand[userProductReviewId=$userProductReviewId, userId=$userId, productId=$productId, title=$title, comment=$comment, rating=$rating]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (userProductReviewId != null) {
       _json[r'userProductReviewId'] = userProductReviewId;
     }
-    if (comment != null) {
-      _json[r'comment'] = comment;
+    if (userId != null) {
+      _json[r'userId'] = userId;
     }
     if (productId != null) {
       _json[r'productId'] = productId;
     }
-    if (rating != null) {
-      _json[r'rating'] = rating;
-    }
     if (title != null) {
       _json[r'title'] = title;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (comment != null) {
+      _json[r'comment'] = comment;
+    }
+    if (rating != null) {
+      _json[r'rating'] = rating;
     }
     return _json;
   }
@@ -98,11 +98,11 @@ class UserProductReviewCommand {
 
       return UserProductReviewCommand(
         userProductReviewId: mapValueOfType<int>(json, r'userProductReviewId'),
-        comment: mapValueOfType<String>(json, r'comment'),
-        productId: mapValueOfType<int>(json, r'productId'),
-        rating: mapValueOfType<int>(json, r'rating'),
-        title: mapValueOfType<String>(json, r'title'),
         userId: mapValueOfType<int>(json, r'userId'),
+        productId: mapValueOfType<int>(json, r'productId'),
+        title: mapValueOfType<String>(json, r'title'),
+        comment: mapValueOfType<String>(json, r'comment'),
+        rating: mapValueOfType<int>(json, r'rating'),
       );
     }
     return null;

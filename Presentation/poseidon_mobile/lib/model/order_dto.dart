@@ -14,37 +14,37 @@ class OrderDto {
   /// Returns a new [OrderDto] instance.
   OrderDto({
     this.orderId,
-    this.billingAddressId,
-    this.cartId,
-    this.deliveryId,
     this.description,
+    this.subTotal,
+    this.productTaxAmount,
+    this.productDiscountAmount,
     this.orderDiscountAmount,
-    this.orderStatus,
     this.orderTaxAmount,
     this.orderTotal,
+    this.orderStatus,
     this.payedAndClosed,
-    this.paymentFeeAmount,
-    this.paymentMethod,
-    this.productDiscountAmount,
-    this.productTaxAmount,
-    this.shippingAddressId,
-    this.shippingFeeAmount,
     this.shippingMethod,
-    this.subTotal,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
+    this.shippingFeeAmount,
+    this.paymentMethod,
+    this.paymentFeeAmount,
+    this.shippingAddressId,
+    this.billingAddressId,
     this.userId,
+    this.cartId,
+    this.deliveryId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? orderId;
-
-  int? billingAddressId;
-
-  int? cartId;
-
-  int? deliveryId;
 
   String? description;
 
@@ -54,9 +54,31 @@ class OrderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  num? orderDiscountAmount;
+  num? subTotal;
 
-  String? orderStatus;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? productTaxAmount;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? productDiscountAmount;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? orderDiscountAmount;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -74,6 +96,8 @@ class OrderDto {
   ///
   num? orderTotal;
 
+  String? orderStatus;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -81,42 +105,6 @@ class OrderDto {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   bool? payedAndClosed;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? paymentFeeAmount;
-
-  String? paymentMethod;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? productDiscountAmount;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? productTaxAmount;
-
-  int? shippingAddressId;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? shippingFeeAmount;
 
   String? shippingMethod;
 
@@ -126,7 +114,9 @@ class OrderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  num? subTotal;
+  num? shippingFeeAmount;
+
+  String? paymentMethod;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -134,19 +124,11 @@ class OrderDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  num? paymentFeeAmount;
 
-  String? sysCreatedBy;
+  int? shippingAddressId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysUpdatedAt;
-
-  String? sysUpdatedBy;
+  int? billingAddressId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -156,84 +138,105 @@ class OrderDto {
   ///
   int? userId;
 
+  int? cartId;
+
+  int? deliveryId;
+
+  String? sysCreatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysCreatedAt;
+
+  String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderDto &&
      other.orderId == orderId &&
-     other.billingAddressId == billingAddressId &&
-     other.cartId == cartId &&
-     other.deliveryId == deliveryId &&
      other.description == description &&
+     other.subTotal == subTotal &&
+     other.productTaxAmount == productTaxAmount &&
+     other.productDiscountAmount == productDiscountAmount &&
      other.orderDiscountAmount == orderDiscountAmount &&
-     other.orderStatus == orderStatus &&
      other.orderTaxAmount == orderTaxAmount &&
      other.orderTotal == orderTotal &&
+     other.orderStatus == orderStatus &&
      other.payedAndClosed == payedAndClosed &&
-     other.paymentFeeAmount == paymentFeeAmount &&
-     other.paymentMethod == paymentMethod &&
-     other.productDiscountAmount == productDiscountAmount &&
-     other.productTaxAmount == productTaxAmount &&
-     other.shippingAddressId == shippingAddressId &&
-     other.shippingFeeAmount == shippingFeeAmount &&
      other.shippingMethod == shippingMethod &&
-     other.subTotal == subTotal &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.shippingFeeAmount == shippingFeeAmount &&
+     other.paymentMethod == paymentMethod &&
+     other.paymentFeeAmount == paymentFeeAmount &&
+     other.shippingAddressId == shippingAddressId &&
+     other.billingAddressId == billingAddressId &&
+     other.userId == userId &&
+     other.cartId == cartId &&
+     other.deliveryId == deliveryId &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.userId == userId;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (orderId == null ? 0 : orderId!.hashCode) +
-    (billingAddressId == null ? 0 : billingAddressId!.hashCode) +
-    (cartId == null ? 0 : cartId!.hashCode) +
-    (deliveryId == null ? 0 : deliveryId!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
+    (subTotal == null ? 0 : subTotal!.hashCode) +
+    (productTaxAmount == null ? 0 : productTaxAmount!.hashCode) +
+    (productDiscountAmount == null ? 0 : productDiscountAmount!.hashCode) +
     (orderDiscountAmount == null ? 0 : orderDiscountAmount!.hashCode) +
-    (orderStatus == null ? 0 : orderStatus!.hashCode) +
     (orderTaxAmount == null ? 0 : orderTaxAmount!.hashCode) +
     (orderTotal == null ? 0 : orderTotal!.hashCode) +
+    (orderStatus == null ? 0 : orderStatus!.hashCode) +
     (payedAndClosed == null ? 0 : payedAndClosed!.hashCode) +
-    (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
-    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
-    (productDiscountAmount == null ? 0 : productDiscountAmount!.hashCode) +
-    (productTaxAmount == null ? 0 : productTaxAmount!.hashCode) +
-    (shippingAddressId == null ? 0 : shippingAddressId!.hashCode) +
-    (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
     (shippingMethod == null ? 0 : shippingMethod!.hashCode) +
-    (subTotal == null ? 0 : subTotal!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
+    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
+    (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
+    (shippingAddressId == null ? 0 : shippingAddressId!.hashCode) +
+    (billingAddressId == null ? 0 : billingAddressId!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
+    (cartId == null ? 0 : cartId!.hashCode) +
+    (deliveryId == null ? 0 : deliveryId!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'OrderDto[orderId=$orderId, billingAddressId=$billingAddressId, cartId=$cartId, deliveryId=$deliveryId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderStatus=$orderStatus, orderTaxAmount=$orderTaxAmount, orderTotal=$orderTotal, payedAndClosed=$payedAndClosed, paymentFeeAmount=$paymentFeeAmount, paymentMethod=$paymentMethod, productDiscountAmount=$productDiscountAmount, productTaxAmount=$productTaxAmount, shippingAddressId=$shippingAddressId, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, subTotal=$subTotal, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, userId=$userId]';
+  String toString() => 'OrderDto[orderId=$orderId, description=$description, subTotal=$subTotal, productTaxAmount=$productTaxAmount, productDiscountAmount=$productDiscountAmount, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, orderTotal=$orderTotal, orderStatus=$orderStatus, payedAndClosed=$payedAndClosed, shippingMethod=$shippingMethod, shippingFeeAmount=$shippingFeeAmount, paymentMethod=$paymentMethod, paymentFeeAmount=$paymentFeeAmount, shippingAddressId=$shippingAddressId, billingAddressId=$billingAddressId, userId=$userId, cartId=$cartId, deliveryId=$deliveryId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (orderId != null) {
       _json[r'orderId'] = orderId;
     }
-    if (billingAddressId != null) {
-      _json[r'billingAddressId'] = billingAddressId;
-    }
-    if (cartId != null) {
-      _json[r'cartId'] = cartId;
-    }
-    if (deliveryId != null) {
-      _json[r'deliveryId'] = deliveryId;
-    }
     if (description != null) {
       _json[r'description'] = description;
     }
+    if (subTotal != null) {
+      _json[r'subTotal'] = subTotal;
+    }
+    if (productTaxAmount != null) {
+      _json[r'productTaxAmount'] = productTaxAmount;
+    }
+    if (productDiscountAmount != null) {
+      _json[r'productDiscountAmount'] = productDiscountAmount;
+    }
     if (orderDiscountAmount != null) {
       _json[r'orderDiscountAmount'] = orderDiscountAmount;
-    }
-    if (orderStatus != null) {
-      _json[r'orderStatus'] = orderStatus;
     }
     if (orderTaxAmount != null) {
       _json[r'orderTaxAmount'] = orderTaxAmount;
@@ -241,47 +244,50 @@ class OrderDto {
     if (orderTotal != null) {
       _json[r'orderTotal'] = orderTotal;
     }
+    if (orderStatus != null) {
+      _json[r'orderStatus'] = orderStatus;
+    }
     if (payedAndClosed != null) {
       _json[r'payedAndClosed'] = payedAndClosed;
-    }
-    if (paymentFeeAmount != null) {
-      _json[r'paymentFeeAmount'] = paymentFeeAmount;
-    }
-    if (paymentMethod != null) {
-      _json[r'paymentMethod'] = paymentMethod;
-    }
-    if (productDiscountAmount != null) {
-      _json[r'productDiscountAmount'] = productDiscountAmount;
-    }
-    if (productTaxAmount != null) {
-      _json[r'productTaxAmount'] = productTaxAmount;
-    }
-    if (shippingAddressId != null) {
-      _json[r'shippingAddressId'] = shippingAddressId;
-    }
-    if (shippingFeeAmount != null) {
-      _json[r'shippingFeeAmount'] = shippingFeeAmount;
     }
     if (shippingMethod != null) {
       _json[r'shippingMethod'] = shippingMethod;
     }
-    if (subTotal != null) {
-      _json[r'subTotal'] = subTotal;
+    if (shippingFeeAmount != null) {
+      _json[r'shippingFeeAmount'] = shippingFeeAmount;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (paymentMethod != null) {
+      _json[r'paymentMethod'] = paymentMethod;
+    }
+    if (paymentFeeAmount != null) {
+      _json[r'paymentFeeAmount'] = paymentFeeAmount;
+    }
+    if (shippingAddressId != null) {
+      _json[r'shippingAddressId'] = shippingAddressId;
+    }
+    if (billingAddressId != null) {
+      _json[r'billingAddressId'] = billingAddressId;
+    }
+    if (userId != null) {
+      _json[r'userId'] = userId;
+    }
+    if (cartId != null) {
+      _json[r'cartId'] = cartId;
+    }
+    if (deliveryId != null) {
+      _json[r'deliveryId'] = deliveryId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -306,44 +312,44 @@ class OrderDto {
 
       return OrderDto(
         orderId: mapValueOfType<int>(json, r'orderId'),
-        billingAddressId: mapValueOfType<int>(json, r'billingAddressId'),
-        cartId: mapValueOfType<int>(json, r'cartId'),
-        deliveryId: mapValueOfType<int>(json, r'deliveryId'),
         description: mapValueOfType<String>(json, r'description'),
+        subTotal: json[r'subTotal'] == null
+            ? null
+            : num.parse(json[r'subTotal'].toString()),
+        productTaxAmount: json[r'productTaxAmount'] == null
+            ? null
+            : num.parse(json[r'productTaxAmount'].toString()),
+        productDiscountAmount: json[r'productDiscountAmount'] == null
+            ? null
+            : num.parse(json[r'productDiscountAmount'].toString()),
         orderDiscountAmount: json[r'orderDiscountAmount'] == null
             ? null
             : num.parse(json[r'orderDiscountAmount'].toString()),
-        orderStatus: mapValueOfType<String>(json, r'orderStatus'),
         orderTaxAmount: json[r'orderTaxAmount'] == null
             ? null
             : num.parse(json[r'orderTaxAmount'].toString()),
         orderTotal: json[r'orderTotal'] == null
             ? null
             : num.parse(json[r'orderTotal'].toString()),
+        orderStatus: mapValueOfType<String>(json, r'orderStatus'),
         payedAndClosed: mapValueOfType<bool>(json, r'payedAndClosed'),
-        paymentFeeAmount: json[r'paymentFeeAmount'] == null
-            ? null
-            : num.parse(json[r'paymentFeeAmount'].toString()),
-        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
-        productDiscountAmount: json[r'productDiscountAmount'] == null
-            ? null
-            : num.parse(json[r'productDiscountAmount'].toString()),
-        productTaxAmount: json[r'productTaxAmount'] == null
-            ? null
-            : num.parse(json[r'productTaxAmount'].toString()),
-        shippingAddressId: mapValueOfType<int>(json, r'shippingAddressId'),
+        shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
         shippingFeeAmount: json[r'shippingFeeAmount'] == null
             ? null
             : num.parse(json[r'shippingFeeAmount'].toString()),
-        shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
-        subTotal: json[r'subTotal'] == null
+        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
+        paymentFeeAmount: json[r'paymentFeeAmount'] == null
             ? null
-            : num.parse(json[r'subTotal'].toString()),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+            : num.parse(json[r'paymentFeeAmount'].toString()),
+        shippingAddressId: mapValueOfType<int>(json, r'shippingAddressId'),
+        billingAddressId: mapValueOfType<int>(json, r'billingAddressId'),
         userId: mapValueOfType<int>(json, r'userId'),
+        cartId: mapValueOfType<int>(json, r'cartId'),
+        deliveryId: mapValueOfType<int>(json, r'deliveryId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

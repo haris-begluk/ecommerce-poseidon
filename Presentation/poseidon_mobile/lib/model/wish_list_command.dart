@@ -14,47 +14,47 @@ class WishListCommand {
   /// Returns a new [WishListCommand] instance.
   WishListCommand({
     this.wishListId,
-    this.description,
     this.title,
+    this.description,
     this.userId,
   });
 
   int? wishListId;
 
-  String? description;
-
   String? title;
+
+  String? description;
 
   int? userId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WishListCommand &&
      other.wishListId == wishListId &&
-     other.description == description &&
      other.title == title &&
+     other.description == description &&
      other.userId == userId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (wishListId == null ? 0 : wishListId!.hashCode) +
-    (description == null ? 0 : description!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
     (userId == null ? 0 : userId!.hashCode);
 
   @override
-  String toString() => 'WishListCommand[wishListId=$wishListId, description=$description, title=$title, userId=$userId]';
+  String toString() => 'WishListCommand[wishListId=$wishListId, title=$title, description=$description, userId=$userId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (wishListId != null) {
       _json[r'wishListId'] = wishListId;
     }
-    if (description != null) {
-      _json[r'description'] = description;
-    }
     if (title != null) {
       _json[r'title'] = title;
+    }
+    if (description != null) {
+      _json[r'description'] = description;
     }
     if (userId != null) {
       _json[r'userId'] = userId;
@@ -82,8 +82,8 @@ class WishListCommand {
 
       return WishListCommand(
         wishListId: mapValueOfType<int>(json, r'wishListId'),
-        description: mapValueOfType<String>(json, r'description'),
         title: mapValueOfType<String>(json, r'title'),
+        description: mapValueOfType<String>(json, r'description'),
         userId: mapValueOfType<int>(json, r'userId'),
       );
     }

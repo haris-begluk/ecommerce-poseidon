@@ -14,37 +14,29 @@ class DiscountOfferDto {
   /// Returns a new [DiscountOfferDto] instance.
   DiscountOfferDto({
     this.discountOfferId,
+    this.title,
     this.description,
-    this.discount,
-    this.endDate,
     this.imageUrl,
     this.startDate,
-    this.sysCreatedAt,
+    this.endDate,
+    this.discount,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
-    this.title,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? discountOfferId;
 
+  String? title;
+
   String? description;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? discount;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? endDate;
 
   String? imageUrl;
 
@@ -62,7 +54,15 @@ class DiscountOfferDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  DateTime? endDate;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? discount;
 
   String? sysCreatedBy;
 
@@ -72,57 +72,60 @@ class DiscountOfferDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
 
-  String? title;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DiscountOfferDto &&
      other.discountOfferId == discountOfferId &&
+     other.title == title &&
      other.description == description &&
-     other.discount == discount &&
-     other.endDate == endDate &&
      other.imageUrl == imageUrl &&
      other.startDate == startDate &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.endDate == endDate &&
+     other.discount == discount &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.title == title;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (discountOfferId == null ? 0 : discountOfferId!.hashCode) +
+    (title == null ? 0 : title!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
-    (discount == null ? 0 : discount!.hashCode) +
-    (endDate == null ? 0 : endDate!.hashCode) +
     (imageUrl == null ? 0 : imageUrl!.hashCode) +
     (startDate == null ? 0 : startDate!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (endDate == null ? 0 : endDate!.hashCode) +
+    (discount == null ? 0 : discount!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (title == null ? 0 : title!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'DiscountOfferDto[discountOfferId=$discountOfferId, description=$description, discount=$discount, endDate=$endDate, imageUrl=$imageUrl, startDate=$startDate, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, title=$title]';
+  String toString() => 'DiscountOfferDto[discountOfferId=$discountOfferId, title=$title, description=$description, imageUrl=$imageUrl, startDate=$startDate, endDate=$endDate, discount=$discount, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (discountOfferId != null) {
       _json[r'discountOfferId'] = discountOfferId;
     }
+    if (title != null) {
+      _json[r'title'] = title;
+    }
     if (description != null) {
       _json[r'description'] = description;
-    }
-    if (discount != null) {
-      _json[r'discount'] = discount;
-    }
-    if (endDate != null) {
-      _json[r'endDate'] = endDate!.toUtc().toIso8601String();
     }
     if (imageUrl != null) {
       _json[r'imageUrl'] = imageUrl;
@@ -130,20 +133,23 @@ class DiscountOfferDto {
     if (startDate != null) {
       _json[r'startDate'] = startDate!.toUtc().toIso8601String();
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (endDate != null) {
+      _json[r'endDate'] = endDate!.toUtc().toIso8601String();
+    }
+    if (discount != null) {
+      _json[r'discount'] = discount;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (title != null) {
-      _json[r'title'] = title;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -168,18 +174,18 @@ class DiscountOfferDto {
 
       return DiscountOfferDto(
         discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
+        title: mapValueOfType<String>(json, r'title'),
         description: mapValueOfType<String>(json, r'description'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        startDate: mapDateTime(json, r'startDate', ''),
+        endDate: mapDateTime(json, r'endDate', ''),
         discount: json[r'discount'] == null
             ? null
             : num.parse(json[r'discount'].toString()),
-        endDate: mapDateTime(json, r'endDate', ''),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        startDate: mapDateTime(json, r'startDate', ''),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
-        title: mapValueOfType<String>(json, r'title'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

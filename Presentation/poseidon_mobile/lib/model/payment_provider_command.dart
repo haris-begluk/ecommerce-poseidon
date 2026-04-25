@@ -14,50 +14,50 @@ class PaymentProviderCommand {
   /// Returns a new [PaymentProviderCommand] instance.
   PaymentProviderCommand({
     this.paymentProviderId,
-    this.additionalSettings,
-    this.isEnabled,
     this.name,
+    this.isEnabled,
+    this.additionalSettings,
   });
 
   int? paymentProviderId;
 
-  String? additionalSettings;
+  String? name;
 
   bool? isEnabled;
 
-  String? name;
+  String? additionalSettings;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PaymentProviderCommand &&
      other.paymentProviderId == paymentProviderId &&
-     other.additionalSettings == additionalSettings &&
+     other.name == name &&
      other.isEnabled == isEnabled &&
-     other.name == name;
+     other.additionalSettings == additionalSettings;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (paymentProviderId == null ? 0 : paymentProviderId!.hashCode) +
-    (additionalSettings == null ? 0 : additionalSettings!.hashCode) +
+    (name == null ? 0 : name!.hashCode) +
     (isEnabled == null ? 0 : isEnabled!.hashCode) +
-    (name == null ? 0 : name!.hashCode);
+    (additionalSettings == null ? 0 : additionalSettings!.hashCode);
 
   @override
-  String toString() => 'PaymentProviderCommand[paymentProviderId=$paymentProviderId, additionalSettings=$additionalSettings, isEnabled=$isEnabled, name=$name]';
+  String toString() => 'PaymentProviderCommand[paymentProviderId=$paymentProviderId, name=$name, isEnabled=$isEnabled, additionalSettings=$additionalSettings]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (paymentProviderId != null) {
       _json[r'paymentProviderId'] = paymentProviderId;
     }
-    if (additionalSettings != null) {
-      _json[r'additionalSettings'] = additionalSettings;
+    if (name != null) {
+      _json[r'name'] = name;
     }
     if (isEnabled != null) {
       _json[r'isEnabled'] = isEnabled;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (additionalSettings != null) {
+      _json[r'additionalSettings'] = additionalSettings;
     }
     return _json;
   }
@@ -82,9 +82,9 @@ class PaymentProviderCommand {
 
       return PaymentProviderCommand(
         paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
-        additionalSettings: mapValueOfType<String>(json, r'additionalSettings'),
-        isEnabled: mapValueOfType<bool>(json, r'isEnabled'),
         name: mapValueOfType<String>(json, r'name'),
+        isEnabled: mapValueOfType<bool>(json, r'isEnabled'),
+        additionalSettings: mapValueOfType<String>(json, r'additionalSettings'),
       );
     }
     return null;

@@ -14,134 +14,131 @@ class OrderCommand {
   /// Returns a new [OrderCommand] instance.
   OrderCommand({
     this.orderId,
-    this.billingAddressId,
-    this.cartId,
-    this.deliveryId,
     this.description,
+    this.subTotal,
+    this.productTaxAmount,
+    this.productDiscountAmount,
     this.orderDiscountAmount,
-    this.orderStatus,
     this.orderTaxAmount,
     this.orderTotal,
+    this.orderStatus,
     this.payedAndClosed,
-    this.paymentFeeAmount,
-    this.paymentMethod,
-    this.productDiscountAmount,
-    this.productTaxAmount,
-    this.shippingAddressId,
-    this.shippingFeeAmount,
     this.shippingMethod,
-    this.subTotal,
+    this.shippingFeeAmount,
+    this.paymentMethod,
+    this.paymentFeeAmount,
+    this.shippingAddressId,
+    this.billingAddressId,
     this.userId,
+    this.cartId,
+    this.deliveryId,
   });
 
   int? orderId;
 
-  int? billingAddressId;
-
-  int? cartId;
-
-  int? deliveryId;
-
   String? description;
 
-  num? orderDiscountAmount;
+  num? subTotal;
 
-  String? orderStatus;
+  num? productTaxAmount;
+
+  num? productDiscountAmount;
+
+  num? orderDiscountAmount;
 
   num? orderTaxAmount;
 
   num? orderTotal;
 
+  String? orderStatus;
+
   bool? payedAndClosed;
-
-  num? paymentFeeAmount;
-
-  String? paymentMethod;
-
-  num? productDiscountAmount;
-
-  num? productTaxAmount;
-
-  int? shippingAddressId;
-
-  num? shippingFeeAmount;
 
   String? shippingMethod;
 
-  num? subTotal;
+  num? shippingFeeAmount;
+
+  String? paymentMethod;
+
+  num? paymentFeeAmount;
+
+  int? shippingAddressId;
+
+  int? billingAddressId;
 
   int? userId;
+
+  int? cartId;
+
+  int? deliveryId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderCommand &&
      other.orderId == orderId &&
-     other.billingAddressId == billingAddressId &&
-     other.cartId == cartId &&
-     other.deliveryId == deliveryId &&
      other.description == description &&
+     other.subTotal == subTotal &&
+     other.productTaxAmount == productTaxAmount &&
+     other.productDiscountAmount == productDiscountAmount &&
      other.orderDiscountAmount == orderDiscountAmount &&
-     other.orderStatus == orderStatus &&
      other.orderTaxAmount == orderTaxAmount &&
      other.orderTotal == orderTotal &&
+     other.orderStatus == orderStatus &&
      other.payedAndClosed == payedAndClosed &&
-     other.paymentFeeAmount == paymentFeeAmount &&
-     other.paymentMethod == paymentMethod &&
-     other.productDiscountAmount == productDiscountAmount &&
-     other.productTaxAmount == productTaxAmount &&
-     other.shippingAddressId == shippingAddressId &&
-     other.shippingFeeAmount == shippingFeeAmount &&
      other.shippingMethod == shippingMethod &&
-     other.subTotal == subTotal &&
-     other.userId == userId;
+     other.shippingFeeAmount == shippingFeeAmount &&
+     other.paymentMethod == paymentMethod &&
+     other.paymentFeeAmount == paymentFeeAmount &&
+     other.shippingAddressId == shippingAddressId &&
+     other.billingAddressId == billingAddressId &&
+     other.userId == userId &&
+     other.cartId == cartId &&
+     other.deliveryId == deliveryId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (orderId == null ? 0 : orderId!.hashCode) +
-    (billingAddressId == null ? 0 : billingAddressId!.hashCode) +
-    (cartId == null ? 0 : cartId!.hashCode) +
-    (deliveryId == null ? 0 : deliveryId!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
+    (subTotal == null ? 0 : subTotal!.hashCode) +
+    (productTaxAmount == null ? 0 : productTaxAmount!.hashCode) +
+    (productDiscountAmount == null ? 0 : productDiscountAmount!.hashCode) +
     (orderDiscountAmount == null ? 0 : orderDiscountAmount!.hashCode) +
-    (orderStatus == null ? 0 : orderStatus!.hashCode) +
     (orderTaxAmount == null ? 0 : orderTaxAmount!.hashCode) +
     (orderTotal == null ? 0 : orderTotal!.hashCode) +
+    (orderStatus == null ? 0 : orderStatus!.hashCode) +
     (payedAndClosed == null ? 0 : payedAndClosed!.hashCode) +
-    (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
-    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
-    (productDiscountAmount == null ? 0 : productDiscountAmount!.hashCode) +
-    (productTaxAmount == null ? 0 : productTaxAmount!.hashCode) +
-    (shippingAddressId == null ? 0 : shippingAddressId!.hashCode) +
-    (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
     (shippingMethod == null ? 0 : shippingMethod!.hashCode) +
-    (subTotal == null ? 0 : subTotal!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
+    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
+    (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
+    (shippingAddressId == null ? 0 : shippingAddressId!.hashCode) +
+    (billingAddressId == null ? 0 : billingAddressId!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
+    (cartId == null ? 0 : cartId!.hashCode) +
+    (deliveryId == null ? 0 : deliveryId!.hashCode);
 
   @override
-  String toString() => 'OrderCommand[orderId=$orderId, billingAddressId=$billingAddressId, cartId=$cartId, deliveryId=$deliveryId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderStatus=$orderStatus, orderTaxAmount=$orderTaxAmount, orderTotal=$orderTotal, payedAndClosed=$payedAndClosed, paymentFeeAmount=$paymentFeeAmount, paymentMethod=$paymentMethod, productDiscountAmount=$productDiscountAmount, productTaxAmount=$productTaxAmount, shippingAddressId=$shippingAddressId, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, subTotal=$subTotal, userId=$userId]';
+  String toString() => 'OrderCommand[orderId=$orderId, description=$description, subTotal=$subTotal, productTaxAmount=$productTaxAmount, productDiscountAmount=$productDiscountAmount, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, orderTotal=$orderTotal, orderStatus=$orderStatus, payedAndClosed=$payedAndClosed, shippingMethod=$shippingMethod, shippingFeeAmount=$shippingFeeAmount, paymentMethod=$paymentMethod, paymentFeeAmount=$paymentFeeAmount, shippingAddressId=$shippingAddressId, billingAddressId=$billingAddressId, userId=$userId, cartId=$cartId, deliveryId=$deliveryId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (orderId != null) {
       _json[r'orderId'] = orderId;
     }
-    if (billingAddressId != null) {
-      _json[r'billingAddressId'] = billingAddressId;
-    }
-    if (cartId != null) {
-      _json[r'cartId'] = cartId;
-    }
-    if (deliveryId != null) {
-      _json[r'deliveryId'] = deliveryId;
-    }
     if (description != null) {
       _json[r'description'] = description;
     }
+    if (subTotal != null) {
+      _json[r'subTotal'] = subTotal;
+    }
+    if (productTaxAmount != null) {
+      _json[r'productTaxAmount'] = productTaxAmount;
+    }
+    if (productDiscountAmount != null) {
+      _json[r'productDiscountAmount'] = productDiscountAmount;
+    }
     if (orderDiscountAmount != null) {
       _json[r'orderDiscountAmount'] = orderDiscountAmount;
-    }
-    if (orderStatus != null) {
-      _json[r'orderStatus'] = orderStatus;
     }
     if (orderTaxAmount != null) {
       _json[r'orderTaxAmount'] = orderTaxAmount;
@@ -149,35 +146,38 @@ class OrderCommand {
     if (orderTotal != null) {
       _json[r'orderTotal'] = orderTotal;
     }
+    if (orderStatus != null) {
+      _json[r'orderStatus'] = orderStatus;
+    }
     if (payedAndClosed != null) {
       _json[r'payedAndClosed'] = payedAndClosed;
-    }
-    if (paymentFeeAmount != null) {
-      _json[r'paymentFeeAmount'] = paymentFeeAmount;
-    }
-    if (paymentMethod != null) {
-      _json[r'paymentMethod'] = paymentMethod;
-    }
-    if (productDiscountAmount != null) {
-      _json[r'productDiscountAmount'] = productDiscountAmount;
-    }
-    if (productTaxAmount != null) {
-      _json[r'productTaxAmount'] = productTaxAmount;
-    }
-    if (shippingAddressId != null) {
-      _json[r'shippingAddressId'] = shippingAddressId;
-    }
-    if (shippingFeeAmount != null) {
-      _json[r'shippingFeeAmount'] = shippingFeeAmount;
     }
     if (shippingMethod != null) {
       _json[r'shippingMethod'] = shippingMethod;
     }
-    if (subTotal != null) {
-      _json[r'subTotal'] = subTotal;
+    if (shippingFeeAmount != null) {
+      _json[r'shippingFeeAmount'] = shippingFeeAmount;
+    }
+    if (paymentMethod != null) {
+      _json[r'paymentMethod'] = paymentMethod;
+    }
+    if (paymentFeeAmount != null) {
+      _json[r'paymentFeeAmount'] = paymentFeeAmount;
+    }
+    if (shippingAddressId != null) {
+      _json[r'shippingAddressId'] = shippingAddressId;
+    }
+    if (billingAddressId != null) {
+      _json[r'billingAddressId'] = billingAddressId;
     }
     if (userId != null) {
       _json[r'userId'] = userId;
+    }
+    if (cartId != null) {
+      _json[r'cartId'] = cartId;
+    }
+    if (deliveryId != null) {
+      _json[r'deliveryId'] = deliveryId;
     }
     return _json;
   }
@@ -202,40 +202,40 @@ class OrderCommand {
 
       return OrderCommand(
         orderId: mapValueOfType<int>(json, r'orderId'),
-        billingAddressId: mapValueOfType<int>(json, r'billingAddressId'),
-        cartId: mapValueOfType<int>(json, r'cartId'),
-        deliveryId: mapValueOfType<int>(json, r'deliveryId'),
         description: mapValueOfType<String>(json, r'description'),
+        subTotal: json[r'subTotal'] == null
+            ? null
+            : num.parse(json[r'subTotal'].toString()),
+        productTaxAmount: json[r'productTaxAmount'] == null
+            ? null
+            : num.parse(json[r'productTaxAmount'].toString()),
+        productDiscountAmount: json[r'productDiscountAmount'] == null
+            ? null
+            : num.parse(json[r'productDiscountAmount'].toString()),
         orderDiscountAmount: json[r'orderDiscountAmount'] == null
             ? null
             : num.parse(json[r'orderDiscountAmount'].toString()),
-        orderStatus: mapValueOfType<String>(json, r'orderStatus'),
         orderTaxAmount: json[r'orderTaxAmount'] == null
             ? null
             : num.parse(json[r'orderTaxAmount'].toString()),
         orderTotal: json[r'orderTotal'] == null
             ? null
             : num.parse(json[r'orderTotal'].toString()),
+        orderStatus: mapValueOfType<String>(json, r'orderStatus'),
         payedAndClosed: mapValueOfType<bool>(json, r'payedAndClosed'),
-        paymentFeeAmount: json[r'paymentFeeAmount'] == null
-            ? null
-            : num.parse(json[r'paymentFeeAmount'].toString()),
-        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
-        productDiscountAmount: json[r'productDiscountAmount'] == null
-            ? null
-            : num.parse(json[r'productDiscountAmount'].toString()),
-        productTaxAmount: json[r'productTaxAmount'] == null
-            ? null
-            : num.parse(json[r'productTaxAmount'].toString()),
-        shippingAddressId: mapValueOfType<int>(json, r'shippingAddressId'),
+        shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
         shippingFeeAmount: json[r'shippingFeeAmount'] == null
             ? null
             : num.parse(json[r'shippingFeeAmount'].toString()),
-        shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
-        subTotal: json[r'subTotal'] == null
+        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
+        paymentFeeAmount: json[r'paymentFeeAmount'] == null
             ? null
-            : num.parse(json[r'subTotal'].toString()),
+            : num.parse(json[r'paymentFeeAmount'].toString()),
+        shippingAddressId: mapValueOfType<int>(json, r'shippingAddressId'),
+        billingAddressId: mapValueOfType<int>(json, r'billingAddressId'),
         userId: mapValueOfType<int>(json, r'userId'),
+        cartId: mapValueOfType<int>(json, r'cartId'),
+        deliveryId: mapValueOfType<int>(json, r'deliveryId'),
       );
     }
     return null;

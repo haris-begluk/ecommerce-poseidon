@@ -14,15 +14,13 @@ class ProductDiscountOfferDto {
   /// Returns a new [ProductDiscountOfferDto] instance.
   ProductDiscountOfferDto({
     this.productDiscountOfferId,
-    this.discountOfferId,
     this.productId,
-    this.sysCreatedAt,
+    this.discountOfferId,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
-
-  int? productDiscountOfferId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -30,7 +28,7 @@ class ProductDiscountOfferDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? discountOfferId;
+  int? productDiscountOfferId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -46,7 +44,7 @@ class ProductDiscountOfferDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  int? discountOfferId;
 
   String? sysCreatedBy;
 
@@ -56,56 +54,64 @@ class ProductDiscountOfferDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ProductDiscountOfferDto &&
      other.productDiscountOfferId == productDiscountOfferId &&
-     other.discountOfferId == discountOfferId &&
      other.productId == productId &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.discountOfferId == discountOfferId &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy;
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (productDiscountOfferId == null ? 0 : productDiscountOfferId!.hashCode) +
-    (discountOfferId == null ? 0 : discountOfferId!.hashCode) +
     (productId == null ? 0 : productId!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (discountOfferId == null ? 0 : discountOfferId!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode);
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'ProductDiscountOfferDto[productDiscountOfferId=$productDiscountOfferId, discountOfferId=$discountOfferId, productId=$productId, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy]';
+  String toString() => 'ProductDiscountOfferDto[productDiscountOfferId=$productDiscountOfferId, productId=$productId, discountOfferId=$discountOfferId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (productDiscountOfferId != null) {
       _json[r'productDiscountOfferId'] = productDiscountOfferId;
     }
-    if (discountOfferId != null) {
-      _json[r'discountOfferId'] = discountOfferId;
-    }
     if (productId != null) {
       _json[r'productId'] = productId;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (discountOfferId != null) {
+      _json[r'discountOfferId'] = discountOfferId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -130,12 +136,12 @@ class ProductDiscountOfferDto {
 
       return ProductDiscountOfferDto(
         productDiscountOfferId: mapValueOfType<int>(json, r'productDiscountOfferId'),
-        discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
         productId: mapValueOfType<int>(json, r'productId'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

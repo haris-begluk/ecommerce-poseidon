@@ -14,23 +14,29 @@ class CreditCardDto {
   /// Returns a new [CreditCardDto] instance.
   CreditCardDto({
     this.creditCardId,
-    this.cvc,
     this.creaditCartNumber,
+    this.cvc,
     this.expirationDate,
     this.imageUrl,
-    this.paymentProviderId,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
     this.userId,
+    this.paymentProviderId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? creditCardId;
 
-  String? cvc;
-
   String? creaditCartNumber;
+
+  String? cvc;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -48,7 +54,7 @@ class CreditCardDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? paymentProviderId;
+  int? userId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -56,7 +62,7 @@ class CreditCardDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  int? paymentProviderId;
 
   String? sysCreatedBy;
 
@@ -66,7 +72,7 @@ class CreditCardDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
 
@@ -76,50 +82,50 @@ class CreditCardDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? userId;
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreditCardDto &&
      other.creditCardId == creditCardId &&
-     other.cvc == cvc &&
      other.creaditCartNumber == creaditCartNumber &&
+     other.cvc == cvc &&
      other.expirationDate == expirationDate &&
      other.imageUrl == imageUrl &&
+     other.userId == userId &&
      other.paymentProviderId == paymentProviderId &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.userId == userId;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (creditCardId == null ? 0 : creditCardId!.hashCode) +
-    (cvc == null ? 0 : cvc!.hashCode) +
     (creaditCartNumber == null ? 0 : creaditCartNumber!.hashCode) +
+    (cvc == null ? 0 : cvc!.hashCode) +
     (expirationDate == null ? 0 : expirationDate!.hashCode) +
     (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
     (paymentProviderId == null ? 0 : paymentProviderId!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'CreditCardDto[creditCardId=$creditCardId, cvc=$cvc, creaditCartNumber=$creaditCartNumber, expirationDate=$expirationDate, imageUrl=$imageUrl, paymentProviderId=$paymentProviderId, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, userId=$userId]';
+  String toString() => 'CreditCardDto[creditCardId=$creditCardId, creaditCartNumber=$creaditCartNumber, cvc=$cvc, expirationDate=$expirationDate, imageUrl=$imageUrl, userId=$userId, paymentProviderId=$paymentProviderId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (creditCardId != null) {
       _json[r'creditCardId'] = creditCardId;
     }
-    if (cvc != null) {
-      _json[r'cvc'] = cvc;
-    }
     if (creaditCartNumber != null) {
       _json[r'creaditCartNumber'] = creaditCartNumber;
+    }
+    if (cvc != null) {
+      _json[r'cvc'] = cvc;
     }
     if (expirationDate != null) {
       _json[r'expirationDate'] = expirationDate!.toUtc().toIso8601String();
@@ -127,23 +133,23 @@ class CreditCardDto {
     if (imageUrl != null) {
       _json[r'imageUrl'] = imageUrl;
     }
+    if (userId != null) {
+      _json[r'userId'] = userId;
+    }
     if (paymentProviderId != null) {
       _json[r'paymentProviderId'] = paymentProviderId;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -168,16 +174,16 @@ class CreditCardDto {
 
       return CreditCardDto(
         creditCardId: mapValueOfType<int>(json, r'creditCardId'),
-        cvc: mapValueOfType<String>(json, r'cvc'),
         creaditCartNumber: mapValueOfType<String>(json, r'creaditCartNumber'),
+        cvc: mapValueOfType<String>(json, r'cvc'),
         expirationDate: mapDateTime(json, r'expirationDate', ''),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
         userId: mapValueOfType<int>(json, r'userId'),
+        paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

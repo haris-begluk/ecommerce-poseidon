@@ -14,90 +14,90 @@ class UserCommand {
   /// Returns a new [UserCommand] instance.
   UserCommand({
     this.userId,
-    this.addressId,
-    this.email,
     this.externalRef,
-    this.firstName,
-    this.imageUrl,
-    this.lastName,
-    this.phoneNumber,
     this.username,
+    this.firstName,
+    this.phoneNumber,
+    this.lastName,
+    this.email,
+    this.imageUrl,
+    this.addressId,
   });
 
   int? userId;
 
-  int? addressId;
-
-  String? email;
-
   String? externalRef;
+
+  String? username;
 
   String? firstName;
 
-  String? imageUrl;
+  String? phoneNumber;
 
   String? lastName;
 
-  String? phoneNumber;
+  String? email;
 
-  String? username;
+  String? imageUrl;
+
+  int? addressId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserCommand &&
      other.userId == userId &&
-     other.addressId == addressId &&
-     other.email == email &&
      other.externalRef == externalRef &&
+     other.username == username &&
      other.firstName == firstName &&
-     other.imageUrl == imageUrl &&
-     other.lastName == lastName &&
      other.phoneNumber == phoneNumber &&
-     other.username == username;
+     other.lastName == lastName &&
+     other.email == email &&
+     other.imageUrl == imageUrl &&
+     other.addressId == addressId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (userId == null ? 0 : userId!.hashCode) +
-    (addressId == null ? 0 : addressId!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
     (externalRef == null ? 0 : externalRef!.hashCode) +
+    (username == null ? 0 : username!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
-    (lastName == null ? 0 : lastName!.hashCode) +
     (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
-    (username == null ? 0 : username!.hashCode);
+    (lastName == null ? 0 : lastName!.hashCode) +
+    (email == null ? 0 : email!.hashCode) +
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (addressId == null ? 0 : addressId!.hashCode);
 
   @override
-  String toString() => 'UserCommand[userId=$userId, addressId=$addressId, email=$email, externalRef=$externalRef, firstName=$firstName, imageUrl=$imageUrl, lastName=$lastName, phoneNumber=$phoneNumber, username=$username]';
+  String toString() => 'UserCommand[userId=$userId, externalRef=$externalRef, username=$username, firstName=$firstName, phoneNumber=$phoneNumber, lastName=$lastName, email=$email, imageUrl=$imageUrl, addressId=$addressId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (userId != null) {
       _json[r'userId'] = userId;
     }
-    if (addressId != null) {
-      _json[r'addressId'] = addressId;
-    }
-    if (email != null) {
-      _json[r'email'] = email;
-    }
     if (externalRef != null) {
       _json[r'externalRef'] = externalRef;
+    }
+    if (username != null) {
+      _json[r'username'] = username;
     }
     if (firstName != null) {
       _json[r'firstName'] = firstName;
     }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
+    if (phoneNumber != null) {
+      _json[r'phoneNumber'] = phoneNumber;
     }
     if (lastName != null) {
       _json[r'lastName'] = lastName;
     }
-    if (phoneNumber != null) {
-      _json[r'phoneNumber'] = phoneNumber;
+    if (email != null) {
+      _json[r'email'] = email;
     }
-    if (username != null) {
-      _json[r'username'] = username;
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
+    if (addressId != null) {
+      _json[r'addressId'] = addressId;
     }
     return _json;
   }
@@ -122,14 +122,14 @@ class UserCommand {
 
       return UserCommand(
         userId: mapValueOfType<int>(json, r'userId'),
-        addressId: mapValueOfType<int>(json, r'addressId'),
-        email: mapValueOfType<String>(json, r'email'),
         externalRef: mapValueOfType<String>(json, r'externalRef'),
-        firstName: mapValueOfType<String>(json, r'firstName'),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        lastName: mapValueOfType<String>(json, r'lastName'),
-        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
         username: mapValueOfType<String>(json, r'username'),
+        firstName: mapValueOfType<String>(json, r'firstName'),
+        phoneNumber: mapValueOfType<String>(json, r'phoneNumber'),
+        lastName: mapValueOfType<String>(json, r'lastName'),
+        email: mapValueOfType<String>(json, r'email'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        addressId: mapValueOfType<int>(json, r'addressId'),
       );
     }
     return null;

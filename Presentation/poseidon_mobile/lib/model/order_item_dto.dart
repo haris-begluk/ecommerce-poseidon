@@ -14,18 +14,24 @@ class OrderItemDto {
   /// Returns a new [OrderItemDto] instance.
   OrderItemDto({
     this.orderItemId,
-    this.discountAmount,
-    this.orderId,
     this.productId,
+    this.orderId,
     this.productPrice,
     this.quantity,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
+    this.discountAmount,
     this.taxAmount,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? orderItemId;
 
   ///
@@ -34,7 +40,7 @@ class OrderItemDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  num? discountAmount;
+  int? productId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -43,14 +49,6 @@ class OrderItemDto {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   int? orderId;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? productId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -74,19 +72,7 @@ class OrderItemDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
-
-  String? sysCreatedBy;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysUpdatedAt;
-
-  String? sysUpdatedBy;
+  num? discountAmount;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -96,51 +82,68 @@ class OrderItemDto {
   ///
   num? taxAmount;
 
+  String? sysCreatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysCreatedAt;
+
+  String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderItemDto &&
      other.orderItemId == orderItemId &&
-     other.discountAmount == discountAmount &&
-     other.orderId == orderId &&
      other.productId == productId &&
+     other.orderId == orderId &&
      other.productPrice == productPrice &&
      other.quantity == quantity &&
-     other.sysCreatedAt == sysCreatedAt &&
+     other.discountAmount == discountAmount &&
+     other.taxAmount == taxAmount &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
+     other.sysCreatedAt == sysCreatedAt &&
      other.sysUpdatedBy == sysUpdatedBy &&
-     other.taxAmount == taxAmount;
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (orderItemId == null ? 0 : orderItemId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
-    (orderId == null ? 0 : orderId!.hashCode) +
     (productId == null ? 0 : productId!.hashCode) +
+    (orderId == null ? 0 : orderId!.hashCode) +
     (productPrice == null ? 0 : productPrice!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode) +
+    (taxAmount == null ? 0 : taxAmount!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (taxAmount == null ? 0 : taxAmount!.hashCode);
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'OrderItemDto[orderItemId=$orderItemId, discountAmount=$discountAmount, orderId=$orderId, productId=$productId, productPrice=$productPrice, quantity=$quantity, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, taxAmount=$taxAmount]';
+  String toString() => 'OrderItemDto[orderItemId=$orderItemId, productId=$productId, orderId=$orderId, productPrice=$productPrice, quantity=$quantity, discountAmount=$discountAmount, taxAmount=$taxAmount, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (orderItemId != null) {
       _json[r'orderItemId'] = orderItemId;
     }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
+    if (productId != null) {
+      _json[r'productId'] = productId;
     }
     if (orderId != null) {
       _json[r'orderId'] = orderId;
-    }
-    if (productId != null) {
-      _json[r'productId'] = productId;
     }
     if (productPrice != null) {
       _json[r'productPrice'] = productPrice;
@@ -148,20 +151,23 @@ class OrderItemDto {
     if (quantity != null) {
       _json[r'quantity'] = quantity;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
+    }
+    if (taxAmount != null) {
+      _json[r'taxAmount'] = taxAmount;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (taxAmount != null) {
-      _json[r'taxAmount'] = taxAmount;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -186,24 +192,24 @@ class OrderItemDto {
 
       return OrderItemDto(
         orderItemId: mapValueOfType<int>(json, r'orderItemId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
-        orderId: mapValueOfType<int>(json, r'orderId'),
         productId: mapValueOfType<int>(json, r'productId'),
+        orderId: mapValueOfType<int>(json, r'orderId'),
         productPrice: json[r'productPrice'] == null
             ? null
             : num.parse(json[r'productPrice'].toString()),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
         taxAmount: json[r'taxAmount'] == null
             ? null
             : num.parse(json[r'taxAmount'].toString()),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

@@ -14,71 +14,71 @@ class OrderItemCommand {
   /// Returns a new [OrderItemCommand] instance.
   OrderItemCommand({
     this.orderItemId,
-    this.discountAmount,
-    this.orderId,
     this.productId,
+    this.orderId,
     this.productPrice,
     this.quantity,
+    this.discountAmount,
     this.taxAmount,
   });
 
   int? orderItemId;
 
-  num? discountAmount;
+  int? productId;
 
   int? orderId;
-
-  int? productId;
 
   num? productPrice;
 
   num? quantity;
+
+  num? discountAmount;
 
   num? taxAmount;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderItemCommand &&
      other.orderItemId == orderItemId &&
-     other.discountAmount == discountAmount &&
-     other.orderId == orderId &&
      other.productId == productId &&
+     other.orderId == orderId &&
      other.productPrice == productPrice &&
      other.quantity == quantity &&
+     other.discountAmount == discountAmount &&
      other.taxAmount == taxAmount;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (orderItemId == null ? 0 : orderItemId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
-    (orderId == null ? 0 : orderId!.hashCode) +
     (productId == null ? 0 : productId!.hashCode) +
+    (orderId == null ? 0 : orderId!.hashCode) +
     (productPrice == null ? 0 : productPrice!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode) +
     (taxAmount == null ? 0 : taxAmount!.hashCode);
 
   @override
-  String toString() => 'OrderItemCommand[orderItemId=$orderItemId, discountAmount=$discountAmount, orderId=$orderId, productId=$productId, productPrice=$productPrice, quantity=$quantity, taxAmount=$taxAmount]';
+  String toString() => 'OrderItemCommand[orderItemId=$orderItemId, productId=$productId, orderId=$orderId, productPrice=$productPrice, quantity=$quantity, discountAmount=$discountAmount, taxAmount=$taxAmount]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (orderItemId != null) {
       _json[r'orderItemId'] = orderItemId;
     }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
+    if (productId != null) {
+      _json[r'productId'] = productId;
     }
     if (orderId != null) {
       _json[r'orderId'] = orderId;
-    }
-    if (productId != null) {
-      _json[r'productId'] = productId;
     }
     if (productPrice != null) {
       _json[r'productPrice'] = productPrice;
     }
     if (quantity != null) {
       _json[r'quantity'] = quantity;
+    }
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
     }
     if (taxAmount != null) {
       _json[r'taxAmount'] = taxAmount;
@@ -106,17 +106,17 @@ class OrderItemCommand {
 
       return OrderItemCommand(
         orderItemId: mapValueOfType<int>(json, r'orderItemId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
-        orderId: mapValueOfType<int>(json, r'orderId'),
         productId: mapValueOfType<int>(json, r'productId'),
+        orderId: mapValueOfType<int>(json, r'orderId'),
         productPrice: json[r'productPrice'] == null
             ? null
             : num.parse(json[r'productPrice'].toString()),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
         taxAmount: json[r'taxAmount'] == null
             ? null
             : num.parse(json[r'taxAmount'].toString()),

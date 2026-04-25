@@ -15,9 +15,9 @@ class PaymentCommand {
   PaymentCommand({
     this.paymentId,
     this.amount,
+    this.paymentFee,
     this.failureMessage,
     this.orderId,
-    this.paymentFee,
     this.paymentProviderId,
   });
 
@@ -25,11 +25,11 @@ class PaymentCommand {
 
   num? amount;
 
+  num? paymentFee;
+
   String? failureMessage;
 
   int? orderId;
-
-  num? paymentFee;
 
   int? paymentProviderId;
 
@@ -37,9 +37,9 @@ class PaymentCommand {
   bool operator ==(Object other) => identical(this, other) || other is PaymentCommand &&
      other.paymentId == paymentId &&
      other.amount == amount &&
+     other.paymentFee == paymentFee &&
      other.failureMessage == failureMessage &&
      other.orderId == orderId &&
-     other.paymentFee == paymentFee &&
      other.paymentProviderId == paymentProviderId;
 
   @override
@@ -47,13 +47,13 @@ class PaymentCommand {
     // ignore: unnecessary_parenthesis
     (paymentId == null ? 0 : paymentId!.hashCode) +
     (amount == null ? 0 : amount!.hashCode) +
+    (paymentFee == null ? 0 : paymentFee!.hashCode) +
     (failureMessage == null ? 0 : failureMessage!.hashCode) +
     (orderId == null ? 0 : orderId!.hashCode) +
-    (paymentFee == null ? 0 : paymentFee!.hashCode) +
     (paymentProviderId == null ? 0 : paymentProviderId!.hashCode);
 
   @override
-  String toString() => 'PaymentCommand[paymentId=$paymentId, amount=$amount, failureMessage=$failureMessage, orderId=$orderId, paymentFee=$paymentFee, paymentProviderId=$paymentProviderId]';
+  String toString() => 'PaymentCommand[paymentId=$paymentId, amount=$amount, paymentFee=$paymentFee, failureMessage=$failureMessage, orderId=$orderId, paymentProviderId=$paymentProviderId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -63,14 +63,14 @@ class PaymentCommand {
     if (amount != null) {
       _json[r'amount'] = amount;
     }
+    if (paymentFee != null) {
+      _json[r'paymentFee'] = paymentFee;
+    }
     if (failureMessage != null) {
       _json[r'failureMessage'] = failureMessage;
     }
     if (orderId != null) {
       _json[r'orderId'] = orderId;
-    }
-    if (paymentFee != null) {
-      _json[r'paymentFee'] = paymentFee;
     }
     if (paymentProviderId != null) {
       _json[r'paymentProviderId'] = paymentProviderId;
@@ -101,11 +101,11 @@ class PaymentCommand {
         amount: json[r'amount'] == null
             ? null
             : num.parse(json[r'amount'].toString()),
-        failureMessage: mapValueOfType<String>(json, r'failureMessage'),
-        orderId: mapValueOfType<int>(json, r'orderId'),
         paymentFee: json[r'paymentFee'] == null
             ? null
             : num.parse(json[r'paymentFee'].toString()),
+        failureMessage: mapValueOfType<String>(json, r'failureMessage'),
+        orderId: mapValueOfType<int>(json, r'orderId'),
         paymentProviderId: mapValueOfType<int>(json, r'paymentProviderId'),
       );
     }

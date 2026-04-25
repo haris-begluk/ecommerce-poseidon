@@ -16,12 +16,18 @@ class TaxRateDto {
     this.taxRateId,
     this.name,
     this.rate,
-    this.sysCreatedAt,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? taxRateId;
 
   String? name;
@@ -34,6 +40,8 @@ class TaxRateDto {
   ///
   num? rate;
 
+  String? sysCreatedBy;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -42,7 +50,7 @@ class TaxRateDto {
   ///
   DateTime? sysCreatedAt;
 
-  String? sysCreatedBy;
+  String? sysUpdatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -52,17 +60,15 @@ class TaxRateDto {
   ///
   DateTime? sysUpdatedAt;
 
-  String? sysUpdatedBy;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is TaxRateDto &&
      other.taxRateId == taxRateId &&
      other.name == name &&
      other.rate == rate &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy;
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
@@ -70,13 +76,13 @@ class TaxRateDto {
     (taxRateId == null ? 0 : taxRateId!.hashCode) +
     (name == null ? 0 : name!.hashCode) +
     (rate == null ? 0 : rate!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode);
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'TaxRateDto[taxRateId=$taxRateId, name=$name, rate=$rate, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy]';
+  String toString() => 'TaxRateDto[taxRateId=$taxRateId, name=$name, rate=$rate, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -89,17 +95,17 @@ class TaxRateDto {
     if (rate != null) {
       _json[r'rate'] = rate;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
-    }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -128,10 +134,10 @@ class TaxRateDto {
         rate: json[r'rate'] == null
             ? null
             : num.parse(json[r'rate'].toString()),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

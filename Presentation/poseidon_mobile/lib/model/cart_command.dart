@@ -14,59 +14,56 @@ class CartCommand {
   /// Returns a new [CartCommand] instance.
   CartCommand({
     this.cartId,
-    this.discountAmount,
     this.isActive,
     this.lockedOnCheckout,
-    this.taxAmount,
-    this.total,
     this.userId,
+    this.total,
+    this.taxAmount,
+    this.discountAmount,
   });
 
   int? cartId;
-
-  num? discountAmount;
 
   bool? isActive;
 
   bool? lockedOnCheckout;
 
-  num? taxAmount;
+  int? userId;
 
   num? total;
 
-  int? userId;
+  num? taxAmount;
+
+  num? discountAmount;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CartCommand &&
      other.cartId == cartId &&
-     other.discountAmount == discountAmount &&
      other.isActive == isActive &&
      other.lockedOnCheckout == lockedOnCheckout &&
-     other.taxAmount == taxAmount &&
+     other.userId == userId &&
      other.total == total &&
-     other.userId == userId;
+     other.taxAmount == taxAmount &&
+     other.discountAmount == discountAmount;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (cartId == null ? 0 : cartId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
     (isActive == null ? 0 : isActive!.hashCode) +
     (lockedOnCheckout == null ? 0 : lockedOnCheckout!.hashCode) +
-    (taxAmount == null ? 0 : taxAmount!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
     (total == null ? 0 : total!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (taxAmount == null ? 0 : taxAmount!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode);
 
   @override
-  String toString() => 'CartCommand[cartId=$cartId, discountAmount=$discountAmount, isActive=$isActive, lockedOnCheckout=$lockedOnCheckout, taxAmount=$taxAmount, total=$total, userId=$userId]';
+  String toString() => 'CartCommand[cartId=$cartId, isActive=$isActive, lockedOnCheckout=$lockedOnCheckout, userId=$userId, total=$total, taxAmount=$taxAmount, discountAmount=$discountAmount]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (cartId != null) {
       _json[r'cartId'] = cartId;
-    }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
     }
     if (isActive != null) {
       _json[r'isActive'] = isActive;
@@ -74,14 +71,17 @@ class CartCommand {
     if (lockedOnCheckout != null) {
       _json[r'lockedOnCheckout'] = lockedOnCheckout;
     }
-    if (taxAmount != null) {
-      _json[r'taxAmount'] = taxAmount;
+    if (userId != null) {
+      _json[r'userId'] = userId;
     }
     if (total != null) {
       _json[r'total'] = total;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (taxAmount != null) {
+      _json[r'taxAmount'] = taxAmount;
+    }
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
     }
     return _json;
   }
@@ -106,18 +106,18 @@ class CartCommand {
 
       return CartCommand(
         cartId: mapValueOfType<int>(json, r'cartId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
         isActive: mapValueOfType<bool>(json, r'isActive'),
         lockedOnCheckout: mapValueOfType<bool>(json, r'lockedOnCheckout'),
-        taxAmount: json[r'taxAmount'] == null
-            ? null
-            : num.parse(json[r'taxAmount'].toString()),
+        userId: mapValueOfType<int>(json, r'userId'),
         total: json[r'total'] == null
             ? null
             : num.parse(json[r'total'].toString()),
-        userId: mapValueOfType<int>(json, r'userId'),
+        taxAmount: json[r'taxAmount'] == null
+            ? null
+            : num.parse(json[r'taxAmount'].toString()),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
       );
     }
     return null;

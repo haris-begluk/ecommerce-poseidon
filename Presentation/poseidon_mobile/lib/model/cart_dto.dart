@@ -14,21 +14,25 @@ class CartDto {
   /// Returns a new [CartDto] instance.
   CartDto({
     this.cartId,
-    this.discountAmount,
     this.isActive,
     this.lockedOnCheckout,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
-    this.taxAmount,
-    this.total,
     this.userId,
+    this.total,
+    this.taxAmount,
+    this.discountAmount,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? cartId;
-
-  num? discountAmount;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -46,7 +50,13 @@ class CartDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysCreatedAt;
+  int? userId;
+
+  num? total;
+
+  num? taxAmount;
+
+  num? discountAmount;
 
   String? sysCreatedBy;
 
@@ -56,13 +66,9 @@ class CartDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
-
-  num? taxAmount;
-
-  num? total;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -70,47 +76,44 @@ class CartDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  int? userId;
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CartDto &&
      other.cartId == cartId &&
-     other.discountAmount == discountAmount &&
      other.isActive == isActive &&
      other.lockedOnCheckout == lockedOnCheckout &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
-     other.taxAmount == taxAmount &&
+     other.userId == userId &&
      other.total == total &&
-     other.userId == userId;
+     other.taxAmount == taxAmount &&
+     other.discountAmount == discountAmount &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (cartId == null ? 0 : cartId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
     (isActive == null ? 0 : isActive!.hashCode) +
     (lockedOnCheckout == null ? 0 : lockedOnCheckout!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
-    (taxAmount == null ? 0 : taxAmount!.hashCode) +
+    (userId == null ? 0 : userId!.hashCode) +
     (total == null ? 0 : total!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (taxAmount == null ? 0 : taxAmount!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'CartDto[cartId=$cartId, discountAmount=$discountAmount, isActive=$isActive, lockedOnCheckout=$lockedOnCheckout, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, taxAmount=$taxAmount, total=$total, userId=$userId]';
+  String toString() => 'CartDto[cartId=$cartId, isActive=$isActive, lockedOnCheckout=$lockedOnCheckout, userId=$userId, total=$total, taxAmount=$taxAmount, discountAmount=$discountAmount, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (cartId != null) {
       _json[r'cartId'] = cartId;
-    }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
     }
     if (isActive != null) {
       _json[r'isActive'] = isActive;
@@ -118,26 +121,29 @@ class CartDto {
     if (lockedOnCheckout != null) {
       _json[r'lockedOnCheckout'] = lockedOnCheckout;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
-    }
-    if (sysCreatedBy != null) {
-      _json[r'sys_CreatedBy'] = sysCreatedBy;
-    }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
-    }
-    if (sysUpdatedBy != null) {
-      _json[r'sys_UpdatedBy'] = sysUpdatedBy;
-    }
-    if (taxAmount != null) {
-      _json[r'taxAmount'] = taxAmount;
+    if (userId != null) {
+      _json[r'userId'] = userId;
     }
     if (total != null) {
       _json[r'total'] = total;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (taxAmount != null) {
+      _json[r'taxAmount'] = taxAmount;
+    }
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
+    }
+    if (sysCreatedBy != null) {
+      _json[r'sys_CreatedBy'] = sysCreatedBy;
+    }
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    }
+    if (sysUpdatedBy != null) {
+      _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -162,22 +168,22 @@ class CartDto {
 
       return CartDto(
         cartId: mapValueOfType<int>(json, r'cartId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
         isActive: mapValueOfType<bool>(json, r'isActive'),
         lockedOnCheckout: mapValueOfType<bool>(json, r'lockedOnCheckout'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
-        taxAmount: json[r'taxAmount'] == null
-            ? null
-            : num.parse(json[r'taxAmount'].toString()),
+        userId: mapValueOfType<int>(json, r'userId'),
         total: json[r'total'] == null
             ? null
             : num.parse(json[r'total'].toString()),
-        userId: mapValueOfType<int>(json, r'userId'),
+        taxAmount: json[r'taxAmount'] == null
+            ? null
+            : num.parse(json[r'taxAmount'].toString()),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

@@ -18,16 +18,22 @@ class SettingsDto {
     this.orderDiscountAmount,
     this.orderTaxAmount,
     this.paymentFeeAmount,
-    this.paymentMethod,
     this.shippingFeeAmount,
     this.shippingMethod,
+    this.paymentMethod,
     this.supplier,
-    this.sysCreatedAt,
     this.sysCreatedBy,
-    this.sysUpdatedAt,
+    this.sysCreatedAt,
     this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? settingsId;
 
   String? description;
@@ -38,21 +44,13 @@ class SettingsDto {
 
   num? paymentFeeAmount;
 
-  String? paymentMethod;
-
   num? shippingFeeAmount;
 
   String? shippingMethod;
 
-  String? supplier;
+  String? paymentMethod;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
+  String? supplier;
 
   String? sysCreatedBy;
 
@@ -62,9 +60,17 @@ class SettingsDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SettingsDto &&
@@ -73,14 +79,14 @@ class SettingsDto {
      other.orderDiscountAmount == orderDiscountAmount &&
      other.orderTaxAmount == orderTaxAmount &&
      other.paymentFeeAmount == paymentFeeAmount &&
-     other.paymentMethod == paymentMethod &&
      other.shippingFeeAmount == shippingFeeAmount &&
      other.shippingMethod == shippingMethod &&
+     other.paymentMethod == paymentMethod &&
      other.supplier == supplier &&
-     other.sysCreatedAt == sysCreatedAt &&
      other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy;
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
@@ -90,17 +96,17 @@ class SettingsDto {
     (orderDiscountAmount == null ? 0 : orderDiscountAmount!.hashCode) +
     (orderTaxAmount == null ? 0 : orderTaxAmount!.hashCode) +
     (paymentFeeAmount == null ? 0 : paymentFeeAmount!.hashCode) +
-    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
     (shippingFeeAmount == null ? 0 : shippingFeeAmount!.hashCode) +
     (shippingMethod == null ? 0 : shippingMethod!.hashCode) +
+    (paymentMethod == null ? 0 : paymentMethod!.hashCode) +
     (supplier == null ? 0 : supplier!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
     (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode);
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'SettingsDto[settingsId=$settingsId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, paymentFeeAmount=$paymentFeeAmount, paymentMethod=$paymentMethod, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, supplier=$supplier, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy]';
+  String toString() => 'SettingsDto[settingsId=$settingsId, description=$description, orderDiscountAmount=$orderDiscountAmount, orderTaxAmount=$orderTaxAmount, paymentFeeAmount=$paymentFeeAmount, shippingFeeAmount=$shippingFeeAmount, shippingMethod=$shippingMethod, paymentMethod=$paymentMethod, supplier=$supplier, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -119,29 +125,29 @@ class SettingsDto {
     if (paymentFeeAmount != null) {
       _json[r'paymentFeeAmount'] = paymentFeeAmount;
     }
-    if (paymentMethod != null) {
-      _json[r'paymentMethod'] = paymentMethod;
-    }
     if (shippingFeeAmount != null) {
       _json[r'shippingFeeAmount'] = shippingFeeAmount;
     }
     if (shippingMethod != null) {
       _json[r'shippingMethod'] = shippingMethod;
     }
+    if (paymentMethod != null) {
+      _json[r'paymentMethod'] = paymentMethod;
+    }
     if (supplier != null) {
       _json[r'supplier'] = supplier;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -176,16 +182,16 @@ class SettingsDto {
         paymentFeeAmount: json[r'paymentFeeAmount'] == null
             ? null
             : num.parse(json[r'paymentFeeAmount'].toString()),
-        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
         shippingFeeAmount: json[r'shippingFeeAmount'] == null
             ? null
             : num.parse(json[r'shippingFeeAmount'].toString()),
         shippingMethod: mapValueOfType<String>(json, r'shippingMethod'),
+        paymentMethod: mapValueOfType<String>(json, r'paymentMethod'),
         supplier: mapValueOfType<String>(json, r'supplier'),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
         sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

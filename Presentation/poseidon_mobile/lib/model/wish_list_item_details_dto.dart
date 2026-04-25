@@ -15,49 +15,27 @@ class WishListItemDetailsDto {
   WishListItemDetailsDto({
     this.wishListItemId,
     this.note,
-    this.productId,
     this.quantity,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
     this.wishListId,
+    this.productId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
     this.product,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? wishListItemId;
 
   String? note;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? productId;
-
   num? quantity;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
-
-  String? sysCreatedBy;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysUpdatedAt;
-
-  String? sysUpdatedBy;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -73,19 +51,47 @@ class WishListItemDetailsDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  int? productId;
+
+  String? sysCreatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysCreatedAt;
+
+  String? sysUpdatedBy;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   ProductDto? product;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WishListItemDetailsDto &&
      other.wishListItemId == wishListItemId &&
      other.note == note &&
-     other.productId == productId &&
      other.quantity == quantity &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
      other.wishListId == wishListId &&
+     other.productId == productId &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt &&
      other.product == product;
 
   @override
@@ -93,17 +99,17 @@ class WishListItemDetailsDto {
     // ignore: unnecessary_parenthesis
     (wishListItemId == null ? 0 : wishListItemId!.hashCode) +
     (note == null ? 0 : note!.hashCode) +
-    (productId == null ? 0 : productId!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
     (wishListId == null ? 0 : wishListId!.hashCode) +
+    (productId == null ? 0 : productId!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
     (product == null ? 0 : product!.hashCode);
 
   @override
-  String toString() => 'WishListItemDetailsDto[wishListItemId=$wishListItemId, note=$note, productId=$productId, quantity=$quantity, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, wishListId=$wishListId, product=$product]';
+  String toString() => 'WishListItemDetailsDto[wishListItemId=$wishListItemId, note=$note, quantity=$quantity, wishListId=$wishListId, productId=$productId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt, product=$product]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
@@ -113,26 +119,26 @@ class WishListItemDetailsDto {
     if (note != null) {
       _json[r'note'] = note;
     }
-    if (productId != null) {
-      _json[r'productId'] = productId;
-    }
     if (quantity != null) {
       _json[r'quantity'] = quantity;
     }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    if (wishListId != null) {
+      _json[r'wishListId'] = wishListId;
+    }
+    if (productId != null) {
+      _json[r'productId'] = productId;
     }
     if (sysCreatedBy != null) {
       _json[r'sys_CreatedBy'] = sysCreatedBy;
     }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
     }
     if (sysUpdatedBy != null) {
       _json[r'sys_UpdatedBy'] = sysUpdatedBy;
     }
-    if (wishListId != null) {
-      _json[r'wishListId'] = wishListId;
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     if (product != null) {
       _json[r'product'] = product;
@@ -161,15 +167,15 @@ class WishListItemDetailsDto {
       return WishListItemDetailsDto(
         wishListItemId: mapValueOfType<int>(json, r'wishListItemId'),
         note: mapValueOfType<String>(json, r'note'),
-        productId: mapValueOfType<int>(json, r'productId'),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
         wishListId: mapValueOfType<int>(json, r'wishListId'),
+        productId: mapValueOfType<int>(json, r'productId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
         product: ProductDto.fromJson(json[r'product']),
       );
     }

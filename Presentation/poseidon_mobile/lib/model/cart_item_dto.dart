@@ -14,22 +14,42 @@ class CartItemDto {
   /// Returns a new [CartItemDto] instance.
   CartItemDto({
     this.cartItemId,
-    this.cartId,
-    this.discountAmount,
-    this.imageUrl,
-    this.price,
-    this.productId,
     this.quantity,
-    this.sysCreatedAt,
-    this.sysCreatedBy,
-    this.sysUpdatedAt,
-    this.sysUpdatedBy,
+    this.price,
+    this.discountAmount,
     this.taxAmount,
     this.title,
+    this.imageUrl,
     this.unit,
+    this.cartId,
+    this.productId,
+    this.sysCreatedBy,
+    this.sysCreatedAt,
+    this.sysUpdatedBy,
+    this.sysUpdatedAt,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   int? cartItemId;
+
+  num? quantity;
+
+  num? price;
+
+  num? discountAmount;
+
+  num? taxAmount;
+
+  String? title;
+
+  String? imageUrl;
+
+  String? unit;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -39,12 +59,6 @@ class CartItemDto {
   ///
   int? cartId;
 
-  num? discountAmount;
-
-  String? imageUrl;
-
-  num? price;
-
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -52,16 +66,6 @@ class CartItemDto {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   int? productId;
-
-  num? quantity;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? sysCreatedAt;
 
   String? sysCreatedBy;
 
@@ -71,88 +75,69 @@ class CartItemDto {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  DateTime? sysUpdatedAt;
+  DateTime? sysCreatedAt;
 
   String? sysUpdatedBy;
 
-  num? taxAmount;
-
-  String? title;
-
-  String? unit;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? sysUpdatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CartItemDto &&
      other.cartItemId == cartItemId &&
-     other.cartId == cartId &&
-     other.discountAmount == discountAmount &&
-     other.imageUrl == imageUrl &&
-     other.price == price &&
-     other.productId == productId &&
      other.quantity == quantity &&
-     other.sysCreatedAt == sysCreatedAt &&
-     other.sysCreatedBy == sysCreatedBy &&
-     other.sysUpdatedAt == sysUpdatedAt &&
-     other.sysUpdatedBy == sysUpdatedBy &&
+     other.price == price &&
+     other.discountAmount == discountAmount &&
      other.taxAmount == taxAmount &&
      other.title == title &&
-     other.unit == unit;
+     other.imageUrl == imageUrl &&
+     other.unit == unit &&
+     other.cartId == cartId &&
+     other.productId == productId &&
+     other.sysCreatedBy == sysCreatedBy &&
+     other.sysCreatedAt == sysCreatedAt &&
+     other.sysUpdatedBy == sysUpdatedBy &&
+     other.sysUpdatedAt == sysUpdatedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (cartItemId == null ? 0 : cartItemId!.hashCode) +
-    (cartId == null ? 0 : cartId!.hashCode) +
-    (discountAmount == null ? 0 : discountAmount!.hashCode) +
-    (imageUrl == null ? 0 : imageUrl!.hashCode) +
-    (price == null ? 0 : price!.hashCode) +
-    (productId == null ? 0 : productId!.hashCode) +
     (quantity == null ? 0 : quantity!.hashCode) +
-    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
-    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
-    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode) +
-    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (price == null ? 0 : price!.hashCode) +
+    (discountAmount == null ? 0 : discountAmount!.hashCode) +
     (taxAmount == null ? 0 : taxAmount!.hashCode) +
     (title == null ? 0 : title!.hashCode) +
-    (unit == null ? 0 : unit!.hashCode);
+    (imageUrl == null ? 0 : imageUrl!.hashCode) +
+    (unit == null ? 0 : unit!.hashCode) +
+    (cartId == null ? 0 : cartId!.hashCode) +
+    (productId == null ? 0 : productId!.hashCode) +
+    (sysCreatedBy == null ? 0 : sysCreatedBy!.hashCode) +
+    (sysCreatedAt == null ? 0 : sysCreatedAt!.hashCode) +
+    (sysUpdatedBy == null ? 0 : sysUpdatedBy!.hashCode) +
+    (sysUpdatedAt == null ? 0 : sysUpdatedAt!.hashCode);
 
   @override
-  String toString() => 'CartItemDto[cartItemId=$cartItemId, cartId=$cartId, discountAmount=$discountAmount, imageUrl=$imageUrl, price=$price, productId=$productId, quantity=$quantity, sysCreatedAt=$sysCreatedAt, sysCreatedBy=$sysCreatedBy, sysUpdatedAt=$sysUpdatedAt, sysUpdatedBy=$sysUpdatedBy, taxAmount=$taxAmount, title=$title, unit=$unit]';
+  String toString() => 'CartItemDto[cartItemId=$cartItemId, quantity=$quantity, price=$price, discountAmount=$discountAmount, taxAmount=$taxAmount, title=$title, imageUrl=$imageUrl, unit=$unit, cartId=$cartId, productId=$productId, sysCreatedBy=$sysCreatedBy, sysCreatedAt=$sysCreatedAt, sysUpdatedBy=$sysUpdatedBy, sysUpdatedAt=$sysUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (cartItemId != null) {
       _json[r'cartItemId'] = cartItemId;
     }
-    if (cartId != null) {
-      _json[r'cartId'] = cartId;
-    }
-    if (discountAmount != null) {
-      _json[r'discountAmount'] = discountAmount;
-    }
-    if (imageUrl != null) {
-      _json[r'imageUrl'] = imageUrl;
+    if (quantity != null) {
+      _json[r'quantity'] = quantity;
     }
     if (price != null) {
       _json[r'price'] = price;
     }
-    if (productId != null) {
-      _json[r'productId'] = productId;
-    }
-    if (quantity != null) {
-      _json[r'quantity'] = quantity;
-    }
-    if (sysCreatedAt != null) {
-      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
-    }
-    if (sysCreatedBy != null) {
-      _json[r'sys_CreatedBy'] = sysCreatedBy;
-    }
-    if (sysUpdatedAt != null) {
-      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
-    }
-    if (sysUpdatedBy != null) {
-      _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    if (discountAmount != null) {
+      _json[r'discountAmount'] = discountAmount;
     }
     if (taxAmount != null) {
       _json[r'taxAmount'] = taxAmount;
@@ -160,8 +145,29 @@ class CartItemDto {
     if (title != null) {
       _json[r'title'] = title;
     }
+    if (imageUrl != null) {
+      _json[r'imageUrl'] = imageUrl;
+    }
     if (unit != null) {
       _json[r'unit'] = unit;
+    }
+    if (cartId != null) {
+      _json[r'cartId'] = cartId;
+    }
+    if (productId != null) {
+      _json[r'productId'] = productId;
+    }
+    if (sysCreatedBy != null) {
+      _json[r'sys_CreatedBy'] = sysCreatedBy;
+    }
+    if (sysCreatedAt != null) {
+      _json[r'sys_CreatedAt'] = sysCreatedAt!.toUtc().toIso8601String();
+    }
+    if (sysUpdatedBy != null) {
+      _json[r'sys_UpdatedBy'] = sysUpdatedBy;
+    }
+    if (sysUpdatedAt != null) {
+      _json[r'sys_UpdatedAt'] = sysUpdatedAt!.toUtc().toIso8601String();
     }
     return _json;
   }
@@ -186,27 +192,27 @@ class CartItemDto {
 
       return CartItemDto(
         cartItemId: mapValueOfType<int>(json, r'cartItemId'),
-        cartId: mapValueOfType<int>(json, r'cartId'),
-        discountAmount: json[r'discountAmount'] == null
-            ? null
-            : num.parse(json[r'discountAmount'].toString()),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        price: json[r'price'] == null
-            ? null
-            : num.parse(json[r'price'].toString()),
-        productId: mapValueOfType<int>(json, r'productId'),
         quantity: json[r'quantity'] == null
             ? null
             : num.parse(json[r'quantity'].toString()),
-        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
-        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
-        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
-        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        price: json[r'price'] == null
+            ? null
+            : num.parse(json[r'price'].toString()),
+        discountAmount: json[r'discountAmount'] == null
+            ? null
+            : num.parse(json[r'discountAmount'].toString()),
         taxAmount: json[r'taxAmount'] == null
             ? null
             : num.parse(json[r'taxAmount'].toString()),
         title: mapValueOfType<String>(json, r'title'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         unit: mapValueOfType<String>(json, r'unit'),
+        cartId: mapValueOfType<int>(json, r'cartId'),
+        productId: mapValueOfType<int>(json, r'productId'),
+        sysCreatedBy: mapValueOfType<String>(json, r'sys_CreatedBy'),
+        sysCreatedAt: mapDateTime(json, r'sys_CreatedAt', ''),
+        sysUpdatedBy: mapValueOfType<String>(json, r'sys_UpdatedBy'),
+        sysUpdatedAt: mapDateTime(json, r'sys_UpdatedAt', ''),
       );
     }
     return null;

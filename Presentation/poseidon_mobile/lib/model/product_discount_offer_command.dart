@@ -14,42 +14,42 @@ class ProductDiscountOfferCommand {
   /// Returns a new [ProductDiscountOfferCommand] instance.
   ProductDiscountOfferCommand({
     this.productDiscountOfferId,
-    this.discountOfferId,
     this.productId,
+    this.discountOfferId,
   });
 
   int? productDiscountOfferId;
 
-  int? discountOfferId;
-
   int? productId;
+
+  int? discountOfferId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ProductDiscountOfferCommand &&
      other.productDiscountOfferId == productDiscountOfferId &&
-     other.discountOfferId == discountOfferId &&
-     other.productId == productId;
+     other.productId == productId &&
+     other.discountOfferId == discountOfferId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (productDiscountOfferId == null ? 0 : productDiscountOfferId!.hashCode) +
-    (discountOfferId == null ? 0 : discountOfferId!.hashCode) +
-    (productId == null ? 0 : productId!.hashCode);
+    (productId == null ? 0 : productId!.hashCode) +
+    (discountOfferId == null ? 0 : discountOfferId!.hashCode);
 
   @override
-  String toString() => 'ProductDiscountOfferCommand[productDiscountOfferId=$productDiscountOfferId, discountOfferId=$discountOfferId, productId=$productId]';
+  String toString() => 'ProductDiscountOfferCommand[productDiscountOfferId=$productDiscountOfferId, productId=$productId, discountOfferId=$discountOfferId]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (productDiscountOfferId != null) {
       _json[r'productDiscountOfferId'] = productDiscountOfferId;
     }
-    if (discountOfferId != null) {
-      _json[r'discountOfferId'] = discountOfferId;
-    }
     if (productId != null) {
       _json[r'productId'] = productId;
+    }
+    if (discountOfferId != null) {
+      _json[r'discountOfferId'] = discountOfferId;
     }
     return _json;
   }
@@ -74,8 +74,8 @@ class ProductDiscountOfferCommand {
 
       return ProductDiscountOfferCommand(
         productDiscountOfferId: mapValueOfType<int>(json, r'productDiscountOfferId'),
-        discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
         productId: mapValueOfType<int>(json, r'productId'),
+        discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
       );
     }
     return null;

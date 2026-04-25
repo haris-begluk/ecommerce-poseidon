@@ -14,65 +14,62 @@ class DiscountOfferCommand {
   /// Returns a new [DiscountOfferCommand] instance.
   DiscountOfferCommand({
     this.discountOfferId,
+    this.title,
     this.description,
-    this.discount,
-    this.endDate,
     this.imageUrl,
     this.startDate,
-    this.title,
+    this.endDate,
+    this.discount,
   });
 
   int? discountOfferId;
 
+  String? title;
+
   String? description;
-
-  num? discount;
-
-  DateTime? endDate;
 
   String? imageUrl;
 
   DateTime? startDate;
 
-  String? title;
+  DateTime? endDate;
+
+  num? discount;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DiscountOfferCommand &&
      other.discountOfferId == discountOfferId &&
+     other.title == title &&
      other.description == description &&
-     other.discount == discount &&
-     other.endDate == endDate &&
      other.imageUrl == imageUrl &&
      other.startDate == startDate &&
-     other.title == title;
+     other.endDate == endDate &&
+     other.discount == discount;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (discountOfferId == null ? 0 : discountOfferId!.hashCode) +
+    (title == null ? 0 : title!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
-    (discount == null ? 0 : discount!.hashCode) +
-    (endDate == null ? 0 : endDate!.hashCode) +
     (imageUrl == null ? 0 : imageUrl!.hashCode) +
     (startDate == null ? 0 : startDate!.hashCode) +
-    (title == null ? 0 : title!.hashCode);
+    (endDate == null ? 0 : endDate!.hashCode) +
+    (discount == null ? 0 : discount!.hashCode);
 
   @override
-  String toString() => 'DiscountOfferCommand[discountOfferId=$discountOfferId, description=$description, discount=$discount, endDate=$endDate, imageUrl=$imageUrl, startDate=$startDate, title=$title]';
+  String toString() => 'DiscountOfferCommand[discountOfferId=$discountOfferId, title=$title, description=$description, imageUrl=$imageUrl, startDate=$startDate, endDate=$endDate, discount=$discount]';
 
   Map<String, dynamic> toJson() {
     final _json = <String, dynamic>{};
     if (discountOfferId != null) {
       _json[r'discountOfferId'] = discountOfferId;
     }
+    if (title != null) {
+      _json[r'title'] = title;
+    }
     if (description != null) {
       _json[r'description'] = description;
-    }
-    if (discount != null) {
-      _json[r'discount'] = discount;
-    }
-    if (endDate != null) {
-      _json[r'endDate'] = endDate!.toUtc().toIso8601String();
     }
     if (imageUrl != null) {
       _json[r'imageUrl'] = imageUrl;
@@ -80,8 +77,11 @@ class DiscountOfferCommand {
     if (startDate != null) {
       _json[r'startDate'] = startDate!.toUtc().toIso8601String();
     }
-    if (title != null) {
-      _json[r'title'] = title;
+    if (endDate != null) {
+      _json[r'endDate'] = endDate!.toUtc().toIso8601String();
+    }
+    if (discount != null) {
+      _json[r'discount'] = discount;
     }
     return _json;
   }
@@ -106,14 +106,14 @@ class DiscountOfferCommand {
 
       return DiscountOfferCommand(
         discountOfferId: mapValueOfType<int>(json, r'discountOfferId'),
+        title: mapValueOfType<String>(json, r'title'),
         description: mapValueOfType<String>(json, r'description'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        startDate: mapDateTime(json, r'startDate', ''),
+        endDate: mapDateTime(json, r'endDate', ''),
         discount: json[r'discount'] == null
             ? null
             : num.parse(json[r'discount'].toString()),
-        endDate: mapDateTime(json, r'endDate', ''),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        startDate: mapDateTime(json, r'startDate', ''),
-        title: mapValueOfType<String>(json, r'title'),
       );
     }
     return null;

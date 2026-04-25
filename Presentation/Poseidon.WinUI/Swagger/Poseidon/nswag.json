@@ -1,9 +1,9 @@
 {
-  "runtime": "Net60",
+  "runtime": "Net100",
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "http://localhost:5433/swagger/v1/swagger.json",
+      "url": "http://localhost:5431/swagger/v1/swagger.json",
       "output": "Poseidon.json",
       "newLineBehavior": "Auto"
     }
