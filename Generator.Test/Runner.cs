@@ -88,15 +88,21 @@ namespace Generator.Test
 #endif
             async Task GenerateCodeFromDbContet(Model[] model)
             {
-                await GenerateUsingTemplate("Commands.cst"                 , $"{commandPath}/Commands.cs"                     , model);
+                // Per-entity Commands: one file per entity (e.g. AddressCommand.cs)
+                foreach (var m in model)
+                {
+                    await GenerateUsingTemplate("Commands.cst", $"{commandPath}/{m.Name}Command.cs", new[] { m });
+                }
 
-                await GenerateUsingTemplate("DtosAutoMapper.cst"           , $"{dtoPath}/Dtos.cs"                             , model);
+                // Per-entity Dtos: one file per entity (e.g. AddressDto.cs)
+                foreach (var m in model)
+                {
+                    await GenerateUsingTemplate("DtosAutoMapper.cst", $"{dtoPath}/{m.Name}Dto.cs", new[] { m });
+                }
 
-                await GenerateUsingTemplate("Queries.cst"                  , $"{queryPath}/Queries.cs"                        , model);
-
-                await GenerateUsingTemplate("CommandHandlers.cst"          , $"{commandHandlersPath}/CommandHandlers.cs"      , model);
-
-                await GenerateUsingTemplate("Endpoints.cst"                , $"{endpointsPath}/Endpoints.cs"                  , model);
+                // Queries and CommandHandlers are handled generically - no per-entity generation needed:
+                //   Application/CommandHandlers/UpsertCommandHandler.cs handles all via IUpsertCommand<T>
+                //   Endpoints use QueryCommand<TDto> directly (no per-entity Query classes needed)
 
                 await GenerateUsingTemplate("PoseidonSwaggerExtensions.cst", $"{GenParallelPerformance}/PoseidonExtensions.cs", model);
 
@@ -127,14 +133,9 @@ namespace Generator.Test
                         , new Model() { Name = "OrderItem"                    }
                         , new Model() { Name = "UserProductReview"            }
                         , new Model() { Name = "Settings"                     }
-
-
-
                 };
 
-
                 await GenerateUsingTemplate("ParallelUseCases.cst", $"{GenParallelPerformance}/UseCases.cs", orderedModel);
-
 
                 Save(PowershellFilePath, CreatePowerShellFunction(GeneratedFiles));
             }

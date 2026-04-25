@@ -125,7 +125,9 @@ WHERE t.is_ms_shipped = 0;";
                 while (reader.Read())
                 {
                     string tableName = reader["TableName"].ToString() ?? "";
-                    string columnName = reader["ColumnName"].ToString() ?? "";
+                    // Normalize column names: SQL Server may store FK columns as ProductID/OrderID (all-caps)
+                    // but C# entities use the EF Core convention of ProductId/OrderId (mixed-case).
+                    string columnName = NormalizeColumnName(reader["ColumnName"].ToString() ?? "");
                     string dataType = reader["DataType"].ToString() ?? "";
                     int maxLength = Convert.ToInt32(reader["MaxLength"]);
                     bool isNullable = Convert.ToBoolean(reader["IsNullable"]);
@@ -165,9 +167,9 @@ WHERE t.is_ms_shipped = 0;";
                 while (reader.Read())
                 {
                     string tableName = reader["TableName"].ToString() ?? "";
-                    string columnName = reader["ColumnName"].ToString() ?? "";
+                    string columnName = NormalizeColumnName(reader["ColumnName"].ToString() ?? "");
                     string referencedTable = reader["ReferencedTable"].ToString() ?? "";
-                    string referencedColumn = reader["ReferencedColumn"].ToString() ?? "";
+                    string referencedColumn = NormalizeColumnName(reader["ReferencedColumn"].ToString() ?? "");
 
                     // Find if the column is nullable
                     bool isNullable = false;
@@ -246,6 +248,22 @@ WHERE t.is_ms_shipped = 0;";
             }
 
             return metaModel;
+        }
+
+        /// <summary>
+        /// Normalizes a SQL column name to match C# EF Core conventions.
+        /// SQL Server may store FK columns as ProductID/OrderID (all-caps ID suffix),
+        /// but EF Core uses ProductId/OrderId (mixed-case Id suffix) for C# properties.
+        /// </summary>
+        private static string NormalizeColumnName(string columnName)
+        {
+            // Replace trailing all-caps "ID" with "Id" — but only when it's a suffix after at least one char
+            if (columnName.Length > 2 && columnName.EndsWith("ID", StringComparison.Ordinal)
+                && !columnName.EndsWith("Id", StringComparison.Ordinal))
+            {
+                return columnName[..^2] + "Id";
+            }
+            return columnName;
         }
         
         public static string GetCsDataType(string sqltype, bool nullable = false)

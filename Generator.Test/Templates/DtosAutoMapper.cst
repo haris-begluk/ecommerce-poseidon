@@ -21,7 +21,7 @@ namespace Poseidon.Application.Dto;
 foreach (var model in Model)
 { 
 
-@:    public partial class @(model.Name)Dto : IMapFrom<@(model.Name)>
+@:    public class @(model.Name)Dto : IMapFrom<@(model.Name)>
 @:    { 
 var maxPropLength = ((IEnumerable<Field>)model.Fields).Select(x => x.PropertyName.Length).Max();
 var maxTypeLength = ((IEnumerable<Field>)model.Fields).Select(x => GeneratorTemplate.GetDataType(x).Length).Max();

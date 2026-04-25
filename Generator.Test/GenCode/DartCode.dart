@@ -160,8 +160,8 @@
     { 
           OrderItem( OrderItemDto dto): super(
               orderItemId : dto.orderItemId,
-              productID : dto.productID,
-              orderID : dto.orderID,
+              productId : dto.productId,
+              orderId : dto.orderId,
               productPrice : dto.productPrice,
               quantity : dto.quantity,
               discountAmount : dto.discountAmount,
@@ -224,8 +224,8 @@
     { 
           ProductDiscountOffer( ProductDiscountOfferDto dto): super(
               productDiscountOfferId : dto.productDiscountOfferId,
-              productID : dto.productID,
-              discountOfferID : dto.discountOfferID,
+              productId : dto.productId,
+              discountOfferId : dto.discountOfferId,
               sysCreatedBy : dto.sysCreatedBy,
               sysCreatedAt : dto.sysCreatedAt,
               sysUpdatedBy : dto.sysUpdatedBy,
@@ -284,8 +284,8 @@
     { 
           UserProductReview( UserProductReviewDto dto): super(
               userProductReviewId : dto.userProductReviewId,
-              userID : dto.userID,
-              productID : dto.productID,
+              userId : dto.userId,
+              productId : dto.productId,
               title : dto.title,
               comment : dto.comment,
               rating : dto.rating,
